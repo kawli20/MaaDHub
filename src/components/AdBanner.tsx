@@ -7,6 +7,7 @@ interface AdBannerProps {
     name: string;
     bio: string;
     link: string;
+    imageUrl?: string;
   };
   index?: number;
 }
@@ -27,11 +28,31 @@ export function AdBanner({ ad, index = 0 }: AdBannerProps) {
       className="group relative block w-full overflow-hidden rounded-2xl border border-white/[0.06] hover:border-[#C1272D]/30 transition-all duration-500"
       style={{ background: "rgba(255,255,255,0.02)", minHeight: "140px" }}
     >
-      <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
-        {styleIndex === 0 && <Rings3D />}
-        {styleIndex === 1 && <FloatingOrbs />}
-        {styleIndex === 2 && <GeometricGrid />}
-      </div>
+      {/* Background decoration (only shown when no image) */}
+      {!ad.imageUrl && (
+        <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
+          {styleIndex === 0 && <Rings3D />}
+          {styleIndex === 1 && <FloatingOrbs />}
+          {styleIndex === 2 && <GeometricGrid />}
+        </div>
+      )}
+
+      {/* Ad image — fades smoothly on all edges using CSS mask */}
+      {ad.imageUrl && (
+        <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
+          <img
+            src={ad.imageUrl}
+            alt={ad.name}
+            loading="lazy"
+            decoding="async"
+            className="absolute top-0 right-0 h-full w-3/4 object-cover opacity-50 group-hover:opacity-65 transition-opacity duration-500"
+            style={{
+              maskImage: "linear-gradient(to right, transparent 0%, black 35%)",
+              WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 35%)",
+            }}
+          />
+        </div>
+      )}
 
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-r from-[#C1272D]/5 via-transparent to-[#006233]/5" />

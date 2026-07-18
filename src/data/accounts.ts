@@ -207,6 +207,7 @@ export interface Advertisement {
   name: string;
   bio: string;
   link: string;
+  imageUrl?: string;  // optional — add a URL to show a photo in the ad banner
   enabled: boolean;
   createdAt: string;
 }
@@ -217,6 +218,7 @@ export const DEFAULT_ADVERTISEMENTS: Advertisement[] = [
     name: "NO SPONSORED ADS YET",
     bio: "contact us to advertise here",
     link: "https://maad.qzz.io",
+    imageUrl: "https://i.pinimg.com/1200x/e0/48/43/e04843ba7c9caf803ae3c118157d4231.jpg",
     enabled: true,
     createdAt: "2024-06-01T10:00:00.000Z",
   },
@@ -225,7 +227,17 @@ export const DEFAULT_ADVERTISEMENTS: Advertisement[] = [
     name: "NO SPONSORED ADS YET",
     bio: "contact us to advertise here",
     link: "https://maad.qzz.io",
-    enabled: false,
+    imageUrl: "https://i.pinimg.com/1200x/9a/af/0d/9aaf0de0df94b712c0c6808fdc989e4d.jpg",
+    enabled: true,
+    createdAt: "2024-06-15T14:00:00.000Z",
+  },
+  {
+    id: 3,
+    name: "NO SPONSORED ADS YET",
+    bio: "contact us to advertise here",
+    link: "https://maad.qzz.io",
+    imageUrl: "https://i.pinimg.com/1200x/c8/0a/dd/c80add14f6de78715120b4e2cef8ce58.jpg",
+    enabled: true,
     createdAt: "2024-06-15T14:00:00.000Z",
   },
 ];

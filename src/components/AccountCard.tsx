@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Copy, Check, Bookmark, BookmarkCheck, ExternalLink } from "lucide-react";
-import { useState } from "react";
+import { memo, useState, useRef } from "react";
 import { useLanguage } from "@/hooks/useLanguage";
 import type { Account } from "@/data/accounts";
 
@@ -45,10 +45,12 @@ const PLATFORM_FALLBACK_IMAGE: Record<string, string> = {
   "Battle.net": "/games/battlenet.jpg",
 };
 
-export function AccountCard({ account, isSaved, onToggleSave, onCopy, index = 0 }: AccountCardProps) {
+export const AccountCard = memo(function AccountCard({ account, isSaved, onToggleSave, onCopy, index = 0 }: AccountCardProps) {
   const { t } = useLanguage();
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement | null>(null);
 
   const handleCopy = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
@@ -71,14 +73,25 @@ export function AccountCard({ account, isSaved, onToggleSave, onCopy, index = 0 
       className="group relative rounded-xl overflow-hidden glass-card hover-glow cursor-pointer"
     >
       <div className="relative aspect-[3/4] overflow-hidden">
+        {/* Skeleton placeholder shown while image loads */}
+        {!imgLoaded && (
+          <div className="absolute inset-0 bg-white/5 animate-pulse" />
+        )}
         <motion.img
+          ref={imgRef}
           src={imageUrl}
           alt={account.gameName}
-          className="w-full h-full object-cover"
+          loading="lazy"
+          decoding="async"
+          width={400}
+          height={533}
+          className={`w-full h-full object-cover transition-opacity duration-300 ${imgLoaded ? "opacity-100" : "opacity-0"}`}
           animate={{ scale: isHovered ? 1.08 : 1 }}
           transition={{ duration: 0.4 }}
+          onLoad={() => setImgLoaded(true)}
           onError={(e) => {
             (e.target as HTMLImageElement).src = fallbackImage;
+            setImgLoaded(true);
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-[#030303]/30 to-transparent" />
@@ -181,4 +194,4 @@ export function AccountCard({ account, isSaved, onToggleSave, onCopy, index = 0 
       </div>
     </motion.div>
   );
-}
+});
