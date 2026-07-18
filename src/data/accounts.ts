@@ -245,7 +245,7 @@ export interface Advertisement {
 export const DEFAULT_ADVERTISEMENTS: Advertisement[] = [
   {
     id: 1,
-    name: "NO SPONSORED ADS YET JOIN OUR TELEGRAME CHANNEL",
+    name: "NO SPONSORED ADS YET, SO JOIN OUR TELEGRAME CHANNEL",
     bio: "click here to join",
     link: "https://t.me/maadhub",
     imageUrl: "https://i.pinimg.com/736x/3a/78/76/3a7876379cb819af93733f1518484d1e.jpg",
