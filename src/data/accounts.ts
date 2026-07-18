@@ -127,12 +127,12 @@ export const DEFAULT_ACCOUNTS: Account[] = [
   },
   {
     id: 10,
-    gameName: "Resident Evil Requiem",
+    gameName: "EA Sports FC 26",
     platform: "Steam",
-    username: "MW3FUNPAY",
-    password: "Funpaymorden1995",
+    username: "I1jyGzTWW",
+    password: "VrVIwhgeG",
     supportLink: "https://maad.qzz.io/",
-    imageUrl: "https://i.pinimg.com/736x/29/b4/67/29b4673c52a4b74432b4535056d2f4e8.jpg",
+    imageUrl: "https://i.pinimg.com/1200x/32/06/dd/3206dd46cb3cb8b2b8377119d199ed08.jpg",
     createdAt: "2024-04-10T09:30:00.000Z",
   },
   {
