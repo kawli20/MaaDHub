@@ -165,6 +165,36 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     imageUrl: "https://i.pinimg.com/736x/a9/5e/09/a95e092e7d561570d10280612fabfe01.jpg",
     createdAt: "2024-05-01T11:30:00.000Z",
   },
+  {
+    id: 14,
+    gameName: "The Witcher 3: Wild Hunt",
+    platform: "Steam",
+    username: "asahiaki1",
+    password: "marpanov_free19",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/736x/c8/29/b5/c829b51b7bec75abba4bb5f47ad821ee.jpg",
+    createdAt: "2024-05-01T11:30:00.000Z",
+  },
+  {
+    id: 15,
+    gameName: "Batman: Arkham City",
+    platform: "Steam",
+    username: "ksfxo878",
+    password: "steamok773366",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/736x/e5/c4/98/e5c4989f7b85913865adc0573018b1a9.jpg",
+    createdAt: "2024-05-01T11:30:00.000Z",
+  },
+  {
+    id: 16,
+    gameName: "Watch Dogs",
+    platform: "Steam",
+    username: "jp30ekXr",
+    password: "wa72ITSA",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/1200x/c5/fb/f2/c5fbf2333e228a1fe4536a577a0fca4c.jpg",
+    createdAt: "2024-05-01T11:30:00.000Z",
+  },
 ];
 
 // ======================== YOUR ADS ========================
