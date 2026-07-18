@@ -195,6 +195,36 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     imageUrl: "https://i.pinimg.com/1200x/c5/fb/f2/c5fbf2333e228a1fe4536a577a0fca4c.jpg",
     createdAt: "2024-05-01T11:30:00.000Z",
   },
+  {
+    id: 17,
+    gameName: "The Last of Us Part I and Part II",
+    platform: "Steam",
+    username: "thelast1q",
+    password: "playerok.com/profile/QAVIX",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://cdn1.epicgames.com/offer/0c40923dd1174a768f732a3b013dcff2/EGS_TheLastofUsPartI_NaughtyDogLLC_S2_1200x1600-41d1b88814bea2ee8cb7986ec24713e0",
+    createdAt: "2024-05-01T11:30:00.000Z",
+  },
+  {
+    id: 18,
+    gameName: "Euro Truck Simulator 2",
+    platform: "Steam",
+    username: "gmsuk92770",
+    password: "brpnk01133",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/736x/5e/2d/a0/5e2da0c309e30247e50e28830be225c9.jpg",
+    createdAt: "2024-05-01T11:30:00.000Z",
+  },
+  {
+    id: 19,
+    gameName: "PAYDAY 2",
+    platform: "Steam",
+    username: "mafia_phasmavpn",
+    password: "qWERTY33!",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/1200x/9f/6c/39/9f6c39993ee700c3bd556ca666509948.jpg",
+    createdAt: "2024-05-01T11:30:00.000Z",
+  },
 ];
 
 // ======================== YOUR ADS ========================
