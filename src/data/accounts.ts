@@ -215,10 +215,10 @@ export interface Advertisement {
 export const DEFAULT_ADVERTISEMENTS: Advertisement[] = [
   {
     id: 1,
-    name: "NO SPONSORED ADS YET",
-    bio: "contact us to advertise here",
-    link: "https://maad.qzz.io",
-    imageUrl: "https://i.pinimg.com/1200x/e0/48/43/e04843ba7c9caf803ae3c118157d4231.jpg",
+    name: "NO SPONSORED ADS YET JOIN OUR TELEGRAME CHANNEL",
+    bio: "click here to join",
+    link: "https://t.me/maadhub",
+    imageUrl: "https://i.pinimg.com/736x/3a/78/76/3a7876379cb819af93733f1518484d1e.jpg",
     enabled: true,
     createdAt: "2024-06-01T10:00:00.000Z",
   },
@@ -228,7 +228,7 @@ export const DEFAULT_ADVERTISEMENTS: Advertisement[] = [
     bio: "contact us to advertise here",
     link: "https://maad.qzz.io",
     imageUrl: "https://i.pinimg.com/1200x/9a/af/0d/9aaf0de0df94b712c0c6808fdc989e4d.jpg",
-    enabled: true,
+    enabled: false,
     createdAt: "2024-06-15T14:00:00.000Z",
   },
   {
@@ -237,7 +237,7 @@ export const DEFAULT_ADVERTISEMENTS: Advertisement[] = [
     bio: "contact us to advertise here",
     link: "https://maad.qzz.io",
     imageUrl: "https://i.pinimg.com/1200x/c8/0a/dd/c80add14f6de78715120b4e2cef8ce58.jpg",
-    enabled: true,
+    enabled: false,
     createdAt: "2024-06-15T14:00:00.000Z",
   },
 ];
