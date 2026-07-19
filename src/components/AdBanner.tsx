@@ -58,19 +58,19 @@ export function AdBanner({ ad, index = 0 }: AdBannerProps) {
         <div className="absolute inset-0 bg-gradient-to-r from-[#C1272D]/5 via-transparent to-[#006233]/5" />
       </div>
 
-      <div className="relative px-8 py-8 sm:px-12 sm:py-10 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8">
-        <div className="flex-1 min-w-0">
+      <div className="relative px-5 py-6 sm:px-12 sm:py-10 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 overflow-hidden">
+        <div className="flex-1 min-w-0 overflow-hidden">
           <div className="flex items-center gap-3 mb-3">
             <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] text-[#C1272D] border border-[#C1272D]/30 bg-[#C1272D]/5">
               {t("ad_sponsored")}
             </span>
           </div>
 
-          <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-gradient transition-all duration-300 mb-2 truncate tracking-tight">
+          <h3 className="text-lg sm:text-2xl font-bold text-white group-hover:text-gradient transition-all duration-300 mb-2 break-words overflow-hidden tracking-tight leading-snug">
             {ad.name}
           </h3>
 
-          <p className="text-white/40 text-sm max-w-xl leading-relaxed">{ad.bio}</p>
+          <p className="text-white/40 text-sm max-w-xl leading-relaxed break-words">{ad.bio}</p>
         </div>
 
         <div className="shrink-0 self-start sm:self-center">
