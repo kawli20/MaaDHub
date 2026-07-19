@@ -245,6 +245,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     imageUrl: "https://i.pinimg.com/736x/cd/ec/1c/cdec1ce84444c342a211edcba2727097.jpg",
     createdAt: "2024-05-01T11:30:00.000Z",
   },
+  {
+    id: 22,
+    gameName: "NBA 2K25",
+    platform: "Steam",
+    username: "kk80401",
+    password: "kk223344kkwdw",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/736x/46/24/73/46247331da801c0b16fbb8da09be13cd.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  }
 ];
 
 // ======================== YOUR ADS ========================
