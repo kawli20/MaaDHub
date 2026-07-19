@@ -225,6 +225,26 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     imageUrl: "https://i.pinimg.com/1200x/9f/6c/39/9f6c39993ee700c3bd556ca666509948.jpg",
     createdAt: "2024-05-01T11:30:00.000Z",
   },
+  {
+    id: 20,
+    gameName: "Far Cry 3",
+    platform: "Steam",
+    username: "youallsuck_911",
+    password: "Adje2003a.1",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/736x/3e/b6/a4/3eb6a4f5b93754b38ce3c2869778e78e.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z",
+  },
+  {
+    id: 21,
+    gameName: "Battlefield 3",
+    platform: "Steam",
+    username: "KidDeath143",
+    password: "momdad2001",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/736x/cd/ec/1c/cdec1ce84444c342a211edcba2727097.jpg",
+    createdAt: "2024-05-01T11:30:00.000Z",
+  },
 ];
 
 // ======================== YOUR ADS ========================
