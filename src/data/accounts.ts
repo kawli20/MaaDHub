@@ -256,7 +256,7 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
-    id: 22,
+    id: 23,
     gameName: "Resident Evil Series",
     platform: "Steam",
     username: "yczhw46123",
@@ -264,8 +264,17 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/32/71/af/3271af2f5c99601dc1c9189adae48c94.jpg",
     createdAt: "2024-07-20T18:00:00.000Z"
-  }
-
+  },
+  {
+    id: 24,
+    gameName: "Attack On Titan 2",
+    platform: "Steam",
+    username: "aot2_kg2",
+    password: "eren1145@#",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://cdn.loaded.com/media/catalog/product/a/o/aot_final_battle.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
 ];
 
 // ======================== YOUR ADS ========================
