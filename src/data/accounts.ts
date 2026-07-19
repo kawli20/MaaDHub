@@ -330,6 +330,15 @@ export const DEFAULT_ADVERTISEMENTS: Advertisement[] = [
     enabled: true,
     createdAt: "2024-06-15T14:00:00.000Z",
   },
+  {
+    id: 4,
+    name: "NO SPONSORED ADS YET, SO JOIN OUR TELEGRAME CHANNEL",
+    bio: "click here to join",
+    link: "https://t.me/maadhub",
+    imageUrl: "https://i.pinimg.com/originals/90/5f/c9/905fc914bbc0cfa71d8f09caa9bf4082.gif",
+    enabled: true,
+    createdAt: "2024-06-15T14:00:00.000Z",
+  },
 ];
 
 // Always use code defaults directly — no localStorage
