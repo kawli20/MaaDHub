@@ -275,6 +275,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     imageUrl: "https://cdn.loaded.com/media/catalog/product/a/o/aot_final_battle.jpg",
     createdAt: "2024-07-20T18:00:00.000Z"
   },
+  {
+    id: 25,
+    gameName: "Wallpaper engine",
+    platform: "Steam",
+    username: "dy5no5ss2ap2",
+    password: "P_Block@0975",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://cdn2.steamgriddb.com/grid/6910c07743a1a1dbd134c8233fb822ea.png",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
 ];
 
 // ======================== YOUR ADS ========================
