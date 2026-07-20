@@ -285,6 +285,56 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     imageUrl: "https://cdn2.steamgriddb.com/grid/6910c07743a1a1dbd134c8233fb822ea.png",
     createdAt: "2024-07-20T18:00:00.000Z"
   },
+  {
+    id: 26,
+    gameName: "Assetto Corso",
+    platform: "Steam",
+    username: "Ok1Rm6Kp7Ol0",
+    password: "Lq5Ok3My1Wh5",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/736x/c0/fa/52/c0fa52a3f90b6433827c0ca334241c77.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 27,
+    gameName: "Resident Evil Requiem",
+    platform: "Steam",
+    username: "egoros3p41",
+    password: "siski33BFa9lCBU7O67483",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/736x/2f/26/02/2f26026454beb1ff40d72f5d19b3b042.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 28,
+    gameName: "Rust",
+    platform: "Steam",
+    username: "lsoiy210",
+    password: "lwl67033R",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/736x/4f/29/4d/4f294db80e37fdd0f52b07e7af18ed75.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 29,
+    gameName: "SnowRunner",
+    platform: "Steam",
+    username: "lsoiy210",
+    password: "lwl67033R",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/1200x/62/d6/90/62d69084c78ea7789c551e292440bd2b.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 30,
+    gameName: "Satisfactory",
+    platform: "Steam",
+    username: "lsoiy210",
+    password: "lwl67033R",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/736x/71/c8/7a/71c87a795350e8eae9c2b3ffa5bb9777.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
 ];
 
 // ======================== YOUR ADS ========================
