@@ -360,6 +360,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     imageUrl: "https://i.pinimg.com/736x/2e/13/75/2e13755a6b3fec2ee9dbcc231a1cf39c.jpg",
     createdAt: "2024-07-20T18:00:00.000Z"
   },
+  {
+    id: 34,
+    gameName: "RESIDENT EVIL 4 Remake",
+    platform: "Steam",
+    username: "residentevil4rdepqmcx06",
+    password: "OQRODETHw06",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/736x/73/79/a8/7379a8598e87966329b09ff921b3bf99.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
 ];
 
 export interface Advertisement {
