@@ -132,7 +132,7 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     username: "I1jyGzTWW",
     password: "VrVIwhgeG",
     supportLink: "https://maad.qzz.io/",
-    imageUrl: "https://i.pinimg.com/1200x/32/06/dd/3206dd46cb3cb8b2b8377119d199ed08.jpg",
+    imageUrl: "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdnNjd29qaHpqNjdraGd6eThmc2w1djNuMGVwMTB2d3JtZGIxOHc0NyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/n8rTLLINBycMxi73lQ/giphy.gif",
     createdAt: "2024-04-10T09:30:00.000Z",
   },
   {
@@ -252,7 +252,7 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     username: "kk80401",
     password: "kk223344kkwdw",
     supportLink: "https://maad.qzz.io/",
-    imageUrl: "https://i.pinimg.com/736x/46/24/73/46247331da801c0b16fbb8da09be13cd.jpg",
+    imageUrl: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdHR4bXEzZTN2eXR3b2ExaW93aXZwZTRndWRsbjdnM2JmZWJhZ2hkZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/y7NmHw25VGwA0UuKRn/giphy.gif",
     createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
