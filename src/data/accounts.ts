@@ -335,6 +335,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     imageUrl: "https://i.pinimg.com/736x/71/c8/7a/71c87a795350e8eae9c2b3ffa5bb9777.jpg",
     createdAt: "2024-07-20T18:00:00.000Z"
   },
+  {
+    id: 31,
+    gameName: "MECCHA CHAMELEON",
+    platform: "Steam",
+    username: "honoredthatch41",
+    password: "Jelszavacska2315",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/236x/3d/62/34/3d623487277413a3043d54de587a4ecd.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
 ];
 
 // ======================== YOUR ADS ========================
