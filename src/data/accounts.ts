@@ -29,11 +29,6 @@ export const PLATFORMS = [
   "Other",
 ] as const;
 
-// ======================== YOUR ACCOUNTS ========================
-// Edit this array with your own accounts.
-// Images: Use any direct URL (imgur, postimg, discord CDN, etc.)
-//         OR use local images: /games/steam.jpg, /games/epic.jpg, etc.
-// ===============================================================
 export const DEFAULT_ACCOUNTS: Account[] = [
   {
     id: 1,
@@ -347,17 +342,12 @@ export const DEFAULT_ACCOUNTS: Account[] = [
   },
 ];
 
-// ======================== YOUR ADS ========================
-// enabled: true = shows on the site
-// enabled: false = hidden
-// Ads appear between rows of account cards automatically
-// ==========================================================
 export interface Advertisement {
   id: number;
   name: string;
   bio: string;
   link: string;
-  imageUrl?: string;  // optional — add a URL to show a photo in the ad banner
+  imageUrl?: string;
   enabled: boolean;
   createdAt: string;
 }
@@ -401,7 +391,6 @@ export const DEFAULT_ADVERTISEMENTS: Advertisement[] = [
   },
 ];
 
-// Always use code defaults directly — no localStorage
 export function loadAccounts(): Account[] {
   return [...DEFAULT_ACCOUNTS];
 }
