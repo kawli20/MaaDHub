@@ -302,7 +302,7 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     username: "egoros3p41",
     password: "siski33BFa9lCBU7O67483",
     supportLink: "https://maad.qzz.io/",
-    imageUrl: "https://i.pinimg.com/736x/2f/26/02/2f26026454beb1ff40d72f5d19b3b042.jpg",
+    imageUrl: "https://media1.tenor.com/m/_D2_OdnlyPsAAAAd/awsan-resident-evil-requiem.gif",
     createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
