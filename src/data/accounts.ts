@@ -340,6 +340,26 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     imageUrl: "https://i.pinimg.com/236x/3d/62/34/3d623487277413a3043d54de587a4ecd.jpg",
     createdAt: "2024-07-20T18:00:00.000Z"
   },
+  {
+    id: 32,
+    gameName: "Red Dead Redemption 2",
+    platform: "Steam",
+    username: "curioustarsier8885",
+    password: "059944Aa!",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/736x/d2/a4/5c/d2a45cc2083abc8bf1c21e47e0b29c3a.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 33,
+    gameName: "THE LAST OF US PART II REMASTERED",
+    platform: "Steam",
+    username: "thelast2zara",
+    password: "Thelast2zara55",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/736x/2e/13/75/2e13755a6b3fec2ee9dbcc231a1cf39c.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
 ];
 
 export interface Advertisement {
