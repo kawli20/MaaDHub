@@ -429,6 +429,40 @@ export function loadAds(): Advertisement[] {
   return [...DEFAULT_ADVERTISEMENTS];
 }
 
+export interface Sale {
+  id: number;
+  title: string;
+  platform: string;
+  description: string;
+  contact: string;
+  imageUrl?: string;
+  supportLink?: string;
+  createdAt: string;
+}
+
+export const DEFAULT_SALES: Sale[] = [
+  {
+    id: 1,
+    title: "Premium Game Server Slots",
+    platform: "All Platforms",
+    description: "Add your server sales and account offers in all languages. Contact the owner to publish your listing.",
+    contact: "owner@maadhub.com",
+    imageUrl: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=80",
+    supportLink: "https://maad.qzz.io/",
+    createdAt: "2024-01-01T00:00:00.000Z",
+  },
+  {
+    id: 2,
+    title: "Verified Account Listings",
+    platform: "Steam",
+    description: "Submit your account sales or server invite and let the owner add them to the marketplace.",
+    contact: "owner@maadhub.com",
+    imageUrl: "https://images.unsplash.com/photo-1511525165614-35ceb9460b12?auto=format&fit=crop&w=1200&q=80",
+    supportLink: "https://maad.qzz.io/",
+    createdAt: "2024-01-02T00:00:00.000Z",
+  },
+];
+
 export function getAccountStats(accounts: Account[]) {
   const total = accounts.length;
   const byPlatform: Record<string, number> = {};

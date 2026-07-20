@@ -33,7 +33,7 @@ export default function Home() {
   const [sortBy, setSortBy] = useState("newest");
 
   const accounts = DEFAULT_ACCOUNTS;
-  const ads = DEFAULT_ADVERTISEMENTS.filter((a) => a.enabled);
+  const ads = DEFAULT_ADVERTISEMENTS.filter((a) => a.enabled).sort((a, b) => b.id - a.id);
 
   const filteredAccounts = useMemo(() => {
     let result = [...accounts];
@@ -51,20 +51,14 @@ export default function Home() {
     }
     switch (sortBy) {
       case "oldest":
-        result.sort(
-          (a, b) =>
-            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-        );
+        result.sort((a, b) => a.id - b.id);
         break;
       case "alphabetical":
         result.sort((a, b) => a.gameName.localeCompare(b.gameName));
         break;
       case "newest":
       default:
-        result.sort(
-          (a, b) =>
-            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-        );
+        result.sort((a, b) => b.id - a.id);
         break;
     }
     return result;

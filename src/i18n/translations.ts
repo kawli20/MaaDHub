@@ -14,6 +14,7 @@ interface Translations {
 const en: Translations = {
   // Navigation
   nav_home: "Home",
+  nav_sales: "Sales",
   nav_saved: "Saved",
   nav_contact: "Contact",
   nav_about: "About",
@@ -57,6 +58,20 @@ const en: Translations = {
   saved_browse: "Browse Accounts",
   saved_back: "Back to Home",
   saved_saved_on: "Saved",
+  sales_title_1: "Sales",
+  sales_title_2: "Board",
+  sales_desc: "Browse sales offers and servers for accounts in all languages. Contact the owner to add your sale or server.",
+  sales_note_label: "Note",
+  sales_note_title: "Contact owner to add your sales",
+  sales_note_action: "Contact Owner",
+  sales_list_title: "Current Sales & Servers",
+  sales_list_desc: "These offers are managed by the owner. Copy the contact below to submit your own sale or server listing.",
+  sales_contact_label: "Contact",
+  sales_copy_contact: "Copy",
+  sales_contact_copied: "Contact copied!",
+  sales_contact_shop: "Contact Shop",
+  sales_empty_title: "No sales yet",
+  sales_empty_desc: "Contact the owner to add listings for sales and servers.",
 
   // Ad Banner
   ad_sponsored: "Sponsored",
@@ -109,6 +124,7 @@ const en: Translations = {
 
 const ar: Translations = {
   nav_home: "الرئيسية",
+  nav_sales: "المبيعات",
   nav_saved: "المحفوظات",
   nav_contact: "اتصل بنا",
   nav_about: "من نحن",
@@ -143,6 +159,20 @@ const ar: Translations = {
   saved_title_1: "الحسابات",
   saved_title_2: "المحفوظة",
   saved_count: "حساب محفوظ محلياً",
+  sales_title_1: "المبيعات",
+  sales_title_2: "لوحة",
+  sales_desc: "تصفح عروض المبيعات والخوادم للحسابات بجميع اللغات. تواصل مع المالك لإضافة مبيعاتك أو خادمك.",
+  sales_note_label: "ملاحظة",
+  sales_note_title: "اتصل بالمالك لإضافة مبيعاتك",
+  sales_note_action: "تواصل مع المالك",
+  sales_list_title: "عروض المبيعات والخوادم",
+  sales_list_desc: "هذه العروض يديرها المالك. انسخ جهة الاتصال أدناه لإرسال قائمتك الخاصة.",
+  sales_contact_label: "جهة الاتصال",
+  sales_copy_contact: "نسخ",
+  sales_contact_copied: "تم نسخ جهة الاتصال!",
+  sales_contact_shop: "تواصل مع المتجر",
+  sales_empty_title: "لا توجد مبيعات بعد",
+  sales_empty_desc: "اتصل بالمالك لإضافة قوائم المبيعات والخوادم.",
   saved_empty_title: "لا توجد حسابات محفوظة بعد",
   saved_empty_desc: "تصفح المخزن وانقر على أيقونة الحفظ لأي بطاقة حساب لحفظها هنا.",
   saved_browse: "تصفح الحسابات",
@@ -195,6 +225,7 @@ const ar: Translations = {
 
 const fr: Translations = {
   nav_home: "Accueil",
+  nav_sales: "Ventes",
   nav_saved: "Enregistrés",
   nav_contact: "Contact",
   nav_about: "À propos",
@@ -229,6 +260,20 @@ const fr: Translations = {
   saved_title_1: "Comptes",
   saved_title_2: "Enregistrés",
   saved_count: "compte(s) enregistré(s) localement",
+  sales_title_1: "Ventes",
+  sales_title_2: "Board",
+  sales_desc: "Parcourez les offres de ventes et serveurs pour comptes dans toutes les langues. Contactez le propriétaire pour ajouter votre vente.",
+  sales_note_label: "Note",
+  sales_note_title: "Contactez le propriétaire pour ajouter vos ventes",
+  sales_note_action: "Contacter le propriétaire",
+  sales_list_title: "Ventes et serveurs",
+  sales_list_desc: "Ces offres sont gérées par le propriétaire. Copiez le contact ci-dessous pour soumettre votre propre annonce.",
+  sales_contact_label: "Contact",
+  sales_copy_contact: "Copier",
+  sales_contact_copied: "Contact copié !",
+  sales_contact_shop: "Contacter la boutique",
+  sales_empty_title: "Pas encore de ventes",
+  sales_empty_desc: "Contactez le propriétaire pour ajouter des annonces de ventes et serveurs.",
   saved_empty_title: "Aucun compte enregistré",
   saved_empty_desc: "Parcourez le vault et cliquez sur l'icône de signet pour enregistrer un compte ici.",
   saved_browse: "Parcourir les Comptes",
@@ -281,6 +326,7 @@ const fr: Translations = {
 
 const es: Translations = {
   nav_home: "Inicio",
+  nav_sales: "Ventas",
   nav_saved: "Guardados",
   nav_contact: "Contacto",
   nav_about: "Acerca de",
@@ -315,6 +361,20 @@ const es: Translations = {
   saved_title_1: "Cuentas",
   saved_title_2: "Guardadas",
   saved_count: "cuenta(s) guardada(s) localmente",
+  sales_title_1: "Ventas",
+  sales_title_2: "Board",
+  sales_desc: "Explora ofertas de ventas y servidores para cuentas en todos los idiomas. Contacta al propietario para agregar tu venta.",
+  sales_note_label: "Nota",
+  sales_note_title: "Contacta al propietario para agregar tus ventas",
+  sales_note_action: "Contactar al propietario",
+  sales_list_title: "Ventas y servidores",
+  sales_list_desc: "Estas ofertas las administra el propietario. Copia el contacto abajo para enviar tu propia lista.",
+  sales_contact_label: "Contacto",
+  sales_copy_contact: "Copiar",
+  sales_contact_copied: "Contacto copiado!",
+  sales_contact_shop: "Contactar tienda",
+  sales_empty_title: "Aún no hay ventas",
+  sales_empty_desc: "Contacta al propietario para agregar anuncios de ventas y servidores.",
   saved_empty_title: "Aún no hay cuentas guardadas",
   saved_empty_desc: "Explora el vault y haz clic en el ícono de marcador para guardar una cuenta aquí.",
   saved_browse: "Explorar Cuentas",
@@ -368,5 +428,5 @@ const es: Translations = {
 export const translations: Record<Lang, Translations> = { en, ar, fr, es };
 
 export function t(lang: Lang, key: string): string {
-  return translations[lang][key] || translations.en[key] || key;
+  return translations[lang]?.[key] || translations.en[key] || key;
 }
