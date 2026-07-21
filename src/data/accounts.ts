@@ -399,6 +399,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/control1/736x/ae/9b/3a/ae9b3ad20fc06f1dfd447e658102a71d.jpg",
     createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 38,
+    gameName: "TEKKEN 7",
+    platform: "Steam",
+    username: "bpzmu39160",
+    password: "HaLLODasIstMeinSteamACC2!!!",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQyHQAzCORTfLU73tGbn7QX7AGTSMtO_haa0xPa-TobCAGOCFWf",
+    createdAt: "2024-07-20T18:00:00.000Z"
   }
 ];
 
