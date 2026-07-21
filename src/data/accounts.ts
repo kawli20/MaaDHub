@@ -500,7 +500,7 @@ export const DEFAULT_SALES: Sale[] = [
   description: "Buy Instagram followers from this seller. Contact the seller directly on Telegram for prices, packages, and more information.",
   contact: "https://web.telegram.org/k/#@zeuyroo",
   imageUrl: "https://i.pinimg.com/736x/98/ae/9e/98ae9e53991d8d0c56564ba38d8dbec0.jpg",
-  supportLink: "https://t.me/zeuyroo",
+  supportLink: "https://discord.com/users/336570211341959168",
   createdAt: "2024-01-01T00:00:00.000Z",
 },
 ];
