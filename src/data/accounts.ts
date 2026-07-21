@@ -379,7 +379,7 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/1200x/67/0f/62/670f627b129f3edd05ff194effe8c049.jpg",
     createdAt: "2024-07-20T18:00:00.000Z"
-  }
+  },
   {
     id: 36,
     gameName: "R.E.P.O",
