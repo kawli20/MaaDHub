@@ -409,7 +409,18 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQyHQAzCORTfLU73tGbn7QX7AGTSMtO_haa0xPa-TobCAGOCFWf",
     createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 39,
+    gameName: "Choo-Choo Charles",
+    platform: "Steam",
+    username: "steamok1090115",
+    password: "steamok36464652",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/736x/2d/db/64/2ddb644d28a8617cbd7833e4b8382869.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
   }
+  
 ];
 
 export interface Advertisement {
