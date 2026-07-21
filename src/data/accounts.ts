@@ -389,7 +389,7 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/236x/8a/d8/e8/8ad8e875a5d321c15e38b24ab29fd31a.jpg",
     createdAt: "2024-07-20T18:00:00.000Z"
-  }
+  },
   {
     id: 37,
     gameName: "TEKKEN 7",
