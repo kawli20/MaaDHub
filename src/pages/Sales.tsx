@@ -1,18 +1,53 @@
+import { useMemo, useState } from "react"
 import { motion } from "framer-motion"
 import { Link } from "react-router"
-import { Tag, ExternalLink, Clipboard } from "lucide-react"
+import { Tag, ExternalLink } from "lucide-react"
 import { useLanguage } from "@/hooks/useLanguage"
 import { useToast } from "@/hooks/useToast"
 import { ToastContainer } from "@/components/Toast"
 import { Navigation } from "@/components/Navigation"
 import { Footer } from "@/components/Footer"
+import { SearchFilters } from "@/components/SearchFilters"
 import { DEFAULT_SALES } from "@/data/accounts"
 
 export default function Sales() {
   const { t } = useLanguage()
   const { toasts, addToast, removeToast } = useToast()
+  const [search, setSearch] = useState("")
+  const [platform, setPlatform] = useState("All")
+  const [sortBy, setSortBy] = useState("newest")
 
-  const sales = [...DEFAULT_SALES].sort((a, b) => b.id - a.id)
+  const sales = useMemo(() => {
+    let result = [...DEFAULT_SALES]
+
+    if (search) {
+      const s = search.toLowerCase()
+      result = result.filter((item) =>
+        item.title.toLowerCase().includes(s) ||
+        item.platform.toLowerCase().includes(s) ||
+        item.description.toLowerCase().includes(s)
+      )
+    }
+
+    if (platform && platform !== "All") {
+      result = result.filter((item) => item.platform === platform || item.platform === "All Platforms")
+    }
+
+    switch (sortBy) {
+      case "oldest":
+        result.sort((a, b) => a.id - b.id)
+        break
+      case "alphabetical":
+        result.sort((a, b) => a.title.localeCompare(b.title))
+        break
+      case "newest":
+      default:
+        result.sort((a, b) => b.id - a.id)
+        break
+    }
+
+    return result
+  }, [search, platform, sortBy])
 
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text)
@@ -66,6 +101,21 @@ export default function Sales() {
             <h2 className="text-xl font-semibold text-white mb-3">{t("sales_list_title")}</h2>
             <p className="text-white/40 text-sm max-w-xl">{t("sales_list_desc")}</p>
           </motion.div>
+
+          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
+            <SearchFilters
+              search={search}
+              onSearchChange={setSearch}
+              platform={platform}
+              onPlatformChange={setPlatform}
+              sortBy={sortBy}
+              onSortChange={setSortBy}
+            />
+          </motion.div>
+
+          <div className="mb-6 text-sm text-white/30">
+            {sales.length} {t("vault_results")}
+          </div>
 
           {sales.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">

@@ -1,3 +1,4 @@
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router";
 import { useLanguage } from "@/hooks/useLanguage";
@@ -6,12 +7,49 @@ import { useToast } from "@/hooks/useToast";
 import { ToastContainer } from "@/components/Toast";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { SearchFilters } from "@/components/SearchFilters";
 import { BookmarkX, ArrowLeft, Bookmark, Trash2 } from "lucide-react";
 
 export default function SavedAccounts() {
   const { t } = useLanguage();
   const { saved, removeSaved } = useSavedAccounts();
   const { toasts, addToast, removeToast } = useToast();
+  const [search, setSearch] = useState("");
+  const [platform, setPlatform] = useState("All");
+  const [sortBy, setSortBy] = useState("newest");
+
+  const filteredSaved = useMemo(() => {
+    let result = [...saved];
+
+    if (search) {
+      const s = search.toLowerCase();
+      result = result.filter(
+        (account) =>
+          account.gameName.toLowerCase().includes(s) ||
+          account.platform.toLowerCase().includes(s) ||
+          account.username.toLowerCase().includes(s)
+      );
+    }
+
+    if (platform && platform !== "All") {
+      result = result.filter((account) => account.platform === platform);
+    }
+
+    switch (sortBy) {
+      case "oldest":
+        result.sort((a, b) => a.id - b.id);
+        break;
+      case "alphabetical":
+        result.sort((a, b) => a.gameName.localeCompare(b.gameName));
+        break;
+      case "newest":
+      default:
+        result.sort((a, b) => b.id - a.id);
+        break;
+    }
+
+    return result;
+  }, [saved, search, platform, sortBy]);
 
   const handleCopy = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
@@ -46,9 +84,25 @@ export default function SavedAccounts() {
             </p>
           </motion.div>
 
+          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
+            <SearchFilters
+              search={search}
+              onSearchChange={setSearch}
+              platform={platform}
+              onPlatformChange={setPlatform}
+              sortBy={sortBy}
+              onSortChange={setSortBy}
+            />
+          </motion.div>
+
           {saved.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {saved.map((account, index) => (
+            <div>
+              <div className="mb-6 text-sm text-white/30">
+                {filteredSaved.length} {t("vault_results")}
+              </div>
+              {filteredSaved.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {filteredSaved.map((account, index) => (
                 <motion.div
                   key={account.id}
                   initial={{ opacity: 0, y: 20 }}
@@ -99,7 +153,18 @@ export default function SavedAccounts() {
                     </div>
                   </div>
                 </motion.div>
-              ))}
+                  ))}
+                </div>
+              ) : (
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-20">
+                  <BookmarkX className="w-16 h-16 text-white/10 mx-auto mb-4" />
+                  <h2 className="text-xl font-semibold text-white/40 mb-2">{t("saved_empty_title")}</h2>
+                  <p className="text-white/25 text-sm mb-6 max-w-sm mx-auto">{t("saved_empty_desc")}</p>
+                  <Link to="/" className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass border border-[#C1272D]/20 text-[#C1272D] text-sm font-medium hover:bg-[#C1272D]/10 transition-all">
+                    {t("saved_browse")}
+                  </Link>
+                </motion.div>
+              )}
             </div>
           ) : (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-20">

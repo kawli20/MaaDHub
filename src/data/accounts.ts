@@ -26,6 +26,7 @@ export const PLATFORMS = [
   "Amazon",
   "Spotify",
   "Discord",
+  "Instagram",
   "Other",
 ] as const;
 
@@ -492,16 +493,16 @@ export interface Sale {
 }
 
 export const DEFAULT_SALES: Sale[] = [
-//  {
-//    id: 1,
-//    title: "Premium Game Server Slots",
-//    platform: "All Platforms",
-//    description: "Add your server sales and account offers in all languages. Contact the owner to publish your listing.",
-//    contact: "owner@maadhub.com",
-//    imageUrl: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=80",
-//    supportLink: "https://maad.qzz.io/",
-//    createdAt: "2024-01-01T00:00:00.000Z",
-//  },
+{
+  id: 1,
+  title: "Instagram Followers",
+  platform: "Instagram",
+  description: "Buy Instagram followers from this seller. Contact the seller directly on Telegram for prices, packages, and more information.",
+  contact: "https://web.telegram.org/k/#@zeuyroo",
+  imageUrl: "https://i.pinimg.com/736x/98/ae/9e/98ae9e53991d8d0c56564ba38d8dbec0.jpg",
+  supportLink: "https://t.me/zeuyroo",
+  createdAt: "2024-01-01T00:00:00.000Z",
+},
 ];
 
 export function getAccountStats(accounts: Account[]) {
