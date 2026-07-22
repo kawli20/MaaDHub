@@ -420,8 +420,47 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/2d/db/64/2ddb644d28a8617cbd7833e4b8382869.jpg",
     createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 40,
+    gameName: "Watch_Dogs 2",
+    platform: "Steam",
+    username: "zMartins2",
+    password: "viniciussilvadelima12072008",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/736x/f2/57/ea/f257eaa23a2068f06994093a134fed7a.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 41,
+    gameName: "Friday the 13th: The Game",
+    platform: "Steam",
+    username: "zMartins2",
+    password: "viniciussilvadelima12072008",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/736x/8f/05/d2/8f05d2c47cd7f1d09f8e1e72e1ee60e0.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 42,
+    gameName: "Grand Theft Auto V Enhanced",
+    platform: "Steam",
+    username: "zMartins2",
+    password: "viniciussilvadelima12072008",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://img.lootbar.com/file/698493b89748c0a5221cb5c3sMgLLMS603",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 43,
+    gameName: "Middle-earth™: Shadow of War™",
+    platform: "Steam",
+    username: "zMartins2",
+    password: "viniciussilvadelima12072008",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/1200x/a4/ee/05/a4ee05d7a442839d0b91b5b3a80f3834.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
   }
-  
 ];
 
 export interface Advertisement {
