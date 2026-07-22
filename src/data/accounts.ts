@@ -423,7 +423,7 @@ export const DEFAULT_ACCOUNTS: Account[] = [
   },
   {
     id: 40,
-    gameName: "Watch_Dogs 2",
+    gameName: "Watch Dogs 2",
     platform: "Steam",
     username: "zMartins2",
     password: "viniciussilvadelima12072008",
