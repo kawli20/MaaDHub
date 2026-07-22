@@ -460,6 +460,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/1200x/a4/ee/05/a4ee05d7a442839d0b91b5b3a80f3834.jpg",
     createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 44,
+    gameName: "Cyberpunk 2077",
+    platform: "Steam",
+    username: "rusdepj",
+    password: "Vthbksvs",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/control1/736x/14/c8/96/14c896e0730044e222018d65a338eab5.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
   }
 ];
 
@@ -479,7 +489,7 @@ export const DEFAULT_ADVERTISEMENTS: Advertisement[] = [
     name: "NO SPONSORED ADS YET, SO JOIN OUR DISCORD SERVER",
     bio: "click here to join",
     link: "https://discord.gg/QHJdhTbYnF",
-    imageUrl: "https://i.pinimg.com/originals/a1/1d/41/a11d416a30a7a0d4c75a51bdba5d6670.gif",
+    imageUrl: "https://i.pinimg.com/originals/90/5f/c9/905fc914bbc0cfa71d8f09caa9bf4082.gif",
     enabled: true,
     createdAt: "2024-06-01T10:00:00.000Z",
   },
@@ -488,7 +498,7 @@ export const DEFAULT_ADVERTISEMENTS: Advertisement[] = [
     name: "NO SPONSORED ADS YET, SO JOIN OUR TELEGRAM SERVER",
     bio: "click here to join",
     link: "https://t.me/maadhub",
-    imageUrl: "https://i.pinimg.com/originals/18/30/3d/18303ddb424b4be3dc1ee46bdfc052ae.gif",
+    imageUrl: "https://i.pinimg.com/originals/b8/b3/dd/b8b3ddeb4cd4ff7c0586ae99361e16a2.gif",
     enabled: true,
     createdAt: "2024-06-15T14:00:00.000Z",
   },
@@ -497,7 +507,7 @@ export const DEFAULT_ADVERTISEMENTS: Advertisement[] = [
     name: "NO SPONSORED ADS YET, SO JOIN OUR DISCORD SERVER",
     bio: "click here to join",
     link: "https://discord.gg/QHJdhTbYnF",
-    imageUrl: "https://i.pinimg.com/originals/b8/b3/dd/b8b3ddeb4cd4ff7c0586ae99361e16a2.gif",
+    imageUrl: "https://i.pinimg.com/originals/18/30/3d/18303ddb424b4be3dc1ee46bdfc052ae.gif",
     enabled: true,
     createdAt: "2024-06-15T14:00:00.000Z",
   },
@@ -506,7 +516,7 @@ export const DEFAULT_ADVERTISEMENTS: Advertisement[] = [
     name: "NO SPONSORED ADS YET, SO JOIN OUR TELEGRAM SERVER",
     bio: "click here to join",
     link: "https://t.me/maadhub",
-    imageUrl: "https://i.pinimg.com/originals/90/5f/c9/905fc914bbc0cfa71d8f09caa9bf4082.gif",
+    imageUrl: "https://i.pinimg.com/originals/a1/1d/41/a11d416a30a7a0d4c75a51bdba5d6670.gif",
     enabled: true,
     createdAt: "2024-06-15T14:00:00.000Z",
   },
