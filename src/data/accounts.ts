@@ -538,20 +538,48 @@ export interface Sale {
   contact: string;
   imageUrl?: string;
   supportLink?: string;
+  price?: string;
+  category: "keys" | "accounts" | "subscription" | "serves";
   createdAt: string;
 }
 
 export const DEFAULT_SALES: Sale[] = [
-{
-  id: 1,
-  title: "Instagram Followers",
-  platform: "Instagram",
-  description: "Buy Instagram followers from this seller. Contact the seller directly on Telegram for prices, packages, and more information.",
-  contact: "https://guns.lol/zeeerooo",
-  imageUrl: "https://i.pinimg.com/736x/98/ae/9e/98ae9e53991d8d0c56564ba38d8dbec0.jpg",
-  supportLink: "https://guns.lol/zeeerooo",
-  createdAt: "2024-01-01T00:00:00.000Z",
-},
+  {
+    id: 1,
+    title: "Instagram Followers",
+    platform: "Instagram",
+    description: "Buy Instagram followers from this seller. Contact the seller directly on Telegram for prices, packages, and more information.",
+    contact: "https://guns.lol/zeeerooo",
+    imageUrl: "https://i.pinimg.com/736x/98/ae/9e/98ae9e53991d8d0c56564ba38d8dbec0.jpg",
+    supportLink: "https://guns.lol/zeeerooo",
+    category: "serves",
+    createdAt: "2024-01-01T00:00:00.000Z",
+  },
+  {
+    id: 2,
+    title: "Random ELITE 5 Keys GLOBAL",
+    platform: "steam",
+    description: "Buy Random ELITE 5 Keys GLOBAL from this seller. Contact the seller directly for prices, packages, and more information.",
+    contact: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/736x/92/99/26/9299264acdb984c9ed16224b375c0247.jpg",
+    supportLink: "https://maad.qzz.io/",
+    price: "6.99$",
+    category: "keys",
+    createdAt: "2024-01-02T00:00:00.000Z",
+  },
+  {
+    id: 3,
+    title: "Grand Random 5 Keys",
+    platform: "steam",
+    description: "Buy Random ELITE 5 Keys GLOBAL from this seller. Contact the seller directly for prices, packages, and more information.",
+    contact: "https://maad.qzz.io/",
+    imageUrl: "https://comicbook.com/wp-content/uploads/sites/4/2022/11/7b2e90ad-d178-4bdb-9d2d-9a51b1831df7.png",
+    supportLink: "https://maad.qzz.io/",
+    price: "19.99$",
+    category: "keys",
+    createdAt: "2024-01-03T00:00:00.000Z",
+  }
+
 ];
 
 export function getAccountStats(accounts: Account[]) {

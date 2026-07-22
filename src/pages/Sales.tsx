@@ -16,6 +16,15 @@ export default function Sales() {
   const [search, setSearch] = useState("")
   const [platform, setPlatform] = useState("All")
   const [sortBy, setSortBy] = useState("newest")
+  const [activeTab, setActiveTab] = useState<"all" | "keys" | "accounts" | "subscription" | "serves">("all")
+
+  const tabs: Array<{ key: "all" | "keys" | "accounts" | "subscription" | "serves"; label: string }> = [
+    { key: "all", label: "All" },
+    { key: "keys", label: "Keys" },
+    { key: "accounts", label: "Accounts" },
+    { key: "subscription", label: "Subscription" },
+    { key: "serves", label: "Serves" },
+  ]
 
   const sales = useMemo(() => {
     let result = [...DEFAULT_SALES]
@@ -33,6 +42,10 @@ export default function Sales() {
       result = result.filter((item) => item.platform === platform || item.platform === "All Platforms")
     }
 
+    if (activeTab !== "all") {
+      result = result.filter((item) => item.category === activeTab)
+    }
+
     switch (sortBy) {
       case "oldest":
         result.sort((a, b) => a.id - b.id)
@@ -47,7 +60,7 @@ export default function Sales() {
     }
 
     return result
-  }, [search, platform, sortBy])
+  }, [search, platform, sortBy, activeTab])
 
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text)
@@ -102,6 +115,24 @@ export default function Sales() {
             <p className="text-white/40 text-sm max-w-xl">{t("sales_list_desc")}</p>
           </motion.div>
 
+          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
+            <div className="flex flex-wrap gap-2">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.key}
+                  onClick={() => setActiveTab(tab.key)}
+                  className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
+                    activeTab === tab.key
+                      ? "bg-[#C1272D] text-white"
+                      : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </motion.div>
+
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
             <SearchFilters
               search={search}
@@ -144,7 +175,9 @@ export default function Sales() {
                           <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-[0.2em] text-white/80 bg-black/30 border border-white/10">
                             {item.platform}
                           </span>
-                          <span className="text-xs text-white/40">#{item.id}</span>
+                          <span className="rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] bg-[#C1272D]/20 text-[#C1272D] border border-[#C1272D]/20">
+                            {item.category}
+                          </span>
                         </div>
                         <h3 className="text-xl font-bold text-white leading-tight">{item.title}</h3>
                       </div>
@@ -152,6 +185,12 @@ export default function Sales() {
 
                     <div className="p-6 space-y-4">
                       <p className="text-white/60 text-sm leading-relaxed">{item.description}</p>
+
+                      {item.price ? (
+                        <div className="rounded-2xl border border-[#C1272D]/20 bg-[#C1272D]/10 px-4 py-3 text-sm text-[#C1272D] font-semibold">
+                          {item.price}
+                        </div>
+                      ) : null}
 
                       <div className="space-y-3">
                         {item.supportLink ? (
