@@ -85,8 +85,8 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     id: 6,
     gameName: "God Of War Ragnarok",
     platform: "Steam",
-    username: "krishurt9p",
-    password: "wTrekfan66!vrz",
+    username: "pablo79911",
+    password: "F552YFK7K5B9",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/en/e/ee/God_of_War_Ragnar%C3%B6k_cover.jpg",
     createdAt: "2024-03-01T08:45:00.000Z",
@@ -479,6 +479,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "yanzheng1125",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/af/d4/1c/afd41c1dfc437dc1338976ef49c5311b.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 46,
+    gameName: "DayZ",
+    platform: "Steam",
+    username: "vcixy40970",
+    password: "irxxhonmcc",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/1200x/5e/d3/1f/5ed31f512e3b9fa2ee32e5545e386382.jpg",
     createdAt: "2024-07-20T18:00:00.000Z"
   }
 ];
