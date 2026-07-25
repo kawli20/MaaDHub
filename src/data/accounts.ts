@@ -490,6 +490,36 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/1200x/5e/d3/1f/5ed31f512e3b9fa2ee32e5545e386382.jpg",
     createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 47,
+    gameName: "Assetto Corsa",
+    platform: "Steam",
+    username: "xmallmannx",
+    password: "32914703",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/736x/c0/fa/52/c0fa52a3f90b6433827c0ca334241c77.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 48,
+    gameName: "DARK SOULS™: REMASTERED",
+    platform: "Steam",
+    username: "bot22_2",
+    password: "bot222RT",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/control1/736x/f7/8a/60/f78a60fb1da3ed1d47de89b6cd2cda47.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 49,
+    gameName: "DARK SOULS™ II: Scholar of the First Sin",
+    platform: "Steam",
+    username: "deizfreeacc",
+    password: "deizdiscord09870",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/736x/0d/01/e2/0d01e2b6d4004d1d3fdec7031bc83d09.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
   }
 ];
 
