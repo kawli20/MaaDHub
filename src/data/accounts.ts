@@ -520,6 +520,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/0d/01/e2/0d01e2b6d4004d1d3fdec7031bc83d09.jpg",
     createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 50,
+    gameName: "Palworld",
+    platform: "Steam",
+    username: "frqjg73396",
+    password: "weszh392562",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/736x/39/c2/da/39c2dad1ac130d2789d4cb6055eb78e8.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
   }
 ];
 
