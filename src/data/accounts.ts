@@ -530,6 +530,46 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/39/c2/da/39c2dad1ac130d2789d4cb6055eb78e8.jpg",
     createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 51,
+    gameName: "Gorilla Tag",
+    platform: "Steam",
+    username: "66fallenangel66",
+    password: "LoveC2008",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big_2x/coau8c.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 52,
+    gameName: "Wallpaper Engine",
+    platform: "Steam",
+    username: "wallpaperenginefreeacc",
+    password: "wallpaperenginediscord09870",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://cdn2.steamgriddb.com/grid/6910c07743a1a1dbd134c8233fb822ea.png",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 53,
+    gameName: "Assassin's Creed Odyssey",
+    platform: "Steam",
+    username: "zhangchao_1818",
+    password: "xupangzi1",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/control1/736x/63/af/18/63af18baa147e08f7c2cb78f0ce4176c.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 54,
+    gameName: "UNCHARTED™: Legacy of Thieves Collection",
+    platform: "Steam",
+    username: "valdra911",
+    password: "9FAXRzBUhB68Qdmd",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://images.g2a.com/360x600/1x1x1/uncharted-legacy-of-thieves-collection-pc-steam-key-global-i10000279761002/c0cdc033dd8e419ca75a902c",
+    createdAt: "2024-07-20T18:00:00.000Z"
   }
 ];
 
