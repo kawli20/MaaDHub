@@ -545,8 +545,8 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     id: 52,
     gameName: "Wallpaper Engine",
     platform: "Steam",
-    username: "wallpaperenginefreeacc",
-    password: "wallpaperenginediscord09870",
+    username: "djw1040456792",
+    password: "NCDRxrBoin",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://cdn2.steamgriddb.com/grid/6910c07743a1a1dbd134c8233fb822ea.png",
     createdAt: "2024-07-20T18:00:00.000Z"
