@@ -248,7 +248,7 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     username: "kk80401",
     password: "kk223344kkwdw",
     supportLink: "https://maad.qzz.io/",
-    imageUrl: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdHR4bXEzZTN2eXR3b2ExaW93aXZwZTRndWRsbjdnM2JmZWJhZ2hkZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/y7NmHw25VGwA0UuKRn/giphy.gif",
+    imageUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWVjemlocXN3cHYxaWMycjJyNzRncnBtMm5vbDNlaHJtdDV4a2I4ZCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/y7NmHw25VGwA0UuKRn/giphy.gif",
     createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
@@ -403,7 +403,7 @@ export const DEFAULT_ACCOUNTS: Account[] = [
   },
   {
     id: 38,
-    gameName: "TEKKEN 7",
+    gameName: "BMX Streets",
     platform: "Steam",
     username: "bpzmu39160",
     password: "HaLLODasIstMeinSteamACC2!!!",
@@ -569,6 +569,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "9FAXRzBUhB68Qdmd",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://images.g2a.com/360x600/1x1x1/uncharted-legacy-of-thieves-collection-pc-steam-key-global-i10000279761002/c0cdc033dd8e419ca75a902c",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 55,
+    gameName: "It Takes Two",
+    platform: "Steam",
+    username: "flcq11056",
+    password: "Aspire223222.",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrQaFXY5U6RhrYpA_fThSzPUylIES7RfsxcdDzI0iuq6Pf5AD5g7Y7sz0Q5m2H_FGct9hh&s=10",
     createdAt: "2024-07-20T18:00:00.000Z"
   }
 ];
