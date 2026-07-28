@@ -17,6 +17,7 @@ const en: Translations = {
   nav_sales: "Sales",
   nav_saved: "Saved",
   nav_contact: "Contact",
+  nav_tips: "Tips",
   nav_about: "About",
   nav_language: "Language",
 
@@ -89,6 +90,17 @@ const en: Translations = {
   contact_ad_desc: "Reach thousands of gamers and streamers. Contact us for advertising opportunities on MaaDHub.",
   contact_ad_cta: "Get in Touch",
 
+  tips_title_1: "Support",
+  tips_title_2: "Tips",
+  tips_desc: "If you want to support MaaDHub, you can send a tip through any of the options below.",
+  tips_option_btc: "Bitcoin (BTC)",
+  tips_option_trx: "Tron (TRX)",
+  tips_option_sol: "Solana (SOL)",
+  tips_option_paypal: "PayPal",
+  tips_copy: "Copy",
+  tips_copied: "Copied!",
+  tips_open: "Open",
+
   // About
   about_title_1: "About",
   about_title_2: "MaaDHub",
@@ -127,6 +139,7 @@ const ar: Translations = {
   nav_sales: "المبيعات",
   nav_saved: "المحفوظات",
   nav_contact: "اتصل بنا",
+  nav_tips: "الإكراميات",
   nav_about: "من نحن",
   nav_language: "اللغة",
 
@@ -193,6 +206,17 @@ const ar: Translations = {
   contact_ad_desc: "وصل إلى آلاف اللاعبين. تواصل معنا لفرص الإعلان على MaaDHub.",
   contact_ad_cta: "تواصل معنا",
 
+  tips_title_1: "الدعم",
+  tips_title_2: "والإكراميات",
+  tips_desc: "إذا أردت دعم MaaDHub، يمكنك إرسال إكرامية من خلال أي من الخيارات أدناه.",
+  tips_option_btc: "بيتكوين (BTC)",
+  tips_option_trx: "ترون (TRX)",
+  tips_option_sol: "سولانا (SOL)",
+  tips_option_paypal: "باي بال",
+  tips_copy: "نسخ",
+  tips_copied: "تم النسخ!",
+  tips_open: "فتح",
+
   about_title_1: "عن",
   about_title_2: "MaaDHub",
   about_mission_title: "مهمتنا",
@@ -228,6 +252,7 @@ const fr: Translations = {
   nav_sales: "Ventes",
   nav_saved: "Enregistrés",
   nav_contact: "Contact",
+  nav_tips: "Tips",
   nav_about: "À propos",
   nav_language: "Langue",
 
@@ -294,6 +319,17 @@ const fr: Translations = {
   contact_ad_desc: "Atteignez des milliers de joueurs et de streamers. Contactez-nous pour les opportunités publicitaires sur MaaDHub.",
   contact_ad_cta: "Prendre Contact",
 
+  tips_title_1: "Soutenir",
+  tips_title_2: "les Tips",
+  tips_desc: "Si vous souhaitez soutenir MaaDHub, vous pouvez envoyer un tip via l'une des options ci-dessous.",
+  tips_option_btc: "Bitcoin (BTC)",
+  tips_option_trx: "Tron (TRX)",
+  tips_option_sol: "Solana (SOL)",
+  tips_option_paypal: "PayPal",
+  tips_copy: "Copier",
+  tips_copied: "Copié !",
+  tips_open: "Ouvrir",
+
   about_title_1: "À propos de",
   about_title_2: "MaaDHub",
   about_mission_title: "Notre Mission",
@@ -329,6 +365,7 @@ const es: Translations = {
   nav_sales: "Ventas",
   nav_saved: "Guardados",
   nav_contact: "Contacto",
+  nav_tips: "Tips",
   nav_about: "Acerca de",
   nav_language: "Idioma",
 
@@ -394,6 +431,17 @@ const es: Translations = {
   contact_ad_title: "¿Quieres Anunciar?",
   contact_ad_desc: "Llega a miles de gamers y streamers. Contáctanos para oportunidades publicitarias en MaaDHub.",
   contact_ad_cta: "Ponte en Contacto",
+
+  tips_title_1: "Apoya",
+  tips_title_2: "con Tips",
+  tips_desc: "Si quieres apoyar a MaaDHub, puedes enviar un tip con cualquiera de las opciones de abajo.",
+  tips_option_btc: "Bitcoin (BTC)",
+  tips_option_trx: "Tron (TRX)",
+  tips_option_sol: "Solana (SOL)",
+  tips_option_paypal: "PayPal",
+  tips_copy: "Copiar",
+  tips_copied: "Copiado!",
+  tips_open: "Abrir",
 
   about_title_1: "Acerca de",
   about_title_2: "MaaDHub",

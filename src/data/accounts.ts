@@ -580,6 +580,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrQaFXY5U6RhrYpA_fThSzPUylIES7RfsxcdDzI0iuq6Pf5AD5g7Y7sz0Q5m2H_FGct9hh&s=10",
     createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 56,
+    gameName: "DELTARUNE",
+    platform: "Steam",
+    username: "bybu22421",
+    password: "4https://funpay.com/users/3957452/",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKzITcNGuopSq3uNkfcezJJHDDqjsDj7Jvq4L2ipBFttMrah-Ao9FQs4I&s=10",
+    createdAt: "2024-07-20T18:00:00.000Z"
   }
 ];
 

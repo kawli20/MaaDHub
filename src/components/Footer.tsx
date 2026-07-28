@@ -10,6 +10,7 @@ export function Footer() {
     { to: "/", label: t("nav_home") },
     { to: "/saved", label: t("nav_saved") },
     { to: "/contact", label: t("nav_contact") },
+    { to: "/tips", label: t("nav_tips") },
     { to: "/about", label: t("nav_about") },
   ];
 
