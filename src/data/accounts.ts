@@ -620,6 +620,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/1200x/94/0c/bf/940cbfaaba3c4cac45a951a413371627.jpg",
     createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 60,
+    gameName: "ARK: Survival Ascended",
+    platform: "Steam",
+    username: "qd1rb0cg3is9",
+    password: "marpanov_free17",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/0/06/Ark_Survival_Ascended.jpg/250px-Ark_Survival_Ascended.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
   }
 ];
 
