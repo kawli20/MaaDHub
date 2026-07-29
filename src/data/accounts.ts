@@ -590,6 +590,36 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKzITcNGuopSq3uNkfcezJJHDDqjsDj7Jvq4L2ipBFttMrah-Ao9FQs4I&s=10",
     createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 57,
+    gameName: "Lies of P",
+    platform: "Steam",
+    username: "fv4kg6iz7cy1",
+    password: "funpay-fr1zzq",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/d/de/Lies_of_p_cover_art.jpg/250px-Lies_of_p_cover_art.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 58,
+    gameName: "Palworld",
+    platform: "Steam",
+    username: "fv4kg6iz7cy1",
+    password: "funpay-fr1zzq",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/736x/39/c2/da/39c2dad1ac130d2789d4cb6055eb78e8.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 59,
+    gameName: "ELDEN RING",
+    platform: "Steam",
+    username: "fv4kg6iz7cy1",
+    password: "funpay-fr1zzq",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/1200x/94/0c/bf/940cbfaaba3c4cac45a951a413371627.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
   }
 ];
 
