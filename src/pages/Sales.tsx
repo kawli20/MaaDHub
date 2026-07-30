@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react"
+import { useMemo, useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Link } from "react-router"
 import { Tag, ExternalLink } from "lucide-react"
@@ -62,6 +62,17 @@ export default function Sales() {
     return result
   }, [search, platform, sortBy, activeTab])
 
+  const containerRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    // Scroll the sales section to top whenever the active tab changes
+    try {
+      containerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+    } catch (e) {
+      // ignore if running in non-browser env
+    }
+  }, [activeTab])
+
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text)
     addToast(t("sales_contact_copied"), "success")
@@ -73,7 +84,7 @@ export default function Sales() {
       <ToastContainer toasts={toasts} onRemove={removeToast} />
 
       <main className="pt-24 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+        <div ref={containerRef} className="max-w-7xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-10">
             <div className="flex items-center gap-3 mb-4">
               <Tag className="w-6 h-6 text-[#C1272D]" />

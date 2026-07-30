@@ -12,14 +12,18 @@ export function HeroSection() {
       {/* ====== MOROCCAN FLAG BACKGROUND ====== */}
       <div className="absolute inset-0">
         <img
-          src="/morocco-flag-bg.jpg"
+          src="/banner.gif"
           alt=""
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-center"
         />
         {/* Dark overlays for text readability */}
-        <div className="absolute inset-0 bg-[#030303]/70" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#030303] via-transparent to-[#030303]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#030303]/80 via-transparent to-[#030303]/80" />
+        <div className="absolute inset-0 bg-[#030303]/40" />
+        {/* top fade (small) */}
+        <div className="absolute top-0 left-0 right-0 h-32 pointer-events-none bg-gradient-to-b from-[#030303] via-transparent" />
+        {/* bottom fade (small) */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none bg-gradient-to-t from-[#030303] via-transparent" />
+        {/* subtle horizontal vignette (reduced) */}
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-[#030303]/60 via-transparent to-[#030303]/60" />
       </div>
 
       {/* ====== CONTENT ====== */}

@@ -7,12 +7,29 @@ import { cn } from "@/lib/utils"
 
 function Tabs({
   className,
+  onValueChange,
   ...props
 }: React.ComponentProps<typeof TabsPrimitive.Root>) {
+  const ref = React.useRef<any>(null)
+
+  const handleChange = React.useCallback(
+    (value: string) => {
+      onValueChange?.(value)
+      try {
+        ref.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+      } catch (e) {
+        // ignore
+      }
+    },
+    [onValueChange]
+  )
+
   return (
     <TabsPrimitive.Root
+      ref={ref}
       data-slot="tabs"
       className={cn("flex flex-col gap-2", className)}
+      onValueChange={handleChange}
       {...props}
     />
   )
