@@ -630,6 +630,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/0/06/Ark_Survival_Ascended.jpg/250px-Ark_Survival_Ascended.jpg",
     createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 61,
+    gameName: "Stray",
+    platform: "Steam",
+    username: "ordinaryrhinoceros6358",
+    password: "a8ef32a3b76effb41!aZ",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/736x/37/a8/23/37a823eaa1611bf2bb5913647f377617.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
   }
 ];
 
