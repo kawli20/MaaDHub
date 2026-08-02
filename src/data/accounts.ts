@@ -640,6 +640,26 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/37/a8/23/37a823eaa1611bf2bb5913647f377617.jpg",
     createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 62,
+    gameName: "Resident Evil 4 (2005)",
+    platform: "Steam",
+    username: "fabricbr555",
+    password: "ffffff22",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://m.media-amazon.com/images/M/MV5BZWY3ZjRiNTctYzU2My00NDIwLWI3NTAtNmUwZDBlZjlhYjI4XkEyXkFqcGc@._V1_.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 63,
+    gameName: "Wallpaper Engine",
+    platform: "Steam",
+    username: "fabricbr555",
+    password: "ffffff22",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://cdn2.steamgriddb.com/grid/6910c07743a1a1dbd134c8233fb822ea.png",
+    createdAt: "2024-07-20T18:00:00.000Z"
   }
 ];
 
