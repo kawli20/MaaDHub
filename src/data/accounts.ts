@@ -660,6 +660,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://cdn2.steamgriddb.com/grid/6910c07743a1a1dbd134c8233fb822ea.png",
     createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 64,
+    gameName: "Forza Horizon 6",
+    platform: "Steam",
+    username: "duhl15773",
+    password: "Muhammadknio12!",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/d/dd/Forza_Horizon_6_key_art.jpeg/250px-Forza_Horizon_6_key_art.jpeg",
+    createdAt: "2024-07-20T18:00:00.000Z"
   }
 ];
 
