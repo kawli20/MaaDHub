@@ -680,6 +680,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://store-images.s-microsoft.com/image/apps.32034.13531476541866969.9b83558e-4d72-4ee5-9214-3504337b32f8.172b1ccc-6da2-44b4-828d-7cda66b22f85",
     createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 66,
+    gameName: "Tomb Raider: Underworld",
+    platform: "Steam",
+    username: "starwars07658",
+    password: "Playstarwarsnow",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/en/5/56/Tomb_Raider_-_Underworld.png",
+    createdAt: "2024-07-20T18:00:00.000Z"
   }
 ];
 
