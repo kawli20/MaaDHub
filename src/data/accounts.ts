@@ -700,6 +700,26 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr9wdOSGIJTKFz3SF56Ep3rTR5LtH9ptLP70ZESxWjcKEAGaAe922NKIdI&s=10",
     createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 68,
+    gameName: "Terraria",
+    platform: "Steam",
+    username: "goding_goood",
+    password: "nasj1107",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/1/1a/Terraria_Steam_artwork.jpg/250px-Terraria_Steam_artwork.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 69,
+    gameName: "Monster Hunter: World",
+    platform: "Steam",
+    username: "tarasanischenko",
+    password: "yCad4rlfCfKeLjiQAKDb",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/en/1/1b/Monster_Hunter_World_cover_art.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",
+    createdAt: "2024-07-20T18:00:00.000Z"
   }
 ];
 
