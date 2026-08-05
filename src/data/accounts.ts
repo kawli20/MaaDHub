@@ -690,6 +690,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/en/5/56/Tomb_Raider_-_Underworld.png",
     createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 67,
+    gameName: "Dead by Daylight",
+    platform: "Steam",
+    username: "tprtmzldengus",
+    password: "khc52329090",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr9wdOSGIJTKFz3SF56Ep3rTR5LtH9ptLP70ZESxWjcKEAGaAe922NKIdI&s=10",
+    createdAt: "2024-07-20T18:00:00.000Z"
   }
 ];
 
