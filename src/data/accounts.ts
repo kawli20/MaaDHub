@@ -720,6 +720,26 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/en/1/1b/Monster_Hunter_World_cover_art.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",
     createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 70,
+    gameName: "PEAK",
+    platform: "Steam",
+    username: "ikks59318",
+    password: "NDM1zoe2QhOw",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://m.media-amazon.com/images/M/MV5BY2NkZTAxNTQtNDg0YS00ZDdhLTk4OTgtZWQyMzJmODJlYmVkXkEyXkFqcGc@._V1_.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 71,
+    gameName: "PRAGMATA",
+    platform: "Steam",
+    username: "arenda9126",
+    password: "Ytrnj275",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/fb/Pragmata_cover.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",
+    createdAt: "2024-07-20T18:00:00.000Z"
   }
 ];
 
