@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Gamepad2, Bookmark, Mail, Info, Globe, Tag, HandCoins } from "lucide-react";
+import { Menu, X, Gamepad2, Bookmark, Mail, Info, Globe, Tag, HandCoins, MessageSquarePlus } from "lucide-react";
 import { useLanguage } from "@/hooks/useLanguage";
 import { LANGUAGES } from "@/i18n/translations";
 
@@ -29,6 +29,7 @@ export function Navigation() {
     { to: "/", label: t("nav_home"), icon: Gamepad2 },
     { to: "/sales", label: t("nav_sales"), icon: Tag },
     { to: "/saved", label: t("nav_saved"), icon: Bookmark },
+    { to: "/requests", label: t("nav_requests"), icon: MessageSquarePlus },
     { to: "/contact", label: t("nav_contact"), icon: Mail },
     { to: "/tips", label: t("nav_tips"), icon: HandCoins },
     { to: "/about", label: t("nav_about"), icon: Info },

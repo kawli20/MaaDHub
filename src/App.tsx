@@ -4,6 +4,7 @@ import SavedAccounts from './pages/SavedAccounts'
 import Sales from './pages/Sales'
 import Contact from './pages/Contact'
 import Tips from './pages/Tips'
+import Requests from './pages/Requests'
 import About from './pages/About'
 import NotFound from './pages/NotFound'
 import ScrollToTop from './components/ScrollToTop'
@@ -18,6 +19,7 @@ export default function App() {
       <Route path="/sales" element={<Sales />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/tips" element={<Tips />} />
+      <Route path="/requests" element={<Requests />} />
       <Route path="/about" element={<About />} />
       <Route path="*" element={<NotFound />} />
       </Routes>

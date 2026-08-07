@@ -740,6 +740,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/fb/Pragmata_cover.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",
     createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 72,
+    gameName: "Five Nights at Freddy's: Secret of the Mimic",
+    platform: "Steam",
+    username: "fredglover1960",
+    password: "nqszzger9229$!1v0",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://cdn1.epicgames.com/spt-assets/a3843e0de6d545b3957ce2173972092c/five-nights-at-freddys-secret-of-the-mimic-gs7np.png",
+    createdAt: "2024-07-20T18:00:00.000Z"
   }
 ];
 
