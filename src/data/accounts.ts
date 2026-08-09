@@ -834,17 +834,17 @@ export interface Sale {
 }
 
 export const DEFAULT_SALES: Sale[] = [
-  {
-    id: 1,
-    title: "Instagram Followers",
-    platform: "Instagram",
-    description: "Buy Instagram followers from this seller. Contact the seller directly on Telegram for prices, packages, and more information.",
-    contact: "https://guns.lol/zeeerooo",
-    imageUrl: "https://i.pinimg.com/736x/98/ae/9e/98ae9e53991d8d0c56564ba38d8dbec0.jpg",
-    supportLink: "https://guns.lol/zeeerooo",
-    category: "serves",
-    createdAt: "2024-01-01T00:00:00.000Z",
-  }
+ // {
+ //  id: 1,
+ //   title: "Instagram Followers",
+ //   platform: "Instagram",
+ //   description: "Buy Instagram followers from this seller. Contact the seller directly on Telegram for prices, packages, and more information.",
+ //   contact: "https://guns.lol/zeeerooo",
+ //   imageUrl: "https://i.pinimg.com/736x/98/ae/9e/98ae9e53991d8d0c56564ba38d8dbec0.jpg",
+ //   supportLink: "https://guns.lol/zeeerooo",
+ //   category: "serves",
+ //   createdAt: "2024-01-01T00:00:00.000Z",
+ // }
 ];
 
 export function getAccountStats(accounts: Account[]) {
