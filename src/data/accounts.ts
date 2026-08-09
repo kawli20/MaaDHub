@@ -750,6 +750,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://cdn1.epicgames.com/spt-assets/a3843e0de6d545b3957ce2173972092c/five-nights-at-freddys-secret-of-the-mimic-gs7np.png",
     createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 73,
+    gameName: "Sea of Thieves",
+    platform: "Steam",
+    username: "PERSECGamer",
+    password: "FAR_CRY_NEW_DAWN",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/en/7/77/Sea_of_thieves_cover_art.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",
+    createdAt: "2024-07-20T18:00:00.000Z"
   }
 ];
 
