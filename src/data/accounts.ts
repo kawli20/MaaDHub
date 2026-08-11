@@ -760,6 +760,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/en/7/77/Sea_of_thieves_cover_art.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",
     createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 74,
+    gameName: "DRAGON BALL FighterZ",
+    platform: "Steam",
+    username: "f303008",
+    password: "q4hWsVks",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://store-images.s-microsoft.com/image/apps.57875.14619494188082372.7ffd2f95-cab6-415c-b464-1e434cc8ccfc.c5b53fc1-8ce5-409f-b66c-ff596efc3f47",
+    createdAt: "2024-07-20T18:00:00.000Z"
   }
 ];
 
