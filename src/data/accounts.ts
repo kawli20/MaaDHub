@@ -770,6 +770,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://store-images.s-microsoft.com/image/apps.57875.14619494188082372.7ffd2f95-cab6-415c-b464-1e434cc8ccfc.c5b53fc1-8ce5-409f-b66c-ff596efc3f47",
     createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 75,
+    gameName: "The Crew Motorfest",
+    platform: "Steam",
+    username: "zyfsd75307",
+    password: "KyHuBs0jwyrORb",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://static.wikia.nocookie.net/thecrew/images/e/ee/TCMStandardEditionCover.png/revision/latest/scale-to-width/360?cb=20230612200639",
+    createdAt: "2024-07-20T18:00:00.000Z"
   }
 ];
 
@@ -844,17 +854,17 @@ export interface Sale {
 }
 
 export const DEFAULT_SALES: Sale[] = [
- // {
- //  id: 1,
- //   title: "Instagram Followers",
- //   platform: "Instagram",
- //   description: "Buy Instagram followers from this seller. Contact the seller directly on Telegram for prices, packages, and more information.",
- //   contact: "https://guns.lol/zeeerooo",
- //   imageUrl: "https://i.pinimg.com/736x/98/ae/9e/98ae9e53991d8d0c56564ba38d8dbec0.jpg",
- //   supportLink: "https://guns.lol/zeeerooo",
- //   category: "serves",
- //   createdAt: "2024-01-01T00:00:00.000Z",
- // }
+  // {
+  //  id: 1,
+  //   title: "Instagram Followers",
+  //   platform: "Instagram",
+  //   description: "Buy Instagram followers from this seller. Contact the seller directly on Telegram for prices, packages, and more information.",
+  //   contact: "https://guns.lol/zeeerooo",
+  //   imageUrl: "https://i.pinimg.com/736x/98/ae/9e/98ae9e53991d8d0c56564ba38d8dbec0.jpg",
+  //   supportLink: "https://guns.lol/zeeerooo",
+  //   category: "serves",
+  //   createdAt: "2024-01-01T00:00:00.000Z",
+  // }
 ];
 
 export function getAccountStats(accounts: Account[]) {
