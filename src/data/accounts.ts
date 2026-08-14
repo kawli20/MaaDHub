@@ -790,6 +790,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/en/f/fc/Battlefield_1_cover_art.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original",
     createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 77,
+    gameName: "MECCHA CHAMELEON",
+    platform: "Steam",
+    username: "ghostroleplaygta5",
+    password: "00#ContaGhost",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://cdn.displate.com/artwork/270x380/2026-06-21/01b9f4bf-354c-4a29-b08b-7eaeb7a694e6.jpg",
+    createdAt: "2024-07-20T18:00:00.000Z"
   }
 ];
 
