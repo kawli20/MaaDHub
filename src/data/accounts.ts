@@ -800,6 +800,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://cdn.displate.com/artwork/270x380/2026-06-21/01b9f4bf-354c-4a29-b08b-7eaeb7a694e6.jpg",
     createdAt: "2024-07-20T18:00:00.000Z"
+  },
+  {
+    id: 78,
+    gameName: "Dying Light",
+    platform: "Steam",
+    username: "patrykpatryk41",
+    password: "Patryk12345+",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://static.wikia.nocookie.net/dyinglight/images/7/72/Dying_Light_ok%C5%82adka.jpg/revision/latest?cb=20150223131116&path-prefix=pl",
+    createdAt: "2024-08-17T09:40:00.000Z"
   }
 ];
 
