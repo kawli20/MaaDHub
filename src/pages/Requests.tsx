@@ -62,7 +62,7 @@ export default function Requests() {
   };
 
   return (
-    <div className="min-h-screen bg-[#030303]">
+    <div className="min-h-screen">
       <Navigation />
 
       <main className="pt-24 pb-20 px-4 sm:px-6 lg:px-8">

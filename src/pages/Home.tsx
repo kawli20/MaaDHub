@@ -9,7 +9,6 @@ import { SearchFilters } from "@/components/SearchFilters";
 import { ToastContainer } from "@/components/Toast";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { FloatingParticles } from "@/components/FloatingParticles";
 import { BackToTop } from "@/components/BackToTop";
 import { AdBanner } from "@/components/AdBanner";
 import { DEFAULT_ACCOUNTS, DEFAULT_ADVERTISEMENTS } from "@/data/accounts";
@@ -71,15 +70,15 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#030303]">
-      <FloatingParticles />
+    <div className="min-h-screen">
       <BackToTop />
       <Navigation />
       <ToastContainer toasts={toasts} onRemove={removeToast} />
 
       <HeroSection />
 
-      <section id="vault" className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section id="vault" className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+        <div className="absolute top-0 left-0 right-0 h-48 pointer-events-none bg-gradient-to-b from-[#030303] via-[#030303]/60 to-transparent -mt-1" />
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

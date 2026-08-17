@@ -12,7 +12,7 @@ import { DEFAULT_SALES } from "@/data/accounts"
 
 export default function Sales() {
   const { t } = useLanguage()
-  const { toasts, addToast, removeToast } = useToast()
+  const { toasts, removeToast } = useToast()
   const [search, setSearch] = useState("")
   const [platform, setPlatform] = useState("All")
   const [sortBy, setSortBy] = useState("newest")
@@ -73,13 +73,8 @@ export default function Sales() {
     }
   }, [activeTab])
 
-  const handleCopy = (text: string) => {
-    navigator.clipboard.writeText(text)
-    addToast(t("sales_contact_copied"), "success")
-  }
-
   return (
-    <div className="min-h-screen bg-[#030303]">
+    <div className="min-h-screen">
       <Navigation />
       <ToastContainer toasts={toasts} onRemove={removeToast} />
 

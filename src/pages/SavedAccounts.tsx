@@ -62,7 +62,7 @@ export default function SavedAccounts() {
   };
 
   return (
-    <div className="min-h-screen bg-[#030303]">
+    <div className="min-h-screen">
       <Navigation />
       <ToastContainer toasts={toasts} onRemove={removeToast} />
 
