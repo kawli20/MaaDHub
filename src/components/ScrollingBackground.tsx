@@ -25,17 +25,16 @@ export default function ScrollingBackground() {
 
   return (
     <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none select-none">
-      <div
-        className="absolute inset-0 transition-opacity duration-1000"
-        style={{
-          opacity: ready && !error ? 1 : 0,
-          backgroundImage: `url(${BG_IMAGE})`,
-          backgroundSize: "100% auto",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center top",
-          animation: "bg-scroll 15s linear infinite alternate",
-        }}
-      />
+        <div
+          className="absolute inset-0 transition-opacity duration-1000 bg-scroll-animate"
+          style={{
+            opacity: ready && !error ? 1 : 0,
+            backgroundImage: `url(${BG_IMAGE})`,
+            backgroundSize: "100% auto",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center top",
+          }}
+        />
 
       <div className="absolute inset-0 bg-black/70" />
 
