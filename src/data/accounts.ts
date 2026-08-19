@@ -810,6 +810,26 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://static.wikia.nocookie.net/dyinglight/images/7/72/Dying_Light_ok%C5%82adka.jpg/revision/latest?cb=20150223131116&path-prefix=pl",
     createdAt: "2024-08-17T09:40:00.000Z"
+  },
+  {
+    id: 79,
+    gameName: "Black Myth: Wukong",
+    platform: "Steam",
+    username: "steamkk250801",
+    password: "steamkk.com",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://gfn.ru/media/images/box_art_image-black-myth-wukong-114f950a.original.jpg",
+    createdAt: "2026-08-19T15:30:00.000Z"
+  },
+  {
+    "id": 80,
+    "gameName": "MECCHA CHAMELEON",
+    "platform": "Steam",
+    "username": "ydtdo32097",
+    "password": "PzIf3P1GXw2dEJ",
+    "supportLink": "https://maad.qzz.io/",
+    "imageUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big_2x/coc7cr.jpg",
+    "createdAt": "2026-08-21T10:00:00.000Z"
   }
 ];
 
