@@ -1,16 +1,29 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense, lazy } from 'react'
 import { Routes, Route } from 'react-router'
-import Home from './pages/Home'
-import SavedAccounts from './pages/SavedAccounts'
-import Sales from './pages/Sales'
-import Contact from './pages/Contact'
-import Tips from './pages/Tips'
-import Requests from './pages/Requests'
-import About from './pages/About'
-import NotFound from './pages/NotFound'
 import ScrollToTop from './components/ScrollToTop'
 import ScrollingBackground from './components/ScrollingBackground'
+import { ErrorBoundary } from './components/ErrorBoundary'
 import { DEFAULT_ACCOUNTS } from '@/data/accounts'
+
+const Home = lazy(() => import('./pages/Home'))
+const SavedAccounts = lazy(() => import('./pages/SavedAccounts'))
+const Sales = lazy(() => import('./pages/Sales'))
+const Contact = lazy(() => import('./pages/Contact'))
+const Tips = lazy(() => import('./pages/Tips'))
+const Requests = lazy(() => import('./pages/Requests'))
+const About = lazy(() => import('./pages/About'))
+const NotFound = lazy(() => import('./pages/NotFound'))
+
+function PageLoader() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-[#030303]">
+      <div className="flex flex-col items-center gap-4">
+        <div className="w-10 h-10 border-2 border-[#C1272D] border-t-transparent rounded-full animate-spin" />
+        <p className="text-white/40 text-sm">Loading...</p>
+      </div>
+    </div>
+  )
+}
 
 const preloadImage = (url: string) =>
   new Promise<void>((resolve) => {
@@ -88,21 +101,23 @@ export default function App() {
   }
 
   return (
-    <>
+    <ErrorBoundary>
       <ScrollToTop />
       <ScrollingBackground />
       <div className="relative z-10">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/saved" element={<SavedAccounts />} />
-          <Route path="/sales" element={<Sales />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/tips" element={<Tips />} />
-          <Route path="/requests" element={<Requests />} />
-          <Route path="/about" element={<About />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Suspense fallback={<PageLoader />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/saved" element={<SavedAccounts />} />
+            <Route path="/sales" element={<Sales />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/tips" element={<Tips />} />
+            <Route path="/requests" element={<Requests />} />
+            <Route path="/about" element={<About />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </div>
-    </>
+    </ErrorBoundary>
   )
 }

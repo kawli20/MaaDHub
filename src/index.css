@@ -190,8 +190,36 @@
   }
 }
 
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes animation-delay-150 {
+  0%, 50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+@keyframes animation-delay-300 {
+  0%, 50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+.animation-delay-150 {
+  animation-delay: 150ms;
+}
+
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-bg-scroll {
+  .animate-bg-scroll,
+  .bg-scroll-animate {
     animation: none;
   }
 }

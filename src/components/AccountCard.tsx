@@ -73,19 +73,29 @@ export const AccountCard = memo(function AccountCard({ account, isSaved, onToggl
       className="group relative rounded-xl overflow-hidden glass-card hover-glow cursor-pointer"
     >
       <div className="relative aspect-[3/4] overflow-hidden">
-        {/* Skeleton placeholder shown while image loads */}
         {!imgLoaded && (
-          <div className="absolute inset-0 bg-white/5 animate-pulse" />
+          <div className="absolute inset-0 bg-gradient-to-br from-white/[0.04] via-white/[0.02] to-white/[0.04]">
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.04),transparent)] animate-[shimmer_2s_infinite] bg-[length:200%_100%]" />
+            <div className="absolute bottom-4 left-4 right-4 space-y-2">
+              <div className="h-3 w-16 rounded bg-white/[0.06]" />
+              <div className="h-4 w-3/4 rounded bg-white/[0.06]" />
+              <div className="space-y-1.5 mt-3">
+                <div className="h-3 w-20 rounded bg-white/[0.06]" />
+                <div className="h-3 w-24 rounded bg-white/[0.06]" />
+              </div>
+            </div>
+          </div>
         )}
         <motion.img
           ref={imgRef}
           src={imageUrl}
           alt={account.gameName}
-          loading="lazy"
+          loading={index < 4 ? "eager" : "lazy"}
           decoding="async"
+          fetchPriority={index < 4 ? "high" : "auto"}
           width={400}
           height={533}
-          className={`w-full h-full object-cover transition-opacity duration-300 ${imgLoaded ? "opacity-100" : "opacity-0"}`}
+          className={`w-full h-full object-cover transition-opacity duration-500 ease-out ${imgLoaded ? "opacity-100" : "opacity-0"}`}
           animate={{ scale: isHovered ? 1.08 : 1 }}
           transition={{ duration: 0.4 }}
           onLoad={() => setImgLoaded(true)}

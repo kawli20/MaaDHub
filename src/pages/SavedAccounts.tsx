@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router";
 import { useLanguage } from "@/hooks/useLanguage";
@@ -8,7 +8,9 @@ import { ToastContainer } from "@/components/Toast";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { SearchFilters } from "@/components/SearchFilters";
-import { BookmarkX, ArrowLeft, Bookmark, Trash2 } from "lucide-react";
+import { BookmarkX, ArrowLeft, Bookmark, Trash2, ChevronLeft, ChevronRight } from "lucide-react";
+
+const ITEMS_PER_PAGE = 12;
 
 export default function SavedAccounts() {
   const { t } = useLanguage();
@@ -17,6 +19,7 @@ export default function SavedAccounts() {
   const [search, setSearch] = useState("");
   const [platform, setPlatform] = useState("All");
   const [sortBy, setSortBy] = useState("newest");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const filteredSaved = useMemo(() => {
     let result = [...saved];
@@ -50,6 +53,21 @@ export default function SavedAccounts() {
 
     return result;
   }, [saved, search, platform, sortBy]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, platform, sortBy]);
+
+  const totalPages = Math.ceil(filteredSaved.length / ITEMS_PER_PAGE);
+  const paginatedSaved = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredSaved.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredSaved, currentPage]);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const handleCopy = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
@@ -101,60 +119,114 @@ export default function SavedAccounts() {
                 {filteredSaved.length} {t("vault_results")}
               </div>
               {filteredSaved.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                  {filteredSaved.map((account, index) => (
-                <motion.div
-                  key={account.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  className="glass-card rounded-xl overflow-hidden group"
-                >
-                  <div className="relative aspect-[3/4] overflow-hidden">
-                    <img
-                      src={account.imageUrl || `/games/${account.platform.toLowerCase().replace(/\s+/g, "")}.jpg`}
-                      alt={account.gameName}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      onError={(e) => { (e.target as HTMLImageElement).src = "/games/steam.jpg"; }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-[#030303]/30 to-transparent" />
-                    <div className="absolute top-3 left-3">
-                      <span className="px-3 py-1 rounded-full text-xs font-semibold text-white/90 border border-white/10 backdrop-blur-md bg-black/40">
-                        {account.platform}
-                      </span>
-                    </div>
-                    <button
-                      onClick={() => handleRemove(account.id)}
-                      className="absolute top-3 right-3 p-2 rounded-full bg-red-500/20 backdrop-blur-md border border-red-500/30 text-red-400 hover:bg-red-500/30 transition-all"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                    <div className="absolute bottom-0 left-0 right-0 p-4">
-                      <h3 className="text-white font-bold text-lg mb-3 truncate">{account.gameName}</h3>
-                      <div className="flex items-center justify-between gap-2 mb-2">
-                        <span className="text-white/40 text-xs font-mono uppercase">{t("card_user")}</span>
-                        <div className="flex items-center gap-2">
-                          <span className="text-white/80 text-sm font-mono truncate max-w-[140px]">{account.username}</span>
-                          <button onClick={() => handleCopy(account.username, t("card_user"))} className="p-1 rounded bg-white/5 hover:bg-[#C1272D]/20 text-white/50 hover:text-[#C1272D] transition-all">
-                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
-                          </button>
-                        </div>
+                <>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10">
+                    {paginatedSaved.map((account, index) => (
+                  <motion.div
+                    key={account.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    className="glass-card rounded-xl overflow-hidden group"
+                  >
+                    <div className="relative aspect-[3/4] overflow-hidden">
+                      <img
+                        src={account.imageUrl || `/games/${account.platform.toLowerCase().replace(/\s+/g, "")}.jpg`}
+                        alt={account.gameName}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        onError={(e) => { (e.target as HTMLImageElement).src = "/games/steam.jpg"; }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-[#030303]/30 to-transparent" />
+                      <div className="absolute top-3 left-3">
+                        <span className="px-3 py-1 rounded-full text-xs font-semibold text-white/90 border border-white/10 backdrop-blur-md bg-black/40">
+                          {account.platform}
+                        </span>
                       </div>
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="text-white/40 text-xs font-mono uppercase">{t("card_pass")}</span>
-                        <div className="flex items-center gap-2">
-                          <span className="text-white/80 text-sm font-mono truncate max-w-[140px]">{"*".repeat(Math.min(account.password.length, 12))}</span>
-                          <button onClick={() => handleCopy(account.password, t("card_pass"))} className="p-1 rounded bg-white/5 hover:bg-[#C1272D]/20 text-white/50 hover:text-[#C1272D] transition-all">
-                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
-                          </button>
+                      <button
+                        onClick={() => handleRemove(account.id)}
+                        className="absolute top-3 right-3 p-2 rounded-full bg-red-500/20 backdrop-blur-md border border-red-500/30 text-red-400 hover:bg-red-500/30 transition-all"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                      <div className="absolute bottom-0 left-0 right-0 p-4">
+                        <h3 className="text-white font-bold text-lg mb-3 truncate">{account.gameName}</h3>
+                        <div className="flex items-center justify-between gap-2 mb-2">
+                          <span className="text-white/40 text-xs font-mono uppercase">{t("card_user")}</span>
+                          <div className="flex items-center gap-2">
+                            <span className="text-white/80 text-sm font-mono truncate max-w-[140px]">{account.username}</span>
+                            <button onClick={() => handleCopy(account.username, t("card_user"))} className="p-1 rounded bg-white/5 hover:bg-[#C1272D]/20 text-white/50 hover:text-[#C1272D] transition-all">
+                              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                            </button>
+                          </div>
                         </div>
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="text-white/40 text-xs font-mono uppercase">{t("card_pass")}</span>
+                          <div className="flex items-center gap-2">
+                            <span className="text-white/80 text-sm font-mono truncate max-w-[140px]">{"*".repeat(Math.min(account.password.length, 12))}</span>
+                            <button onClick={() => handleCopy(account.password, t("card_pass"))} className="p-1 rounded bg-white/5 hover:bg-[#C1272D]/20 text-white/50 hover:text-[#C1272D] transition-all">
+                              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                            </button>
+                          </div>
+                        </div>
+                        <p className="text-white/20 text-xs mt-3">{t("saved_saved_on")} {new Date(account.savedAt).toLocaleDateString()}</p>
                       </div>
-                      <p className="text-white/20 text-xs mt-3">{t("saved_saved_on")} {new Date(account.savedAt).toLocaleDateString()}</p>
                     </div>
+                  </motion.div>
+                    ))}
                   </div>
-                </motion.div>
-                  ))}
-                </div>
+
+                  {totalPages > 1 && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="flex items-center justify-center gap-2 mt-8"
+                    >
+                      <button
+                        onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
+                        disabled={currentPage === 1}
+                        className="w-10 h-10 flex items-center justify-center rounded-lg text-sm font-medium transition-all disabled:opacity-30 disabled:cursor-not-allowed text-white/60 hover:text-white hover:bg-white/5 border border-white/10"
+                      >
+                        <ChevronLeft className="w-5 h-5" />
+                      </button>
+
+                      <div className="flex items-center gap-1">
+                        {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                          let pageNum: number;
+                          if (totalPages <= 5) {
+                            pageNum = i + 1;
+                          } else if (currentPage <= 3) {
+                            pageNum = i + 1;
+                          } else if (currentPage >= totalPages - 2) {
+                            pageNum = totalPages - 4 + i;
+                          } else {
+                            pageNum = currentPage - 2 + i;
+                          }
+                          return (
+                            <button
+                              key={pageNum}
+                              onClick={() => handlePageChange(pageNum)}
+                              className={`w-10 h-10 rounded-lg text-sm font-medium transition-all ${
+                                currentPage === pageNum
+                                  ? "bg-[#C1272D] text-white"
+                                  : "text-white/60 hover:text-white hover:bg-white/5 border border-white/10"
+                              }`}
+                            >
+                              {pageNum}
+                            </button>
+                          );
+                        })}
+                      </div>
+
+                      <button
+                        onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
+                        disabled={currentPage === totalPages}
+                        className="w-10 h-10 flex items-center justify-center rounded-lg text-sm font-medium transition-all disabled:opacity-30 disabled:cursor-not-allowed text-white/60 hover:text-white hover:bg-white/5 border border-white/10"
+                      >
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
+                    </motion.div>
+                  )}
+                </>
               ) : (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-20">
                   <BookmarkX className="w-16 h-16 text-white/10 mx-auto mb-4" />

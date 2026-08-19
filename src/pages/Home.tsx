@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useSavedAccounts } from "@/hooks/useSavedAccounts";
@@ -12,15 +12,9 @@ import { Footer } from "@/components/Footer";
 import { BackToTop } from "@/components/BackToTop";
 import { AdBanner } from "@/components/AdBanner";
 import { DEFAULT_ACCOUNTS, DEFAULT_ADVERTISEMENTS } from "@/data/accounts";
-import { Gamepad2 } from "lucide-react";
+import { Gamepad2, ChevronLeft, ChevronRight } from "lucide-react";
 
-function chunk<T>(arr: T[], size: number): T[][] {
-  const result: T[][] = [];
-  for (let i = 0; i < arr.length; i += size) {
-    result.push(arr.slice(i, i + size));
-  }
-  return result;
-}
+const ITEMS_PER_PAGE = 12;
 
 export default function Home() {
   const { t } = useLanguage();
@@ -30,6 +24,7 @@ export default function Home() {
   const [search, setSearch] = useState("");
   const [platform, setPlatform] = useState("All");
   const [sortBy, setSortBy] = useState("newest");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const accounts = DEFAULT_ACCOUNTS;
   const ads = DEFAULT_ADVERTISEMENTS.filter((a) => a.enabled).sort((a, b) => b.id - a.id);
@@ -63,10 +58,28 @@ export default function Home() {
     return result;
   }, [accounts, search, platform, sortBy]);
 
-  const accountChunks = chunk(filteredAccounts, 4);
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, platform, sortBy]);
+
+  const totalPages = Math.ceil(filteredAccounts.length / ITEMS_PER_PAGE);
+  const paginatedAccounts = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredAccounts.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredAccounts, currentPage]);
+
+  const currentAdIndex = (currentPage - 1) % Math.max(ads.length, 1);
 
   const handleCopy = (_text: string, label: string) => {
     addToast(label, "success");
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    const vaultSection = document.getElementById("vault");
+    if (vaultSection) {
+      vaultSection.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
@@ -120,28 +133,78 @@ export default function Home() {
           </div>
 
           {filteredAccounts.length > 0 ? (
-            <div className="space-y-10">
-              {accountChunks.map((chunkAccounts, chunkIndex) => (
-                <div key={chunkIndex} className="space-y-10">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {chunkAccounts.map((account, index) => (
-                      <AccountCard
-                        key={account.id}
-                        account={account}
-                        isSaved={isSaved(account.id)}
-                        onToggleSave={toggleSave}
-                        onCopy={handleCopy}
-                        index={index}
-                      />
-                    ))}
+            <>
+              {ads.length > 0 && (
+                <div className="mb-10">
+                  <AdBanner ad={ads[currentAdIndex]} index={currentPage} />
+                </div>
+              )}
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10">
+                {paginatedAccounts.map((account, index) => (
+                  <AccountCard
+                    key={account.id}
+                    account={account}
+                    isSaved={isSaved(account.id)}
+                    onToggleSave={toggleSave}
+                    onCopy={handleCopy}
+                    index={index}
+                  />
+                ))}
+              </div>
+
+              {totalPages > 1 && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="flex items-center justify-center gap-2 mt-8"
+                >
+                  <button
+                    onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
+                    disabled={currentPage === 1}
+                    className="w-10 h-10 flex items-center justify-center rounded-lg text-sm font-medium transition-all disabled:opacity-30 disabled:cursor-not-allowed text-white/60 hover:text-white hover:bg-white/5 border border-white/10"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+
+                  <div className="flex items-center gap-1">
+                    {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                      let pageNum: number;
+                      if (totalPages <= 5) {
+                        pageNum = i + 1;
+                      } else if (currentPage <= 3) {
+                        pageNum = i + 1;
+                      } else if (currentPage >= totalPages - 2) {
+                        pageNum = totalPages - 4 + i;
+                      } else {
+                        pageNum = currentPage - 2 + i;
+                      }
+                      return (
+                        <button
+                          key={pageNum}
+                          onClick={() => handlePageChange(pageNum)}
+                          className={`w-10 h-10 rounded-lg text-sm font-medium transition-all ${
+                            currentPage === pageNum
+                              ? "bg-[#C1272D] text-white"
+                              : "text-white/60 hover:text-white hover:bg-white/5 border border-white/10"
+                          }`}
+                        >
+                          {pageNum}
+                        </button>
+                      );
+                    })}
                   </div>
 
-                  {chunkIndex < accountChunks.length - 1 && ads.length > 0 && (
-                    <AdBanner ad={ads[chunkIndex % ads.length]} index={chunkIndex} />
-                  )}
-                </div>
-              ))}
-            </div>
+                  <button
+                    onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
+                    disabled={currentPage === totalPages}
+                    className="w-10 h-10 flex items-center justify-center rounded-lg text-sm font-medium transition-all disabled:opacity-30 disabled:cursor-not-allowed text-white/60 hover:text-white hover:bg-white/5 border border-white/10"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </motion.div>
+              )}
+            </>
           ) : (
             <motion.div
               initial={{ opacity: 0 }}
