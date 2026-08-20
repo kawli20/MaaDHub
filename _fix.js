@@ -1,0 +1,1 @@
+const fs=require("fs");const b="C:/Users/M44D/Documents/1/app";const f=require("path");function w(r,c){fs.writeFileSync(f.join(b,r),c,"utf8");console.log("wrote "+r)}

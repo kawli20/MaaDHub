@@ -6,13 +6,12 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useToast } from "@/hooks/useToast";
-
-const TELEGRAM_BOT_TOKEN = "8647581584:AAGvkz7tBGiuX94c-2OR-LZBKepi1equg8U";
-const TELEGRAM_CHANNEL_ID = "-1004445400084";
+import { ToastContainer } from "@/components/Toast";
+import { sendToTelegram } from "@/lib/telegram";
 
 export default function Requests() {
   const { t } = useLanguage();
-  const { addToast } = useToast();
+  const { toasts, addToast, removeToast } = useToast();
 
   const [gameName, setGameName] = useState("");
   const [note, setNote] = useState("");
@@ -31,23 +30,19 @@ export default function Requests() {
 
     setSubmitting(true);
 
-    const messageParts = [`Game request: ${trimmedGame}`];
-    if (trimmedNote) {
-      messageParts.push(`Note: ${trimmedNote}`);
-    }
+    const message = [
+      `🎮 <b>NEW GAME REQUEST</b>`,
+      ``,
+      `🕹️ <b>Game:</b> <code>${trimmedGame}</code>`,
+      trimmedNote ? `📝 <b>Note:</b> <i>${trimmedNote}</i>` : "",
+      `⏰ <b>Requested At:</b> ${new Date().toLocaleString()}`,
+    ]
+      .filter(Boolean)
+      .join("\n");
 
     try {
-      const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({
-          chat_id: TELEGRAM_CHANNEL_ID,
-          text: messageParts.join("\n"),
-        }),
-      });
-
-      const data = await response.json();
-      if (data.ok) {
+      const ok = await sendToTelegram(message);
+      if (ok) {
         setGameName("");
         setNote("");
         addToast(t("requests_sent"), "success");
@@ -64,25 +59,28 @@ export default function Requests() {
   return (
     <div className="min-h-screen">
       <Navigation />
+      <ToastContainer toasts={toasts} onRemove={removeToast} />
 
-      <main className="pt-24 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
+      <main className="pt-28 pb-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <Link to="/" className="inline-flex items-center gap-2 text-white/40 hover:text-[#C1272D] text-sm mb-6 transition-colors">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 text-white/40 hover:text-[#C1272D] text-xs mb-6 transition-colors"
+            >
               <ArrowLeft className="w-4 h-4" />
               {t("saved_back")}
             </Link>
-            <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between mb-8">
-              <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#C1272D]/20 bg-[#C1272D]/10 text-[#C1272D] text-sm mb-4">
-                  <Sparkles className="w-4 h-4" />
-                  {t("requests_badge")}
-                </div>
-                <h1 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-3">
-                  {t("requests_title_1")} <span className="text-gradient">{t("requests_title_2")}</span>
-                </h1>
-                <p className="text-white/40 text-sm max-w-2xl">{t("requests_desc")}</p>
+
+            <div className="flex flex-col gap-2 mb-8">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#C1272D]/20 bg-[#C1272D]/10 text-[#C1272D] text-xs w-fit">
+                <Sparkles className="w-3.5 h-3.5" />
+                {t("requests_badge")}
               </div>
+              <h1 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+                {t("requests_title_1")} <span className="text-gradient">{t("requests_title_2")}</span>
+              </h1>
+              <p className="text-white/40 text-xs sm:text-sm max-w-xl">{t("requests_desc")}</p>
             </div>
           </motion.div>
 
@@ -91,47 +89,65 @@ export default function Requests() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             onSubmit={handleSubmit}
-            className="glass-panel p-6 sm:p-8 rounded-2xl border border-white/[0.06] max-w-3xl mx-auto"
+            className="glass-panel p-6 sm:p-8 rounded-3xl border border-white/[0.08] bg-[#080d16]/90 shadow-2xl"
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-[#C1272D]/10 border border-[#C1272D]/20 flex items-center justify-center">
-                <Gamepad2 className="w-6 h-6 text-[#C1272D]" />
+              <div className="w-12 h-12 rounded-2xl bg-[#C1272D]/10 border border-[#C1272D]/20 flex items-center justify-center text-[#C1272D]">
+                <Gamepad2 className="w-6 h-6" />
               </div>
               <div>
-                <h2 className="text-xl font-semibold text-white">{t("requests_form_title")}</h2>
-                <p className="text-sm text-white/40">{t("requests_form_desc")}</p>
+                <h2 className="text-lg font-bold text-white">{t("requests_form_title")}</h2>
+                <p className="text-xs text-white/40">{t("requests_form_desc")}</p>
               </div>
             </div>
 
-            <label className="block text-sm font-medium text-white/70 mb-2">
-              {t("requests_game_label")}
-            </label>
-            <input
-              value={gameName}
-              onChange={(event) => setGameName(event.target.value)}
-              placeholder={t("requests_game_placeholder")}
-              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white outline-none focus:border-[#C1272D]/60 focus:bg-white/[0.06] mb-4"
-            />
+            <div className="space-y-4">
+              <div>
+                <label className="block text-xs font-semibold text-white/70 mb-2">
+                  {t("requests_game_label")} *
+                </label>
+                <input
+                  value={gameName}
+                  onChange={(event) => setGameName(event.target.value)}
+                  placeholder={t("requests_game_placeholder")}
+                  className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-white/25 outline-none focus:border-[#C1272D]/60 focus:bg-white/[0.05] transition-all"
+                  required
+                />
+              </div>
 
-            <label className="block text-sm font-medium text-white/70 mb-2">
-              {t("requests_note_label")}
-            </label>
-            <textarea
-              value={note}
-              onChange={(event) => setNote(event.target.value)}
-              placeholder={t("requests_note_placeholder")}
-              rows={4}
-              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white outline-none focus:border-[#C1272D]/60 focus:bg-white/[0.06] mb-4"
-            />
+              <div>
+                <label className="block text-xs font-semibold text-white/70 mb-2">
+                  {t("requests_note_label")}
+                </label>
+                <textarea
+                  value={note}
+                  onChange={(event) => setNote(event.target.value)}
+                  placeholder={t("requests_note_placeholder")}
+                  rows={4}
+                  className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-white/25 outline-none focus:border-[#C1272D]/60 focus:bg-white/[0.05] transition-all"
+                />
+              </div>
 
-            <button
-              type="submit"
-              disabled={submitting}
-              className="inline-flex items-center gap-2 rounded-full bg-[#C1272D] px-5 py-3 text-sm font-semibold text-[#030303] transition-all hover:bg-[#C1272D]/90 disabled:cursor-not-allowed disabled:opacity-70"
-            >
-              <Send className="w-4 h-4" />
-              {submitting ? t("requests_submit_busy") : t("requests_submit")}
-            </button>
+              <div className="pt-2">
+                <button
+                  type="submit"
+                  disabled={submitting || !gameName.trim()}
+                  className="inline-flex items-center gap-2 rounded-full bg-[#C1272D] hover:bg-[#C1272D]/90 px-7 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-[#C1272D]/25 transition-all disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  {submitting ? (
+                    <>
+                      <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      <span>{t("requests_submit_busy")}</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-3.5 h-3.5" />
+                      <span>{t("requests_submit")}</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
           </motion.form>
         </div>
       </main>

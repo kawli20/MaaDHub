@@ -1,4 +1,5 @@
 import { useMemo, useState, useEffect } from "react";
+import { useDebounce } from "@/hooks/useDebounce";
 import { motion } from "framer-motion";
 import { Link } from "react-router";
 import { useLanguage } from "@/hooks/useLanguage";
@@ -8,29 +9,32 @@ import { ToastContainer } from "@/components/Toast";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { SearchFilters } from "@/components/SearchFilters";
-import { BookmarkX, ArrowLeft, Bookmark, Trash2, ChevronLeft, ChevronRight } from "lucide-react";
+import { AccountCard } from "@/components/AccountCard";
+import { BookmarkX, ArrowLeft, Bookmark } from "lucide-react";
 
 const ITEMS_PER_PAGE = 12;
 
 export default function SavedAccounts() {
   const { t } = useLanguage();
-  const { saved, removeSaved } = useSavedAccounts();
+  const { saved, toggleSave } = useSavedAccounts();
   const { toasts, addToast, removeToast } = useToast();
+
   const [search, setSearch] = useState("");
+  const debouncedSearch = useDebounce(search, 300);
   const [platform, setPlatform] = useState("All");
   const [sortBy, setSortBy] = useState("newest");
   const [currentPage, setCurrentPage] = useState(1);
 
   const filteredSaved = useMemo(() => {
-    let result = [...saved];
+    let result = [...(saved || [])];
 
-    if (search) {
-      const s = search.toLowerCase();
+    if (debouncedSearch) {
+      const s = debouncedSearch.toLowerCase().trim();
       result = result.filter(
         (account) =>
-          account.gameName.toLowerCase().includes(s) ||
-          account.platform.toLowerCase().includes(s) ||
-          account.username.toLowerCase().includes(s)
+          (account.gameName || "").toLowerCase().includes(s) ||
+          (account.platform || "").toLowerCase().includes(s) ||
+          (account.username || "").toLowerCase().includes(s)
       );
     }
 
@@ -43,7 +47,7 @@ export default function SavedAccounts() {
         result.sort((a, b) => a.id - b.id);
         break;
       case "alphabetical":
-        result.sort((a, b) => a.gameName.localeCompare(b.gameName));
+        result.sort((a, b) => (a.gameName || "").localeCompare(b.gameName || ""));
         break;
       case "newest":
       default:
@@ -52,31 +56,20 @@ export default function SavedAccounts() {
     }
 
     return result;
-  }, [saved, search, platform, sortBy]);
+  }, [saved, debouncedSearch, platform, sortBy]);
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [search, platform, sortBy]);
+  }, [debouncedSearch, platform, sortBy]);
 
-  const totalPages = Math.ceil(filteredSaved.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(filteredSaved.length / ITEMS_PER_PAGE) || 1;
   const paginatedSaved = useMemo(() => {
     const start = (currentPage - 1) * ITEMS_PER_PAGE;
     return filteredSaved.slice(start, start + ITEMS_PER_PAGE);
   }, [filteredSaved, currentPage]);
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const handleCopy = (text: string, label: string) => {
-    navigator.clipboard.writeText(text);
-    addToast(label, "success");
-  };
-
-  const handleRemove = (id: number) => {
-    removeSaved(id);
-    addToast(t("saved_empty_title"), "info");
+  const handleCopy = (_text: string, label: string) => {
+    if (label) addToast(label, "success");
   };
 
   return (
@@ -84,166 +77,120 @@ export default function SavedAccounts() {
       <Navigation />
       <ToastContainer toasts={toasts} onRemove={removeToast} />
 
-      <main className="pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+      <main className="pt-28 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-10">
-            <Link to="/" className="inline-flex items-center gap-2 text-white/40 hover:text-[#C1272D] text-sm mb-6 transition-colors">
+          {/* Top Header */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 text-white/40 hover:text-[#C1272D] text-xs mb-5 transition-colors"
+            >
               <ArrowLeft className="w-4 h-4" />
               {t("saved_back")}
             </Link>
-            <div className="flex items-center gap-3">
-              <Bookmark className="w-6 h-6 text-[#C1272D]" />
+
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-10 h-10 rounded-2xl bg-[#C1272D]/10 border border-[#C1272D]/20 flex items-center justify-center text-[#C1272D]">
+                <Bookmark className="w-5 h-5" />
+              </div>
               <h1 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
                 {t("saved_title_1")} <span className="text-gradient">{t("saved_title_2")}</span>
               </h1>
             </div>
-            <p className="text-white/40 text-sm mt-2">
+
+            <p className="text-white/40 text-xs mt-1">
               {saved.length} {t("saved_count")}
             </p>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
-            <SearchFilters
-              search={search}
-              onSearchChange={setSearch}
-              platform={platform}
-              onPlatformChange={setPlatform}
-              sortBy={sortBy}
-              onSortChange={setSortBy}
-            />
-          </motion.div>
+          {/* Filters if there are saved items */}
+          {saved.length > 0 && (
+            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
+              <SearchFilters
+                search={search}
+                onSearchChange={setSearch}
+                platform={platform}
+                onPlatformChange={setPlatform}
+                sortBy={sortBy}
+                onSortChange={setSortBy}
+              />
+            </motion.div>
+          )}
 
           {saved.length > 0 ? (
             <div>
-              <div className="mb-6 text-sm text-white/30">
-                {filteredSaved.length} {t("vault_results")}
+              <div className="flex items-center justify-between mb-6 text-xs text-white/40">
+                <div>
+                  <span className="text-white/70 font-semibold">{filteredSaved.length}</span> {t("vault_results")}
+                </div>
               </div>
+
               {filteredSaved.length > 0 ? (
                 <>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10">
                     {paginatedSaved.map((account, index) => (
-                  <motion.div
-                    key={account.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                    className="glass-card rounded-xl overflow-hidden group"
-                  >
-                    <div className="relative aspect-[3/4] overflow-hidden">
-                      <img
-                        src={account.imageUrl || `/games/${account.platform.toLowerCase().replace(/\s+/g, "")}.jpg`}
-                        alt={account.gameName}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        onError={(e) => { (e.target as HTMLImageElement).src = "/games/steam.jpg"; }}
+                      <AccountCard
+                        key={account.id}
+                        account={account}
+                        isSaved={true}
+                        onToggleSave={toggleSave}
+                        onCopy={handleCopy}
+                        index={index}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-[#030303]/30 to-transparent" />
-                      <div className="absolute top-3 left-3">
-                        <span className="px-3 py-1 rounded-full text-xs font-semibold text-white/90 border border-white/10 backdrop-blur-md bg-black/40">
-                          {account.platform}
-                        </span>
-                      </div>
-                      <button
-                        onClick={() => handleRemove(account.id)}
-                        className="absolute top-3 right-3 p-2 rounded-full bg-red-500/20 backdrop-blur-md border border-red-500/30 text-red-400 hover:bg-red-500/30 transition-all"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                      <div className="absolute bottom-0 left-0 right-0 p-4">
-                        <h3 className="text-white font-bold text-lg mb-3 truncate">{account.gameName}</h3>
-                        <div className="flex items-center justify-between gap-2 mb-2">
-                          <span className="text-white/40 text-xs font-mono uppercase">{t("card_user")}</span>
-                          <div className="flex items-center gap-2">
-                            <span className="text-white/80 text-sm font-mono truncate max-w-[140px]">{account.username}</span>
-                            <button onClick={() => handleCopy(account.username, t("card_user"))} className="p-1 rounded bg-white/5 hover:bg-[#C1272D]/20 text-white/50 hover:text-[#C1272D] transition-all">
-                              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
-                            </button>
-                          </div>
-                        </div>
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="text-white/40 text-xs font-mono uppercase">{t("card_pass")}</span>
-                          <div className="flex items-center gap-2">
-                            <span className="text-white/80 text-sm font-mono truncate max-w-[140px]">{"*".repeat(Math.min(account.password.length, 12))}</span>
-                            <button onClick={() => handleCopy(account.password, t("card_pass"))} className="p-1 rounded bg-white/5 hover:bg-[#C1272D]/20 text-white/50 hover:text-[#C1272D] transition-all">
-                              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
-                            </button>
-                          </div>
-                        </div>
-                        <p className="text-white/20 text-xs mt-3">{t("saved_saved_on")} {new Date(account.savedAt).toLocaleDateString()}</p>
-                      </div>
-                    </div>
-                  </motion.div>
                     ))}
                   </div>
 
                   {totalPages > 1 && (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      className="flex items-center justify-center gap-2 mt-8"
-                    >
-                      <button
-                        onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
-                        disabled={currentPage === 1}
-                        className="w-10 h-10 flex items-center justify-center rounded-lg text-sm font-medium transition-all disabled:opacity-30 disabled:cursor-not-allowed text-white/60 hover:text-white hover:bg-white/5 border border-white/10"
-                      >
-                        <ChevronLeft className="w-5 h-5" />
-                      </button>
-
-                      <div className="flex items-center gap-1">
-                        {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                          let pageNum: number;
-                          if (totalPages <= 5) {
-                            pageNum = i + 1;
-                          } else if (currentPage <= 3) {
-                            pageNum = i + 1;
-                          } else if (currentPage >= totalPages - 2) {
-                            pageNum = totalPages - 4 + i;
-                          } else {
-                            pageNum = currentPage - 2 + i;
-                          }
-                          return (
-                            <button
-                              key={pageNum}
-                              onClick={() => handlePageChange(pageNum)}
-                              className={`w-10 h-10 rounded-lg text-sm font-medium transition-all ${
-                                currentPage === pageNum
-                                  ? "bg-[#C1272D] text-white"
-                                  : "text-white/60 hover:text-white hover:bg-white/5 border border-white/10"
-                              }`}
-                            >
-                              {pageNum}
-                            </button>
-                          );
-                        })}
-                      </div>
-
-                      <button
-                        onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
-                        disabled={currentPage === totalPages}
-                        className="w-10 h-10 flex items-center justify-center rounded-lg text-sm font-medium transition-all disabled:opacity-30 disabled:cursor-not-allowed text-white/60 hover:text-white hover:bg-white/5 border border-white/10"
-                      >
-                        <ChevronRight className="w-5 h-5" />
-                      </button>
-                    </motion.div>
+                    <div className="flex items-center justify-center gap-1.5 mt-8">
+                      {Array.from({ length: totalPages }, (_, i) => (
+                        <button
+                          key={i + 1}
+                          onClick={() => {
+                            setCurrentPage(i + 1);
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                          }}
+                          className={`w-9 h-9 rounded-xl text-xs font-semibold transition-all ${
+                            currentPage === i + 1
+                              ? "bg-[#C1272D] text-white shadow-md shadow-[#C1272D]/30 border border-[#C1272D]"
+                              : "text-white/60 hover:text-white hover:bg-white/5 border border-white/10"
+                          }`}
+                        >
+                          {i + 1}
+                        </button>
+                      ))}
+                    </div>
                   )}
                 </>
               ) : (
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-20">
-                  <BookmarkX className="w-16 h-16 text-white/10 mx-auto mb-4" />
-                  <h2 className="text-xl font-semibold text-white/40 mb-2">{t("saved_empty_title")}</h2>
-                  <p className="text-white/25 text-sm mb-6 max-w-sm mx-auto">{t("saved_empty_desc")}</p>
-                  <Link to="/" className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass border border-[#C1272D]/20 text-[#C1272D] text-sm font-medium hover:bg-[#C1272D]/10 transition-all">
-                    {t("saved_browse")}
-                  </Link>
-                </motion.div>
+                <div className="text-center py-16 glass-panel rounded-3xl border border-white/[0.06] p-8">
+                  <BookmarkX className="w-12 h-12 text-white/10 mx-auto mb-3" />
+                  <h3 className="text-base font-semibold text-white/50 mb-1">No matching saved accounts</h3>
+                  <p className="text-white/30 text-xs mb-4">Try clearing filters or search query</p>
+                  <button
+                    onClick={() => {
+                      setSearch("");
+                      setPlatform("All");
+                    }}
+                    className="px-4 py-2 rounded-xl bg-[#C1272D]/15 text-[#C1272D] text-xs font-medium border border-[#C1272D]/30"
+                  >
+                    Reset Filters
+                  </button>
+                </div>
               )}
             </div>
           ) : (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-20">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-20 glass-panel rounded-3xl border border-white/[0.06] p-8"
+            >
               <BookmarkX className="w-16 h-16 text-white/10 mx-auto mb-4" />
-              <h2 className="text-xl font-semibold text-white/40 mb-2">{t("saved_empty_title")}</h2>
-              <p className="text-white/25 text-sm mb-6 max-w-sm mx-auto">{t("saved_empty_desc")}</p>
-              <Link to="/" className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass border border-[#C1272D]/20 text-[#C1272D] text-sm font-medium hover:bg-[#C1272D]/10 transition-all">
+              <h2 className="text-xl font-semibold text-white/50 mb-2">{t("saved_empty_title")}</h2>
+              <p className="text-white/30 text-xs mb-6 max-w-sm mx-auto">{t("saved_empty_desc")}</p>
+              <Link
+                to="/"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#C1272D] text-white text-xs font-semibold shadow-lg shadow-[#C1272D]/20 hover:bg-[#C1272D]/90 transition-all"
+              >
                 {t("saved_browse")}
               </Link>
             </motion.div>

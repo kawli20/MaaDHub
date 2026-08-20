@@ -8,16 +8,28 @@ export interface SavedAccount extends Account {
 }
 
 function loadSaved(): SavedAccount[] {
+  if (typeof window === "undefined") return [];
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : [];
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter(
+      (a): a is SavedAccount =>
+        Boolean(a && typeof a === "object" && typeof a.id === "number" && a.gameName)
+    );
   } catch {
     return [];
   }
 }
 
 function persistSaved(accounts: SavedAccount[]) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(accounts));
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(accounts));
+  } catch {
+    // ignore
+  }
 }
 
 export function useSavedAccounts() {
@@ -33,6 +45,7 @@ export function useSavedAccounts() {
   );
 
   const toggleSave = useCallback((account: Account) => {
+    if (!account || typeof account.id !== "number") return;
     setSaved((prev) => {
       const exists = prev.some((a) => a.id === account.id);
       if (exists) {

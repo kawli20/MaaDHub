@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useSavedAccounts } from "@/hooks/useSavedAccounts";
 import { useToast } from "@/hooks/useToast";
+import { useDebounce } from "@/hooks/useDebounce";
 import { HeroSection } from "@/components/HeroSection";
 import { AccountCard } from "@/components/AccountCard";
 import { SearchFilters } from "@/components/SearchFilters";
@@ -13,6 +14,7 @@ import { BackToTop } from "@/components/BackToTop";
 import { AdBanner } from "@/components/AdBanner";
 import { DEFAULT_ACCOUNTS, DEFAULT_ADVERTISEMENTS } from "@/data/accounts";
 import { Gamepad2, ChevronLeft, ChevronRight } from "lucide-react";
+import { useLocation } from "react-router";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -20,49 +22,92 @@ export default function Home() {
   const { t } = useLanguage();
   const { isSaved, toggleSave } = useSavedAccounts();
   const { toasts, addToast, removeToast } = useToast();
+  const location = useLocation();
 
   const [search, setSearch] = useState("");
+  const debouncedSearch = useDebounce(search, 300);
   const [platform, setPlatform] = useState("All");
   const [sortBy, setSortBy] = useState("newest");
   const [currentPage, setCurrentPage] = useState(1);
+  const [highlightedAccountId, setHighlightedAccountId] = useState<number | null>(null);
 
-  const accounts = DEFAULT_ACCOUNTS;
-  const ads = DEFAULT_ADVERTISEMENTS.filter((a) => a.enabled).sort((a, b) => b.id - a.id);
+  const accounts = DEFAULT_ACCOUNTS || [];
+  const ads = (DEFAULT_ADVERTISEMENTS || [])
+    .filter((a) => a && a.enabled)
+    .sort((a, b) => (b.id || 0) - (a.id || 0));
 
+  // Handle URL deep-linking like /?account=5
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(location.search);
+      const accountParam = params.get("account");
+      if (accountParam) {
+        const id = parseInt(accountParam, 10);
+        if (!isNaN(id)) {
+          setHighlightedAccountId(id);
+          const targetIndex = accounts.findIndex((a) => a.id === id);
+          if (targetIndex !== -1) {
+            const pageForAccount = Math.floor(targetIndex / ITEMS_PER_PAGE) + 1;
+            setCurrentPage(pageForAccount);
+          }
+          setTimeout(() => {
+            const el = document.getElementById(`account-${id}`);
+            if (el) {
+              el.scrollIntoView({ behavior: "smooth", block: "center" });
+            } else {
+              const vault = document.getElementById("vault");
+              if (vault) vault.scrollIntoView({ behavior: "smooth" });
+            }
+          }, 400);
+        }
+      }
+    } catch {
+      // ignore
+    }
+  }, [location.search, accounts]);
+
+  // Filter accounts by debounced search, platform, and sort
   const filteredAccounts = useMemo(() => {
     let result = [...accounts];
-    if (search) {
-      const s = search.toLowerCase();
+
+    // Debounced search query
+    if (debouncedSearch) {
+      const s = debouncedSearch.toLowerCase().trim();
       result = result.filter(
         (a) =>
-          a.gameName.toLowerCase().includes(s) ||
-          a.platform.toLowerCase().includes(s) ||
-          a.username.toLowerCase().includes(s)
+          (a.gameName || "").toLowerCase().includes(s) ||
+          (a.platform || "").toLowerCase().includes(s) ||
+          (a.username || "").toLowerCase().includes(s)
       );
     }
+
+    // Platform filter
     if (platform && platform !== "All") {
       result = result.filter((a) => a.platform === platform);
     }
+
+    // Sort
     switch (sortBy) {
       case "oldest":
         result.sort((a, b) => a.id - b.id);
         break;
       case "alphabetical":
-        result.sort((a, b) => a.gameName.localeCompare(b.gameName));
+        result.sort((a, b) => (a.gameName || "").localeCompare(b.gameName || ""));
         break;
       case "newest":
       default:
         result.sort((a, b) => b.id - a.id);
         break;
     }
+
     return result;
-  }, [accounts, search, platform, sortBy]);
+  }, [accounts, debouncedSearch, platform, sortBy]);
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [search, platform, sortBy]);
+  }, [debouncedSearch, platform, sortBy]);
 
-  const totalPages = Math.ceil(filteredAccounts.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(filteredAccounts.length / ITEMS_PER_PAGE) || 1;
   const paginatedAccounts = useMemo(() => {
     const start = (currentPage - 1) * ITEMS_PER_PAGE;
     return filteredAccounts.slice(start, start + ITEMS_PER_PAGE);
@@ -71,7 +116,7 @@ export default function Home() {
   const currentAdIndex = (currentPage - 1) % Math.max(ads.length, 1);
 
   const handleCopy = (_text: string, label: string) => {
-    addToast(label, "success");
+    if (label) addToast(label, "success");
   };
 
   const handlePageChange = (page: number) => {
@@ -90,33 +135,38 @@ export default function Home() {
 
       <HeroSection />
 
-      <section id="vault" className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+      {/* THE VAULT ACCOUNTS SECTION */}
+      <section id="vault" className="relative pt-20 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="absolute top-0 left-0 right-0 h-48 pointer-events-none bg-gradient-to-b from-[#030303] via-[#030303]/60 to-transparent -mt-1" />
         <div className="max-w-7xl mx-auto">
+          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12"
+            className="mb-10"
           >
-            <div className="flex items-center gap-3 mb-4">
-              <Gamepad2 className="w-6 h-6 text-[#C1272D]" />
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-2xl bg-[#C1272D]/10 border border-[#C1272D]/20 flex items-center justify-center text-[#C1272D]">
+                <Gamepad2 className="w-5 h-5" />
+              </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
                 {t("vault_title_1") ? <>{t("vault_title_1")} </> : null}
                 <span className="text-gradient">{t("vault_title_2")}</span>
               </h2>
             </div>
-            <p className="text-white/40 text-sm max-w-lg">
+            <p className="text-white/40 text-sm max-w-xl">
               {t("vault_description")}
             </p>
           </motion.div>
 
+          {/* Search and Filters */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="mb-10"
+            className="mb-8"
           >
             <SearchFilters
               search={search}
@@ -128,19 +178,25 @@ export default function Home() {
             />
           </motion.div>
 
-          <div className="mb-6 text-sm text-white/30">
-            {filteredAccounts.length} {t("vault_results")}
+          {/* Results count */}
+          <div className="flex items-center justify-between mb-6 text-xs text-white/40">
+            <div>
+              <span className="text-white/70 font-semibold">{filteredAccounts.length}</span>{" "}
+              {t("vault_results")}
+            </div>
           </div>
 
           {filteredAccounts.length > 0 ? (
             <>
-              {ads.length > 0 && (
+              {/* Ad banner if available */}
+              {ads.length > 0 && ads[currentAdIndex] && (
                 <div className="mb-10">
                   <AdBanner ad={ads[currentAdIndex]} index={currentPage} />
                 </div>
               )}
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10">
+              {/* Accounts Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
                 {paginatedAccounts.map((account, index) => (
                   <AccountCard
                     key={account.id}
@@ -149,25 +205,36 @@ export default function Home() {
                     onToggleSave={toggleSave}
                     onCopy={handleCopy}
                     index={index}
+                    isHighlighted={highlightedAccountId === account.id}
                   />
                 ))}
               </div>
 
+              {/* Pagination Controls */}
               {totalPages > 1 && (
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="flex items-center justify-center gap-2 mt-8"
+                  className="flex items-center justify-center gap-2 mt-8 flex-wrap"
                 >
+                  <button
+                    onClick={() => handlePageChange(1)}
+                    disabled={currentPage === 1}
+                    className="w-10 h-10 flex items-center justify-center rounded-xl text-sm font-medium transition-all disabled:opacity-20 disabled:cursor-not-allowed text-white/60 hover:text-white hover:bg-white/5 border border-white/10"
+                    title="First page"
+                  >
+                    <span className="text-xs font-bold">1</span>
+                  </button>
+
                   <button
                     onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
                     disabled={currentPage === 1}
-                    className="w-10 h-10 flex items-center justify-center rounded-lg text-sm font-medium transition-all disabled:opacity-30 disabled:cursor-not-allowed text-white/60 hover:text-white hover:bg-white/5 border border-white/10"
+                    className="w-10 h-10 flex items-center justify-center rounded-xl text-sm font-medium transition-all disabled:opacity-20 disabled:cursor-not-allowed text-white/60 hover:text-white hover:bg-white/5 border border-white/10"
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </button>
 
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1.5">
                     {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
                       let pageNum: number;
                       if (totalPages <= 5) {
@@ -183,9 +250,9 @@ export default function Home() {
                         <button
                           key={pageNum}
                           onClick={() => handlePageChange(pageNum)}
-                          className={`w-10 h-10 rounded-lg text-sm font-medium transition-all ${
+                          className={`w-10 h-10 rounded-xl text-xs font-semibold transition-all ${
                             currentPage === pageNum
-                              ? "bg-[#C1272D] text-white"
+                              ? "bg-[#C1272D] text-white shadow-lg shadow-[#C1272D]/30 border border-[#C1272D]"
                               : "text-white/60 hover:text-white hover:bg-white/5 border border-white/10"
                           }`}
                         >
@@ -198,7 +265,7 @@ export default function Home() {
                   <button
                     onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
                     disabled={currentPage === totalPages}
-                    className="w-10 h-10 flex items-center justify-center rounded-lg text-sm font-medium transition-all disabled:opacity-30 disabled:cursor-not-allowed text-white/60 hover:text-white hover:bg-white/5 border border-white/10"
+                    className="w-10 h-10 flex items-center justify-center rounded-xl text-sm font-medium transition-all disabled:opacity-20 disabled:cursor-not-allowed text-white/60 hover:text-white hover:bg-white/5 border border-white/10"
                   >
                     <ChevronRight className="w-5 h-5" />
                   </button>
@@ -209,13 +276,25 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-center py-20"
+              className="text-center py-20 glass-panel rounded-3xl border border-white/[0.06] p-8"
             >
               <Gamepad2 className="w-12 h-12 text-white/10 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-white/40 mb-2">
+              <h3 className="text-lg font-semibold text-white/60 mb-2">
                 {t("vault_empty_title")}
               </h3>
-              <p className="text-white/25 text-sm">{t("vault_empty_desc")}</p>
+              <p className="text-white/30 text-xs max-w-sm mx-auto mb-4">
+                {t("vault_empty_desc")}
+              </p>
+              <button
+                onClick={() => {
+                  setSearch("");
+                  setPlatform("All");
+                  setSortBy("newest");
+                }}
+                className="px-5 py-2.5 rounded-xl bg-[#C1272D]/15 text-[#C1272D] border border-[#C1272D]/30 text-xs font-medium hover:bg-[#C1272D]/25 transition-all"
+              >
+                Reset Filters
+              </button>
             </motion.div>
           )}
         </div>

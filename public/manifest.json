@@ -1,21 +1,19 @@
 {
-  "name": "MaaDHub",
+  "name": "MaaDHub - Free Premium Gaming Accounts",
   "short_name": "MaaDHub",
-  "description": "Free premium gaming and streaming accounts",
+  "description": "Premium gaming and streaming accounts for free",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#030303",
-  "theme_color": "#030303",
+  "theme_color": "#C1272D",
+  "orientation": "portrait-primary",
   "icons": [
     {
       "src": "/logo.png",
       "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/logo.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
-  ]
+  ],
+  "categories": ["games", "entertainment"]
 }

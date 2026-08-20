@@ -1,4 +1,5 @@
 import { useMemo, useState, useRef, useEffect } from "react"
+import { useDebounce } from "@/hooks/useDebounce"
 import { motion } from "framer-motion"
 import { Link } from "react-router"
 import { Tag, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react"
@@ -16,6 +17,7 @@ export default function Sales() {
   const { t } = useLanguage()
   const { toasts, removeToast } = useToast()
   const [search, setSearch] = useState("")
+  const debouncedSearch = useDebounce(search, 300)
   const [platform, setPlatform] = useState("All")
   const [sortBy, setSortBy] = useState("newest")
   const [activeTab, setActiveTab] = useState<"all" | "keys" | "accounts" | "subscription" | "serves">("all")
@@ -32,8 +34,8 @@ export default function Sales() {
   const sales = useMemo(() => {
     let result = [...DEFAULT_SALES]
 
-    if (search) {
-      const s = search.toLowerCase()
+    if (debouncedSearch) {
+      const s = debouncedSearch.toLowerCase()
       result = result.filter((item) =>
         item.title.toLowerCase().includes(s) ||
         item.platform.toLowerCase().includes(s) ||
@@ -63,11 +65,11 @@ export default function Sales() {
     }
 
     return result
-  }, [search, platform, sortBy, activeTab])
+  }, [debouncedSearch, platform, sortBy, activeTab])
 
   useEffect(() => {
     setCurrentPage(1)
-  }, [search, platform, sortBy, activeTab])
+  }, [debouncedSearch, platform, sortBy, activeTab])
 
   const totalPages = Math.ceil(sales.length / ITEMS_PER_PAGE)
   const paginatedSales = useMemo(() => {
@@ -246,8 +248,17 @@ export default function Sales() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="flex items-center justify-center gap-2 mt-8"
+                  className="flex items-center justify-center gap-2 mt-8 flex-wrap"
                 >
+                  <button
+                    onClick={() => handlePageChange(1)}
+                    disabled={currentPage === 1}
+                    className="w-10 h-10 flex items-center justify-center rounded-lg text-sm font-medium transition-all disabled:opacity-30 disabled:cursor-not-allowed text-white/60 hover:text-white hover:bg-white/5 border border-white/10"
+                    title="First page"
+                  >
+                    <span className="text-xs font-bold">1</span>
+                  </button>
+
                   <button
                     onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
                     disabled={currentPage === 1}
