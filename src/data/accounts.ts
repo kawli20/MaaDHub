@@ -830,6 +830,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     "supportLink": "https://maad.qzz.io/",
     "imageUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big_2x/coc7cr.jpg",
     "createdAt": "2026-08-21T10:00:00.000Z"
+  },
+  {
+    id: 81,
+    gameName: "Ready or Not",
+    platform: "Steam",
+    username: "ujrt34337",
+    password: "Fv6Mv8Py5Ps06t",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://store-images.s-microsoft.com/image/apps.39640.13578379328545234.9a5c7815-319e-44dd-b243-b580c45874f3.35017ade-207d-4d87-811e-3e41624595ad",
+    createdAt: "2026-08-21T15:00:00.000Z"
   }
 ];
 
