@@ -822,14 +822,14 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     createdAt: "2026-08-19T15:30:00.000Z"
   },
   {
-    "id": 80,
-    "gameName": "MECCHA CHAMELEON",
-    "platform": "Steam",
-    "username": "ydtdo32097",
-    "password": "PzIf3P1GXw2dEJ",
-    "supportLink": "https://maad.qzz.io/",
-    "imageUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big_2x/coc7cr.jpg",
-    "createdAt": "2026-08-21T10:00:00.000Z"
+    id: 80,
+    gameName: "MECCHA CHAMELEON",
+    platform: "Steam",
+    username: "ydtdo32097",
+    password: "PzIf3P1GXw2dEJ",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big_2x/coc7cr.jpg",
+    createdAt: "2026-08-21T10:00:00.000Z"
   },
   {
     id: 81,
@@ -840,6 +840,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://store-images.s-microsoft.com/image/apps.39640.13578379328545234.9a5c7815-319e-44dd-b243-b580c45874f3.35017ade-207d-4d87-811e-3e41624595ad",
     createdAt: "2026-08-21T15:00:00.000Z"
+  },
+  {
+    id: 82,
+    gameName: "Resident Evil Requiem",
+    platform: "Steam",
+    username: "sethgardner8r",
+    password: "nEtdGnEW4s1982",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://media1.tenor.com/m/_D2_OdnlyPsAAAAd/awsan-resident-evil-requiem.gif",
+    createdAt: "2026-08-22T07:00:00.000Z"
   }
 ];
 
