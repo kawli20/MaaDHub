@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Gamepad2, Bookmark, Mail, Info, Globe, Tag, HandCoins, MessageSquarePlus } from "lucide-react";
 import { useLanguage } from "@/hooks/useLanguage";
 import { LANGUAGES } from "@/i18n/translations";
+import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@/lib/clerk";
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,7 +43,7 @@ export function Navigation() {
       transition={{ type: "spring", stiffness: 100, damping: 20 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-[#030303]/80 backdrop-blur-2xl border-b border-white/[0.06]"
+          ? "bg-[#030303]/85 backdrop-blur-2xl border-b border-white/[0.06]"
           : "bg-transparent"
       }`}
     >
@@ -69,13 +70,13 @@ export function Navigation() {
                 <Link
                   key={link.to}
                   to={link.to}
-                  className={`relative flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  className={`relative flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
                     isActive
                       ? "text-[#C1272D] bg-[#C1272D]/10"
                       : "text-white/60 hover:text-white hover:bg-white/5"
                   }`}
                 >
-                  <Icon className="w-4 h-4" />
+                  <Icon className="w-3.5 h-3.5" />
                   {link.label}
                   {isActive && (
                     <motion.div
@@ -89,16 +90,16 @@ export function Navigation() {
             })}
 
             {/* Language Switcher */}
-            <div className="relative ml-2">
+            <div className="relative ml-1">
               <button
                 onClick={() => setLangOpen(!langOpen)}
-                className={`flex items-center gap-2 px-3 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
                   langOpen
                     ? "text-[#C1272D] bg-[#C1272D]/10 border border-[#C1272D]/20"
                     : "text-white/60 hover:text-white hover:bg-white/5 border border-transparent"
                 }`}
               >
-                <Globe className="w-4 h-4" />
+                <Globe className="w-3.5 h-3.5" />
                 <span className="text-xs">{currentLang?.flag}</span>
               </button>
 
@@ -109,13 +110,16 @@ export function Navigation() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -5, scale: 0.95 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute right-0 top-full mt-2 py-2 rounded-xl glass-panel border border-white/[0.08] min-w-[180px] overflow-hidden"
+                    className="absolute right-0 top-full mt-2 py-2 rounded-xl glass-panel border border-white/[0.08] min-w-[180px] overflow-hidden bg-[#080d16]/95 backdrop-blur-2xl z-50 shadow-2xl"
                   >
                     {LANGUAGES.map((l) => (
                       <button
                         key={l.code}
-                        onClick={() => { setLang(l.code); setLangOpen(false); }}
-                        className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-all ${
+                        onClick={() => {
+                          setLang(l.code);
+                          setLangOpen(false);
+                        }}
+                        className={`w-full flex items-center gap-3 px-4 py-2.5 text-xs transition-all ${
                           lang === l.code
                             ? "text-[#C1272D] bg-[#C1272D]/10"
                             : "text-white/60 hover:text-white hover:bg-white/5"
@@ -123,24 +127,38 @@ export function Navigation() {
                       >
                         <span className="text-base">{l.flag}</span>
                         <span>{l.label}</span>
-                        {lang === l.code && (
-                          <span className="ml-auto text-[#C1272D]">✓</span>
-                        )}
+                        {lang === l.code && <span className="ml-auto text-[#C1272D]">✓</span>}
                       </button>
                     ))}
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
+
+            {/* Clerk Authentication Controls */}
+            <div className="ml-2 flex items-center gap-2">
+              <SignedOut>
+                <SignInButton />
+                <SignUpButton />
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-lg text-white/60 hover:text-white hover:bg-white/5 transition-colors"
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          <div className="flex md:hidden items-center gap-2">
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-lg text-white/60 hover:text-white hover:bg-white/5 transition-colors"
+            >
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -152,9 +170,17 @@ export function Navigation() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-[#030303]/95 backdrop-blur-2xl border-b border-white/[0.06]"
+            className="md:hidden bg-[#030303]/98 backdrop-blur-2xl border-b border-white/[0.06]"
           >
             <div className="px-4 py-4 space-y-1">
+              {/* Mobile Auth Buttons */}
+              <SignedOut>
+                <div className="flex gap-2 pb-4 mb-3 border-b border-white/[0.06]">
+                  <SignInButton className="flex-1 inline-flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold text-white bg-white/5 border border-white/15 hover:bg-white/10 active:scale-95 transition-all" />
+                  <SignUpButton className="flex-1 inline-flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold text-white bg-[#C1272D] hover:bg-[#d92d34] active:scale-95 shadow-lg shadow-[#C1272D]/20 transition-all" />
+                </div>
+              </SignedOut>
+
               {navLinks.map((link) => {
                 const Icon = link.icon;
                 const isActive = location.pathname === link.to;
@@ -176,12 +202,17 @@ export function Navigation() {
 
               {/* Mobile Language Switcher */}
               <div className="pt-3 border-t border-white/[0.06] mt-3">
-                <p className="px-4 text-xs text-white/30 uppercase tracking-wider mb-2">{t("nav_language")}</p>
+                <p className="px-4 text-xs text-white/30 uppercase tracking-wider mb-2">
+                  {t("nav_language")}
+                </p>
                 <div className="grid grid-cols-2 gap-2 px-4">
                   {LANGUAGES.map((l) => (
                     <button
                       key={l.code}
-                      onClick={() => { setLang(l.code); setLangOpen(false); }}
+                      onClick={() => {
+                        setLang(l.code);
+                        setLangOpen(false);
+                      }}
                       className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-all ${
                         lang === l.code
                           ? "text-[#C1272D] bg-[#C1272D]/10 border border-[#C1272D]/20"

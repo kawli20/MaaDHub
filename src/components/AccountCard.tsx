@@ -9,11 +9,13 @@ import {
   Share2,
   X,
   AlertTriangle,
+  Lock,
 } from "lucide-react";
 import { memo, useState, useRef, useEffect } from "react";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useReportedAccounts } from "@/hooks/useReportedAccounts";
 import { reportBrokenAccount } from "@/lib/telegram";
+import { useAuth } from "@/lib/clerk";
 import type { Account } from "@/data/accounts";
 
 interface AccountCardProps {
@@ -76,6 +78,7 @@ export const AccountCard = memo(function AccountCard({
   isHighlighted = false,
 }: AccountCardProps) {
   const { t } = useLanguage();
+  const { isSignedIn, openSignIn } = useAuth();
   const { isReported, markReported } = useReportedAccounts();
 
   const [copiedField, setCopiedField] = useState<string | null>(null);
@@ -94,7 +97,7 @@ export const AccountCard = memo(function AccountCard({
   const containerRef = useRef<HTMLDivElement>(null);
   const reported = isReported(account.id);
 
-  // Intersection Observer for fast lazy loading
+  // Lazy loading observer
   useEffect(() => {
     if (typeof IntersectionObserver === "undefined") {
       setShouldLoad(true);
@@ -119,12 +122,30 @@ export const AccountCard = memo(function AccountCard({
     return () => observer.disconnect();
   }, []);
 
+  const requireAuthAction = (callback: () => void, actionName: string) => {
+    if (!isSignedIn) {
+      onCopy("", `Please sign in or create an account to ${actionName}`);
+      openSignIn();
+      return;
+    }
+    callback();
+  };
+
   const handleCopy = (text: string, label: string) => {
-    if (!text) return;
-    navigator.clipboard?.writeText(text);
-    onCopy(text, label);
-    setCopiedField(label);
-    setTimeout(() => setCopiedField(null), 2000);
+    requireAuthAction(() => {
+      if (!text) return;
+      navigator.clipboard?.writeText(text);
+      onCopy(text, label);
+      setCopiedField(label);
+      setTimeout(() => setCopiedField(null), 2000);
+    }, `copy ${label.toLowerCase()}`);
+  };
+
+  const handleBookmark = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    requireAuthAction(() => {
+      onToggleSave(account);
+    }, "save accounts to your vault");
   };
 
   const handleShare = async (e: React.MouseEvent) => {
@@ -278,17 +299,28 @@ export const AccountCard = memo(function AccountCard({
               <Flag className="w-3.5 h-3.5" />
             </button>
 
-            {/* Bookmark */}
+            {/* Bookmark (Gated by Clerk Auth) */}
             <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onToggleSave(account);
-              }}
-              title={isSaved ? "Remove from Saved" : "Save Account"}
-              className="p-2 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white/70 hover:text-[#C1272D] hover:border-[#C1272D]/30 hover:bg-[#C1272D]/10 transition-all"
+              onClick={handleBookmark}
+              title={
+                !isSignedIn
+                  ? "Sign in to save account"
+                  : isSaved
+                  ? "Remove from Saved"
+                  : "Save Account"
+              }
+              className={`p-2 rounded-full backdrop-blur-md border transition-all ${
+                !isSignedIn
+                  ? "bg-black/50 text-white/50 border-white/10 hover:text-[#C1272D] hover:border-[#C1272D]/40"
+                  : isSaved
+                  ? "bg-[#C1272D]/20 text-[#C1272D] border-[#C1272D]/40"
+                  : "bg-black/50 text-white/70 border-white/10 hover:text-[#C1272D] hover:border-[#C1272D]/30"
+              }`}
             >
               {isSaved ? (
                 <BookmarkCheck className="w-3.5 h-3.5 text-[#C1272D]" />
+              ) : !isSignedIn ? (
+                <Bookmark className="w-3.5 h-3.5 opacity-60" />
               ) : (
                 <Bookmark className="w-3.5 h-3.5" />
               )}
@@ -319,11 +351,17 @@ export const AccountCard = memo(function AccountCard({
                       e.stopPropagation();
                       handleCopy(account.username, t("card_user"));
                     }}
-                    className="p-1 rounded-md hover:bg-white/10 text-white/50 hover:text-[#C1272D] transition-all"
-                    title="Copy Username"
+                    className={`p-1 rounded-md transition-all ${
+                      !isSignedIn
+                        ? "text-white/40 hover:text-amber-400 hover:bg-amber-500/10"
+                        : "hover:bg-white/10 text-white/50 hover:text-[#C1272D]"
+                    }`}
+                    title={!isSignedIn ? "Sign in to copy username" : "Copy Username"}
                   >
                     {copiedField === t("card_user") ? (
                       <Check className="w-3 h-3 text-emerald-400" />
+                    ) : !isSignedIn ? (
+                      <Lock className="w-3 h-3 text-amber-400/80" />
                     ) : (
                       <Copy className="w-3 h-3" />
                     )}
@@ -345,11 +383,17 @@ export const AccountCard = memo(function AccountCard({
                       e.stopPropagation();
                       handleCopy(account.password, t("card_pass"));
                     }}
-                    className="p-1 rounded-md hover:bg-white/10 text-white/50 hover:text-[#C1272D] transition-all"
-                    title="Copy Password"
+                    className={`p-1 rounded-md transition-all ${
+                      !isSignedIn
+                        ? "text-white/40 hover:text-amber-400 hover:bg-amber-500/10"
+                        : "hover:bg-white/10 text-white/50 hover:text-[#C1272D]"
+                    }`}
+                    title={!isSignedIn ? "Sign in to copy password" : "Copy Password"}
                   >
                     {copiedField === t("card_pass") ? (
                       <Check className="w-3 h-3 text-emerald-400" />
+                    ) : !isSignedIn ? (
+                      <Lock className="w-3 h-3 text-amber-400/80" />
                     ) : (
                       <Copy className="w-3 h-3" />
                     )}

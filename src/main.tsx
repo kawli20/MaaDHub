@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router'
 import { LanguageProvider } from '@/hooks/useLanguage'
+import { ClerkProvider } from '@/lib/clerk'
 import './index.css'
 import App from './App.tsx'
 
@@ -13,8 +14,10 @@ if ('serviceWorker' in navigator) {
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
-    <LanguageProvider>
-      <App />
-    </LanguageProvider>
+    <ClerkProvider>
+      <LanguageProvider>
+        <App />
+      </LanguageProvider>
+    </ClerkProvider>
   </BrowserRouter>,
 )

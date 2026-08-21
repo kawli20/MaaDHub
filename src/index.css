@@ -58,135 +58,38 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #C1272D 0%, #006233 100%);
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#C1272D] to-[#ff4d54];
+  }
+  
+  .text-gradient-green {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#006233] to-[#00a854];
   }
 
-  .glow-red {
-    box-shadow: 0 0 20px rgba(193, 39, 45, 0.15);
-  }
-
-  .glow-red-strong {
-    box-shadow: 0 0 30px rgba(193, 39, 45, 0.3), 0 0 60px rgba(193, 39, 45, 0.1);
-  }
-
-  .glow-green {
-    box-shadow: 0 0 20px rgba(0, 98, 51, 0.15);
-  }
-
-  .glass {
-    @apply bg-white/[0.03] backdrop-blur-xl border border-white/[0.08];
-  }
-
-  .glass-card {
-    @apply bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-xl;
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#D4AF37] to-[#FFF8DC];
   }
 
   .glass-panel {
-    @apply bg-white/[0.02] backdrop-blur-2xl border border-white/[0.06] rounded-2xl;
+    background: rgba(8, 13, 22, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-card {
+    background: rgba(12, 18, 30, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .hover-glow {
-    @apply transition-all duration-300;
+    transition: all 0.3s ease;
   }
-
+  
   .hover-glow:hover {
-    box-shadow: 0 0 30px rgba(193, 39, 45, 0.2);
-    border-color: rgba(193, 39, 45, 0.3);
-  }
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: #030303;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #1a1a2e;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #C1272D;
-}
-
-/* Selection */
-::selection {
-  background: rgba(193, 39, 45, 0.3);
-  color: white;
-}
-
-/* Animations */
-@keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-@keyframes pulse-glow {
-
-  0%,
-  100% {
-    opacity: 0.5;
-  }
-
-  50% {
-    opacity: 1;
-  }
-}
-
-@keyframes gradient-shift {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
-}
-
-.animate-gradient {
-  background-size: 200% 200%;
-  animation: gradient-shift 8s ease infinite;
-}
-
-/* Scrolling Background */
-@keyframes bg-scroll {
-  from { background-position-y: 0%; }
-  to { background-position-y: 100%; }
-}
-
-.bg-scroll-animate {
-  animation: bg-scroll 25s linear infinite alternate;
-}
-
-@media (max-width: 768px) {
-  .bg-scroll-animate {
-    animation: none !important;
-    background-size: cover !important;
-    background-position: center 70% !important;
+    box-shadow: 0 0 30px rgba(193, 39, 45, 0.25);
+    border-color: rgba(193, 39, 45, 0.4);
   }
 }
 
@@ -222,4 +125,195 @@
   .bg-scroll-animate {
     animation: none;
   }
+}
+
+/* =========================================================
+   CLERK MODAL DARK THEME STYLING
+   ========================================================= */
+.cl-rootBox,
+.cl-card,
+.cl-modalContent,
+.cl-userProfile-root,
+.cl-userProfileNavbar,
+.cl-pageScrollBox,
+.cl-scrollBox {
+  background-color: #080d16 !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 1.5rem !important;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85) !important;
+}
+
+.cl-userProfile-root p,
+.cl-userProfile-root span,
+.cl-userProfile-root h1,
+.cl-userProfile-root h2,
+.cl-userProfile-root h3,
+.cl-userProfile-root h4,
+.cl-userProfile-root label,
+.cl-profileSectionTitleText,
+.cl-headerTitle,
+.cl-modalHeaderTitle,
+.cl-identityPreviewText {
+  color: #ffffff !important;
+}
+
+.cl-headerSubtitle,
+.cl-dividerText,
+.cl-footerActionText,
+.cl-profileSectionSubtitleText,
+.cl-formFieldDescription,
+.cl-helpText,
+.cl-breadcrumbsItem {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Fix Upload button and Secondary buttons */
+.cl-avatarImageUploadButton,
+.cl-fileDropAreaButton,
+.cl-avatarUploader,
+button[data-localization-key*="uploadImage"],
+button[data-localization-key*="upload"],
+.cl-button__secondary,
+.cl-menuButton {
+  background-color: #121a29 !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 0.5rem !important;
+  font-weight: 600 !important;
+}
+
+.cl-avatarImageUploadButton:hover,
+.cl-fileDropAreaButton:hover,
+.cl-button__secondary:hover {
+  background-color: #1a263c !important;
+  border-color: rgba(193, 39, 45, 0.5) !important;
+  color: #ffffff !important;
+}
+
+/* Social Buttons */
+.cl-socialButtonsBlockButton {
+  background-color: #121a29 !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  border-radius: 0.75rem !important;
+  transition: all 0.2s ease !important;
+}
+
+.cl-socialButtonsBlockButtonText {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+.cl-socialButtonsBlockButton:hover {
+  background-color: #1a263c !important;
+  border-color: rgba(193, 39, 45, 0.5) !important;
+}
+
+/* Transparent icons without borders or boxes */
+.cl-socialButtonsProviderIcon {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Apple SVG fill in white */
+.cl-socialButtonsBlockButton__apple svg,
+.cl-socialButtonsBlockButton[data-provider="apple"] svg {
+  fill: #ffffff !important;
+  color: #ffffff !important;
+}
+
+/* Completely Hide API Keys tab in Clerk modal */
+[data-localization-key*="apiKeys"],
+[data-localization-key*="apiKey"],
+[data-tab-id*="api-key"],
+[data-tab-id*="apiKeys"],
+button[data-localization-key="userProfile.navbar.apiKeys"],
+a[data-localization-key="userProfile.navbar.apiKeys"],
+.cl-navbarButton[data-localization-key*="apiKeys"],
+.cl-userProfileNavbar__apiKeys,
+.cl-profileSection__apiKeys,
+.cl-apiKeysPage {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  pointer-events: none !important;
+}
+
+.cl-formFieldLabel {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.cl-formFieldInput {
+  background-color: #0e1626 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+  border-radius: 0.75rem !important;
+}
+
+.cl-formFieldInput:focus {
+  border-color: #C1272D !important;
+  box-shadow: 0 0 0 2px rgba(193, 39, 45, 0.25) !important;
+}
+
+.cl-formButtonPrimary {
+  background-color: #C1272D !important;
+  color: #ffffff !important;
+  border-radius: 0.5rem !important;
+  font-weight: 700 !important;
+}
+
+.cl-formButtonPrimary:hover {
+  background-color: #d92d34 !important;
+  box-shadow: 0 4px 15px rgba(193, 39, 45, 0.4) !important;
+}
+
+.cl-footerActionLink {
+  color: #C1272D !important;
+  font-weight: 600 !important;
+}
+
+/* =========================================================
+   AVATAR UPLOAD BUTTON - Force white text on ALL possible elements
+   ========================================================= */
+
+/* Target every possible Clerk avatar upload button variant */
+.cl-avatarImageUploadButton,
+.cl-avatarBox button,
+.cl-userPreview button,
+.cl-userPreviewAvatarBox button,
+.cl-avatarImageActionsUpload,
+.cl-avatarImageActions > button,
+.cl-avatarImageActions a,
+.cl-avatarUploadContainer button,
+.cl-fileDropAreaButton,
+.cl-fileDropAreaButtonPrimary,
+[class*="cl-avatar"] button,
+[class*="cl-avatar"] a,
+[class*="avatarUpload"],
+[class*="imageUpload"] {
+  color: #ffffff !important;
+  background-color: #1a263c !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 0.5rem !important;
+  font-weight: 600 !important;
+}
+
+[class*="cl-avatar"] button:hover,
+[class*="avatarUpload"]:hover,
+[class*="imageUpload"]:hover {
+  background-color: #243350 !important;
+  color: #ffffff !important;
+}
+
+/* Broad nuclear override: any button/link inside the Clerk profile that isn't already red */
+.cl-userProfile-root button:not(.cl-formButtonPrimary):not([class*="danger"]),
+.cl-userProfile-root a:not(.cl-footerActionLink) {
+  color: #ffffff !important;
+}
+
+.cl-userProfile-root button:not(.cl-formButtonPrimary):not([class*="danger"]):hover {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
 }

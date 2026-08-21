@@ -10,12 +10,14 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { SearchFilters } from "@/components/SearchFilters";
 import { AccountCard } from "@/components/AccountCard";
-import { BookmarkX, ArrowLeft, Bookmark } from "lucide-react";
+import { BookmarkX, ArrowLeft, Bookmark, Lock, Sparkles } from "lucide-react";
+import { useAuth, SignInButton, SignUpButton } from "@/lib/clerk";
 
 const ITEMS_PER_PAGE = 12;
 
 export default function SavedAccounts() {
   const { t } = useLanguage();
+  const { isSignedIn } = useAuth();
   const { saved, toggleSave } = useSavedAccounts();
   const { toasts, addToast, removeToast } = useToast();
 
@@ -102,6 +104,31 @@ export default function SavedAccounts() {
               {saved.length} {t("saved_count")}
             </p>
           </motion.div>
+
+          {/* Not signed in notice banner */}
+          {!isSignedIn && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-8 p-5 rounded-2xl bg-[#C1272D]/10 border border-[#C1272D]/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-[#C1272D]/20 text-[#C1272D] flex items-center justify-center shrink-0">
+                  <Lock className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-white">Create an account to unlock full access</h4>
+                  <p className="text-xs text-white/50">
+                    Sign in to save posts, sync your favorite accounts across devices, and copy login credentials.
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                <SignInButton className="px-4 py-2 rounded-xl text-xs font-semibold text-white bg-white/5 border border-white/10 hover:bg-white/10" />
+                <SignUpButton className="px-4 py-2 rounded-xl text-xs font-semibold text-white bg-[#C1272D] hover:bg-[#C1272D]/90" />
+              </div>
+            </motion.div>
+          )}
 
           {/* Filters if there are saved items */}
           {saved.length > 0 && (
