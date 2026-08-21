@@ -870,8 +870,7 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://media.tenor.com/LteVgDHkOOcAAAAM/acrogue-assassins-creed.gif",
     createdAt: "2026-08-22T07:00:00.000Z"
-  },
-
+  }
 ];
 
 export interface Advertisement {

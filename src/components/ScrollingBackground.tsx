@@ -30,9 +30,9 @@ export default function ScrollingBackground() {
           style={{
             opacity: ready && !error ? 1 : 0,
             backgroundImage: `url(${BG_IMAGE})`,
-            backgroundSize: "100% auto",
+            backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            backgroundPosition: "center top",
+            backgroundPosition: "top center",
           }}
         />
 

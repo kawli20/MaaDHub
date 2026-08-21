@@ -5,20 +5,23 @@ import { useLanguage } from "@/hooks/useLanguage";
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* ====== MOROCCAN FLAG BACKGROUND ====== */}
-      <div className="absolute inset-0">
-        <img
-          src="/banner.gif"
-          alt=""
-          className="w-full h-full object-cover object-center"
-        />
-        {/* Dark overlays for text readability */}
+      {/* ====== BACKGROUND ====== */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: "url('/banner.gif')",
+          backgroundSize: "cover",
+          backgroundPosition: "top center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        {/* Dark overlay for readability */}
         <div className="absolute inset-0 bg-[#030303]/40" />
-        {/* top fade */}
+        {/* Top fade */}
         <div className="absolute top-0 left-0 right-0 h-32 pointer-events-none bg-gradient-to-b from-[#030303] via-transparent" />
-        {/* bottom fade (smooth transition to content) */}
+        {/* Bottom fade — smooth blend into page content */}
         <div className="absolute bottom-0 left-0 right-0 h-[50vh] pointer-events-none bg-gradient-to-t from-[#030303] via-[#030303]/50 to-transparent" />
-        {/* subtle horizontal vignette */}
+        {/* Side vignette */}
         <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-[#030303]/60 via-transparent to-[#030303]/60" />
       </div>
 
