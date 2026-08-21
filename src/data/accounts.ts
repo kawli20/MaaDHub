@@ -850,7 +850,28 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://media1.tenor.com/m/_D2_OdnlyPsAAAAd/awsan-resident-evil-requiem.gif",
     createdAt: "2026-08-22T07:00:00.000Z"
-  }
+  },
+  {
+    id: 83,
+    gameName: "FC26",
+    platform: "Steam",
+    username: "mrdiogoboss",
+    password: "YZ2GBDMZ833Z",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUyYXN5bnczN2kyMTNldzhxa2ptd2puYTdhazNjMmxidjBrOWUzN2I5MSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/n8rTLLINBycMxi73lQ/giphy.gif",
+    createdAt: "2026-08-22T07:00:00.000Z"
+  },
+  {
+    id: 84,
+    gameName: "Assassin's Creed Rogue",
+    platform: "Steam",
+    username: "xxSoyMankoxx",
+    password: "sBpOAB0q83m4dH8",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://media.tenor.com/LteVgDHkOOcAAAAM/acrogue-assassins-creed.gif",
+    createdAt: "2026-08-22T07:00:00.000Z"
+  },
+
 ];
 
 export interface Advertisement {
