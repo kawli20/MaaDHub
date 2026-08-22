@@ -870,6 +870,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://media.tenor.com/LteVgDHkOOcAAAAM/acrogue-assassins-creed.gif",
     createdAt: "2026-08-22T07:00:00.000Z"
+  },
+  {
+    id: 85,
+    gameName: "Metro Exodus",
+    platform: "Steam",
+    username: "pulseukr1",
+    password: "https://funpay.com/users/5405632/",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://store-images.s-microsoft.com/image/apps.17469.65642028844779555.c518e652-fc85-4d6e-99a2-3e9ae1656a91.6cace333-df13-4178-a46d-5938de4654a2",
+    createdAt: "2026-08-22T07:00:00.000Z"
   }
 ];
 
