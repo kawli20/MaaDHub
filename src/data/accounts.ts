@@ -880,6 +880,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://store-images.s-microsoft.com/image/apps.17469.65642028844779555.c518e652-fc85-4d6e-99a2-3e9ae1656a91.6cace333-df13-4178-a46d-5938de4654a2",
     createdAt: "2026-08-22T07:00:00.000Z"
+  },
+  {
+    id: 86,
+    gameName: "Forza Horizon 6",
+    platform: "Steam",
+    username: "arenda9126",
+    password: "Ytrnj275",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://gfn.ru/media/images/box_art_image-black-myth-wukong-114f950a.original.jpg",
+    createdAt: "2026-08-23T15:30:00.000Z"
   }
 ];
 
