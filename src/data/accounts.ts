@@ -888,7 +888,7 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     username: "arenda9126",
     password: "Ytrnj275",
     supportLink: "https://maad.qzz.io/",
-    imageUrl: "https://gfn.ru/media/images/box_art_image-black-myth-wukong-114f950a.original.jpg",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/d/dd/Forza_Horizon_6_key_art.jpeg/250px-Forza_Horizon_6_key_art.jpeg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
     createdAt: "2026-08-23T15:30:00.000Z"
   }
 ];
