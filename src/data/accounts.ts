@@ -890,6 +890,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/d/dd/Forza_Horizon_6_key_art.jpeg/250px-Forza_Horizon_6_key_art.jpeg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
     createdAt: "2026-08-23T15:30:00.000Z"
+  },
+  {
+    id: 87,
+    gameName: "Assassin's Creed Black Flag Resynced",
+    platform: "Steam",
+    username: "nzrgx90291",
+    password: "3ZXV418sgvTuWIG",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://ubisoftgearshop.com/cdn/shop/files/Assassin_s_Creed_Black_Flag_Resynced.jpg?v=1776964392&width=533",
+    createdAt: "2026-08-22T07:00:00.000Z"
   }
 ];
 
