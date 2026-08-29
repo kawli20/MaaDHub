@@ -900,7 +900,27 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://ubisoftgearshop.com/cdn/shop/files/Assassin_s_Creed_Black_Flag_Resynced.jpg?v=1776964392&width=533",
     createdAt: "2026-08-22T07:00:00.000Z"
-  }
+  },
+  {
+    id: 88,
+    gameName: "Marvel's Spider-Man Remastered",
+    platform: "Steam",
+    username: "tioclubposneilistala",
+    password: "73N6FXT3BNB7",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://cdn1.epicgames.com/offer/4bc43145bb8245a5b5cc9ea262ffbe0e/EGS_MarvelsSpiderManRemastered_InsomniacGamesNixxesSoftware_S2_1200x1600-76424286902489f4d9639ac9b735c2b2",
+    createdAt: "2026-08-23T07:00:00.000Z"
+  },
+  {
+    id: 89,
+    gameName: "Rust",
+    platform: "Steam",
+    username: "tprtmzldengus",
+    password: "khc52329090",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://image.api.playstation.com/vulcan/ap/rnd/202103/1609/5xfXfcSQ71pczvAb6ANmrbxT.png",
+    createdAt: "2026-08-23T07:00:00.000Z"
+  },
 ];
 
 export interface Advertisement {
