@@ -45,6 +45,21 @@ export default function Home() {
         const id = parseInt(accountParam, 10);
         if (!isNaN(id)) {
           setHighlightedAccountId(id);
+          const targetAccount = accounts.find((a) => a.id === id);
+
+          // Dynamic OG meta + page title update for sharing
+          if (targetAccount) {
+            const title = `${targetAccount.gameName} — Free ${targetAccount.platform} Account | MaaDHub`;
+            const desc = `Get free access to ${targetAccount.gameName} on ${targetAccount.platform} via MaaDHub!`;
+            document.title = title;
+            document.querySelector('meta[property="og:title"]')?.setAttribute("content", title);
+            document.querySelector('meta[property="og:description"]')?.setAttribute("content", desc);
+            document.querySelector('meta[name="description"]')?.setAttribute("content", desc);
+            if (targetAccount.imageUrl) {
+              document.querySelector('meta[property="og:image"]')?.setAttribute("content", targetAccount.imageUrl);
+            }
+          }
+
           const targetIndex = accounts.findIndex((a) => a.id === id);
           if (targetIndex !== -1) {
             const pageForAccount = Math.floor(targetIndex / ITEMS_PER_PAGE) + 1;
@@ -60,6 +75,9 @@ export default function Home() {
             }
           }, 400);
         }
+      } else {
+        // Reset title when on plain home
+        document.title = "MaaDHub - Free Premium Gaming & Streaming Accounts";
       }
     } catch {
       // ignore
@@ -70,7 +88,6 @@ export default function Home() {
   const filteredAccounts = useMemo(() => {
     let result = [...accounts];
 
-    // Debounced search query
     if (debouncedSearch) {
       const s = debouncedSearch.toLowerCase().trim();
       result = result.filter(
@@ -81,22 +98,25 @@ export default function Home() {
       );
     }
 
-    // Platform filter
     if (platform && platform !== "All") {
       result = result.filter((a) => a.platform === platform);
     }
 
-    // Sort
+    // Sort — use actual createdAt date for newest/oldest
     switch (sortBy) {
       case "oldest":
-        result.sort((a, b) => a.id - b.id);
+        result.sort(
+          (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+        );
         break;
       case "alphabetical":
         result.sort((a, b) => (a.gameName || "").localeCompare(b.gameName || ""));
         break;
       case "newest":
       default:
-        result.sort((a, b) => b.id - a.id);
+        result.sort(
+          (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
         break;
     }
 
@@ -196,7 +216,7 @@ export default function Home() {
               )}
 
               {/* Accounts Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12 stagger-fade-in">
                 {paginatedAccounts.map((account, index) => (
                   <AccountCard
                     key={account.id}

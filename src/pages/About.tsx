@@ -44,7 +44,7 @@ export default function About() {
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
             <h2 className="text-2xl font-bold text-white text-center mb-8">{t("about_why_title")}</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 stagger-fade-in">
               {features.map((feature, index) => {
                 const Icon = feature.icon;
                 return (

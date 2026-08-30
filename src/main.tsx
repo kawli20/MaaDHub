@@ -5,7 +5,7 @@ import { ClerkProvider } from '@/lib/clerk'
 import './index.css'
 import App from './App.tsx'
 
-// Register Service Worker
+// Register Service Worker for caching (no install prompt)
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js').catch(() => {});

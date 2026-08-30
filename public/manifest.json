@@ -6,14 +6,36 @@
   "display": "standalone",
   "background_color": "#030303",
   "theme_color": "#C1272D",
-  "orientation": "portrait-primary",
+  "orientation": "any",
   "icons": [
     {
       "src": "/logo.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
-  "categories": ["games", "entertainment"]
+  "categories": ["games", "entertainment"],
+  "shortcuts": [
+    {
+      "name": "Browse Vault",
+      "short_name": "Vault",
+      "description": "Browse free gaming accounts",
+      "url": "/#vault",
+      "icons": [{ "src": "/logo.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Saved Accounts",
+      "short_name": "Saved",
+      "description": "View your saved accounts",
+      "url": "/saved",
+      "icons": [{ "src": "/logo.png", "sizes": "96x96" }]
+    }
+  ]
 }

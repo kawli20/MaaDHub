@@ -16,6 +16,7 @@ import { useLanguage } from "@/hooks/useLanguage";
 import { useReportedAccounts } from "@/hooks/useReportedAccounts";
 import { reportBrokenAccount } from "@/lib/telegram";
 import { useAuth } from "@/lib/clerk";
+import { getOptimizedImageUrl } from "@/lib/imageOptimizer";
 import type { Account } from "@/data/accounts";
 
 interface AccountCardProps {
@@ -81,11 +82,13 @@ export const AccountCard = memo(function AccountCard({
   const { isSignedIn, openSignIn } = useAuth();
   const { isReported, markReported } = useReportedAccounts();
 
+  const isEager = index < 8; // Top cards load immediately
+
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
-  const [imgError, setImgError] = useState(false);
-  const [shouldLoad, setShouldLoad] = useState(false);
+  const [useFallback, setUseFallback] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(isEager);
 
   // Report Modal
   const [showReportModal, setShowReportModal] = useState(false);
@@ -97,12 +100,14 @@ export const AccountCard = memo(function AccountCard({
   const containerRef = useRef<HTMLDivElement>(null);
   const reported = isReported(account.id);
 
-  // Lazy loading observer
+  // High-performance lazy loading observer with wide 800px prefetch buffer
   useEffect(() => {
+    if (isEager || shouldLoad) return;
     if (typeof IntersectionObserver === "undefined") {
       setShouldLoad(true);
       return;
     }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -112,7 +117,7 @@ export const AccountCard = memo(function AccountCard({
           }
         });
       },
-      { rootMargin: "200px", threshold: 0.01 }
+      { rootMargin: "800px", threshold: 0.01 }
     );
 
     if (containerRef.current) {
@@ -120,7 +125,7 @@ export const AccountCard = memo(function AccountCard({
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [isEager, shouldLoad]);
 
   const requireAuthAction = (callback: () => void, actionName: string) => {
     if (!isSignedIn) {
@@ -202,83 +207,76 @@ export const AccountCard = memo(function AccountCard({
   };
 
   const fallbackImage = PLATFORM_FALLBACK_IMAGE[account.platform] || "/games/steam.jpg";
-  const imageBaseUrl =
-    account.imageUrl && account.imageUrl.startsWith("http")
-      ? account.imageUrl
-      : fallbackImage;
-  const optimizedImageUrl = imgError ? fallbackImage : shouldLoad ? imageBaseUrl : "";
+  const rawImageUrl = account.imageUrl && account.imageUrl.startsWith("http") ? account.imageUrl : fallbackImage;
+  const optimizedUrl = getOptimizedImageUrl(rawImageUrl, 420, 75);
+  const finalImageSrc = useFallback ? fallbackImage : optimizedUrl;
 
   return (
     <>
-      <motion.div
+      <div
         id={`account-${account.id}`}
         ref={containerRef}
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-40px" }}
-        transition={{ duration: 0.4, delay: Math.min(index * 0.04, 0.3) }}
-        onHoverStart={() => setIsHovered(true)}
-        onHoverEnd={() => setIsHovered(false)}
-        className={`group relative rounded-2xl overflow-hidden glass-card cursor-pointer transition-all duration-300 ${
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className={`group relative rounded-2xl overflow-hidden glass-card cursor-pointer transition-all duration-300 transform-gpu ${
           isHighlighted
             ? "ring-2 ring-[#C1272D] shadow-[0_0_30px_rgba(193,39,45,0.4)]"
             : "hover:border-[#C1272D]/40 hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
         }`}
+        style={{ contentVisibility: "auto", containIntrinsicSize: "380px" }}
       >
         <div className="relative aspect-[3/4] overflow-hidden bg-[#07090e]">
-          {/* Shimmer Placeholder */}
+          {/* Lightweight Skeleton placeholder */}
           {!imgLoaded && (
-            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.04] via-white/[0.02] to-white/[0.04] animate-pulse" />
+            <div className="absolute inset-0 bg-[#0c121e] animate-pulse" />
           )}
 
           {shouldLoad && (
-            <motion.img
-              src={optimizedImageUrl}
+            <img
+              src={finalImageSrc}
               alt={account.gameName}
-              loading="lazy"
+              loading={isEager ? "eager" : "lazy"}
               decoding="async"
-              className={`w-full h-full object-cover transition-opacity duration-500 ease-out ${
-                imgLoaded ? "opacity-100" : "opacity-0"
-              }`}
-              animate={{ scale: isHovered ? 1.06 : 1 }}
-              transition={{ duration: 0.4 }}
+              className={`w-full h-full object-cover transition-all duration-300 transform-gpu ${
+                imgLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"
+              } ${isHovered ? "scale-105" : "scale-100"}`}
               onLoad={() => setImgLoaded(true)}
               onError={() => {
-                setImgError(true);
+                setUseFallback(true);
                 setImgLoaded(true);
               }}
             />
           )}
 
           {/* Vignette Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-[#030303]/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-[#030303]/40 to-transparent pointer-events-none" />
 
           {/* Platform Badge */}
           <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
             <span
-              className="px-3 py-1 rounded-full text-[11px] font-semibold text-white/90 border border-white/10 backdrop-blur-md shadow-sm"
+              className="px-3 py-1 rounded-full text-[11px] font-semibold text-white/95 border border-white/10 shadow-sm"
               style={{
-                backgroundColor: `${platformColors[account.platform] || "#1a1a1a"}cc`,
+                backgroundColor: `${platformColors[account.platform] || "#1a1a1a"}ee`,
               }}
             >
               {account.platform}
             </span>
 
             {reported && (
-              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30 backdrop-blur-md">
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-amber-500/25 text-amber-300 border border-amber-500/30">
                 <AlertTriangle className="w-3 h-3" />
                 Reported
               </span>
             )}
           </div>
 
-          {/* Action Buttons */}
+          {/* Action Buttons with high-performance solid translucent backgrounds */}
           <div className="absolute top-3 right-3 flex items-center gap-1.5 z-10">
             {/* Share */}
             <button
               onClick={handleShare}
               title="Share Account"
-              className="p-2 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white/70 hover:text-white hover:border-white/30 hover:bg-white/10 transition-all"
+              className="p-2 rounded-full bg-[#060b13]/85 border border-white/10 text-white/70 hover:text-white hover:border-white/30 hover:bg-white/15 transition-all shadow-md"
             >
               <Share2 className="w-3.5 h-3.5" />
             </button>
@@ -290,16 +288,16 @@ export const AccountCard = memo(function AccountCard({
                 setShowReportModal(true);
               }}
               title="Report Broken Account"
-              className={`p-2 rounded-full backdrop-blur-md border transition-all ${
+              className={`p-2 rounded-full border transition-all shadow-md ${
                 reported
                   ? "bg-amber-500/20 text-amber-300 border-amber-500/30"
-                  : "bg-black/50 text-white/70 border-white/10 hover:text-red-400 hover:border-red-500/30 hover:bg-red-500/10"
+                  : "bg-[#060b13]/85 text-white/70 border-white/10 hover:text-red-400 hover:border-red-500/30 hover:bg-red-500/10"
               }`}
             >
               <Flag className="w-3.5 h-3.5" />
             </button>
 
-            {/* Bookmark (Gated by Clerk Auth) */}
+            {/* Bookmark */}
             <button
               onClick={handleBookmark}
               title={
@@ -309,12 +307,12 @@ export const AccountCard = memo(function AccountCard({
                   ? "Remove from Saved"
                   : "Save Account"
               }
-              className={`p-2 rounded-full backdrop-blur-md border transition-all ${
+              className={`p-2 rounded-full border transition-all shadow-md ${
                 !isSignedIn
-                  ? "bg-black/50 text-white/50 border-white/10 hover:text-[#C1272D] hover:border-[#C1272D]/40"
+                  ? "bg-[#060b13]/85 text-white/50 border-white/10 hover:text-[#C1272D] hover:border-[#C1272D]/40"
                   : isSaved
                   ? "bg-[#C1272D]/20 text-[#C1272D] border-[#C1272D]/40"
-                  : "bg-black/50 text-white/70 border-white/10 hover:text-[#C1272D] hover:border-[#C1272D]/30"
+                  : "bg-[#060b13]/85 text-white/70 border-white/10 hover:text-[#C1272D] hover:border-[#C1272D]/30"
               }`}
             >
               {isSaved ? (
@@ -338,7 +336,7 @@ export const AccountCard = memo(function AccountCard({
 
             <div className="space-y-1.5">
               {/* Username row */}
-              <div className="flex items-center justify-between gap-2 bg-white/[0.04] p-1.5 px-2.5 rounded-lg border border-white/[0.05]">
+              <div className="flex items-center justify-between gap-2 bg-[#060b13]/85 p-1.5 px-2.5 rounded-lg border border-white/[0.06]">
                 <span className="text-white/40 text-[11px] font-mono uppercase tracking-wider">
                   {t("card_user")}
                 </span>
@@ -370,7 +368,7 @@ export const AccountCard = memo(function AccountCard({
               </div>
 
               {/* Password row */}
-              <div className="flex items-center justify-between gap-2 bg-white/[0.04] p-1.5 px-2.5 rounded-lg border border-white/[0.05]">
+              <div className="flex items-center justify-between gap-2 bg-[#060b13]/85 p-1.5 px-2.5 rounded-lg border border-white/[0.06]">
                 <span className="text-white/40 text-[11px] font-mono uppercase tracking-wider">
                   {t("card_pass")}
                 </span>
@@ -417,20 +415,20 @@ export const AccountCard = memo(function AccountCard({
             )}
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* REPORT BROKEN ACCOUNT MODAL */}
       <AnimatePresence>
         {showReportModal && (
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
             onClick={() => setShowReportModal(false)}
           >
             <motion.div
               initial={{ scale: 0.94, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.94, opacity: 0 }}
-              className="w-full max-w-md glass-panel p-6 rounded-3xl border border-white/10 shadow-2xl bg-[#080d16]/95"
+              className="w-full max-w-md p-6 rounded-3xl border border-white/10 shadow-2xl bg-[#080d16]"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-4">

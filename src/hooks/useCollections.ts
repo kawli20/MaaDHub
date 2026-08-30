@@ -5,7 +5,7 @@ const STORAGE_KEY = "maadhub_collections";
 export interface Collection {
   id: string;
   name: string;
-  icon: string;
+  icon: string; // icon identifier key: 'folder' | 'gamepad' | 'flame' | 'swords' | 'crosshair' | 'trophy' | 'sparkles' | 'layers' | 'tag' | 'star' | 'shield' | 'zap'
   accountIds: number[];
   createdAt: string;
 }
@@ -14,25 +14,50 @@ const DEFAULT_COLLECTIONS: Collection[] = [
   {
     id: "fps-games",
     name: "FPS & Shooters",
-    icon: "🎯",
+    icon: "crosshair",
     accountIds: [],
     createdAt: new Date().toISOString(),
   },
   {
     id: "rpg-adventures",
     name: "RPGs & Story",
-    icon: "⚔️",
+    icon: "swords",
     accountIds: [],
     createdAt: new Date().toISOString(),
   },
   {
     id: "favorites",
     name: "Must-Play Vault",
-    icon: "🔥",
+    icon: "flame",
     accountIds: [],
     createdAt: new Date().toISOString(),
   },
 ];
+
+// Clean map to convert any old emoji strings from localStorage into clean Lucide icon names
+const EMOJI_TO_ICON_MAP: Record<string, string> = {
+  "🎯": "crosshair",
+  "⚔️": "swords",
+  "🔥": "flame",
+  "📁": "folder",
+  "🎮": "gamepad",
+  "🏆": "trophy",
+  "🎲": "gamepad",
+  "👾": "gamepad",
+  "🚀": "zap",
+  "💎": "sparkles",
+  "⭐": "star",
+};
+
+function sanitizeIcon(icon: string): string {
+  if (!icon) return "folder";
+  if (EMOJI_TO_ICON_MAP[icon]) return EMOJI_TO_ICON_MAP[icon];
+  // If icon contains emoji characters, fallback to folder
+  if (/[\p{Emoji_Presentation}\p{Extended_Pictographic}]/u.test(icon)) {
+    return "folder";
+  }
+  return icon;
+}
 
 function loadCollections(): Collection[] {
   if (typeof window === "undefined") return DEFAULT_COLLECTIONS;
@@ -41,10 +66,15 @@ function loadCollections(): Collection[] {
     if (!raw) return DEFAULT_COLLECTIONS;
     const parsed = JSON.parse(raw);
     if (!Array.isArray(parsed) || parsed.length === 0) return DEFAULT_COLLECTIONS;
-    return parsed.filter(
-      (c): c is Collection =>
-        Boolean(c && typeof c === "object" && typeof c.id === "string" && typeof c.name === "string" && Array.isArray(c.accountIds))
-    );
+    return parsed
+      .filter(
+        (c): c is Collection =>
+          Boolean(c && typeof c === "object" && typeof c.id === "string" && typeof c.name === "string" && Array.isArray(c.accountIds))
+      )
+      .map((c) => ({
+        ...c,
+        icon: sanitizeIcon(c.icon),
+      }));
   } catch {
     return DEFAULT_COLLECTIONS;
   }
@@ -66,14 +96,14 @@ export function useCollections() {
     persistCollections(collections);
   }, [collections]);
 
-  const createCollection = useCallback((name: string, icon: string = "📁") => {
+  const createCollection = useCallback((name: string, icon: string = "folder") => {
     const trimmed = name.trim();
     if (!trimmed) return "";
     const id = "col_" + Date.now().toString(36) + Math.random().toString(36).substring(2, 6);
     const newCollection: Collection = {
       id,
       name: trimmed,
-      icon: icon || "📁",
+      icon: sanitizeIcon(icon) || "folder",
       accountIds: [],
       createdAt: new Date().toISOString(),
     };

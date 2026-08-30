@@ -4,6 +4,9 @@ import ScrollToTop from "./components/ScrollToTop";
 import ScrollingBackground from "./components/ScrollingBackground";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { DEFAULT_ACCOUNTS } from "@/data/accounts";
+import { SkeletonNav, SkeletonHero, SkeletonFilters, SkeletonGrid } from "./components/Skeleton";
+
+import { getOptimizedImageUrl } from "@/lib/imageOptimizer";
 
 const Home = lazy(() => import("./pages/Home"));
 const SavedAccounts = lazy(() => import("./pages/SavedAccounts"));
@@ -16,10 +19,24 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 function PageLoader() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#030303]">
-      <div className="flex flex-col items-center gap-4">
-        <div className="w-10 h-10 border-2 border-[#C1272D] border-t-transparent rounded-full animate-spin" />
-        <p className="text-white/40 text-xs">Loading page...</p>
+    <div className="min-h-screen bg-[#030303]">
+      <SkeletonNav />
+      <SkeletonHero />
+      <div className="pt-20 pb-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-10 space-y-3">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-2xl bg-white/[0.04] animate-pulse" />
+              <div className="h-8 w-48 rounded-lg bg-white/[0.04] animate-pulse" />
+            </div>
+            <div className="h-4 w-72 rounded bg-white/[0.03] animate-pulse" />
+          </div>
+          <SkeletonFilters />
+          <div className="mt-6 mb-6">
+            <div className="h-3 w-32 rounded bg-white/[0.03] animate-pulse" />
+          </div>
+          <SkeletonGrid count={8} />
+        </div>
       </div>
     </div>
   );
@@ -32,7 +49,7 @@ const preloadImage = (url: string) =>
       return;
     }
     const img = new Image();
-    const timeout = setTimeout(() => resolve(), 2000);
+    const timeout = setTimeout(() => resolve(), 800);
     img.src = url;
     img.onload = img.onerror = () => {
       clearTimeout(timeout);
@@ -51,33 +68,24 @@ export default function App() {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    const allUrls = (DEFAULT_ACCOUNTS || []).map((account) => account?.imageUrl).filter(Boolean);
-    const bannerUrl = "/banner.gif";
-    const visibleUrls = [...new Set(allUrls.slice(0, 6).concat(bannerUrl))];
-    const backgroundUrls = Array.from(new Set(allUrls.slice(6)));
+    const allUrls = (DEFAULT_ACCOUNTS || [])
+      .slice(0, 8)
+      .map((account) => getOptimizedImageUrl(account?.imageUrl, 400, 75))
+      .filter(Boolean);
 
     let active = true;
 
-    // Safety fallback timeout: show UI within 1.5s max
+    // Fast load: reveal UI within 400ms max
     const maxTimeout = setTimeout(() => {
       if (active) setIsReady(true);
-    }, 1500);
+    }, 400);
 
-    preloadImages([...visibleUrls, BG_IMAGE]).then(() => {
+    preloadImages(allUrls).then(() => {
       if (active) {
         clearTimeout(maxTimeout);
         setIsReady(true);
       }
     });
-
-    if (backgroundUrls.length) {
-      const loadLater = () => preloadImages(backgroundUrls);
-      if ("requestIdleCallback" in window) {
-        (window as unknown as { requestIdleCallback: (cb: () => void, opts: { timeout: number }) => void }).requestIdleCallback(loadLater, { timeout: 3000 });
-      } else {
-        setTimeout(loadLater, 2000);
-      }
-    }
 
     return () => {
       active = false;
@@ -101,9 +109,9 @@ export default function App() {
               Optimizing accounts and performance for smooth browsing.
             </p>
             <div className="mx-auto flex w-full max-w-[200px] items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2">
-              <span className="inline-flex h-2.5 w-2.5 animate-pulse rounded-full bg-[#C1272D]" />
-              <span className="inline-flex h-2.5 w-2.5 animate-pulse rounded-full bg-white/50" />
-              <span className="inline-flex h-2.5 w-2.5 animate-pulse rounded-full bg-white/30" />
+              <span className="inline-flex h-2.5 w-2.5 animate-pulse rounded-full bg-[#C1272D]" style={{ animationDelay: "0ms" }} />
+              <span className="inline-flex h-2.5 w-2.5 animate-pulse rounded-full bg-white/50" style={{ animationDelay: "200ms" }} />
+              <span className="inline-flex h-2.5 w-2.5 animate-pulse rounded-full bg-white/30" style={{ animationDelay: "400ms" }} />
               <span className="ml-auto text-[10px] uppercase tracking-widest text-white/40">
                 ready
               </span>
