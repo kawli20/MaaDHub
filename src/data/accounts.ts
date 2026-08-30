@@ -921,6 +921,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     imageUrl: "https://image.api.playstation.com/vulcan/ap/rnd/202103/1609/5xfXfcSQ71pczvAb6ANmrbxT.png",
     createdAt: "2026-08-23T07:00:00.000Z"
   },
+  {
+    id: 90,
+    gameName: "Watch Dogs 2",
+    platform: "Steam",
+    username: "sasuke31053",
+    password: "lYipMaspH1ra",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://cdn1.epicgames.com/offer/angelonia/WDA_StorePortrait_1200x1600_1200x1600-75d21fb44d647ad69967ae1bb0ab0cbc",
+    createdAt: "2026-08-30T07:00:00.000Z"
+  }
 ];
 
 export interface Advertisement {
