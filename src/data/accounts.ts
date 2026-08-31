@@ -930,6 +930,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://cdn1.epicgames.com/offer/angelonia/WDA_StorePortrait_1200x1600_1200x1600-75d21fb44d647ad69967ae1bb0ab0cbc",
     createdAt: "2026-08-30T07:00:00.000Z"
+  },
+  {
+    id: 91,
+    gameName: "MECCHA CHAMELEON",
+    platform: "Steam",
+    username: "edgk365818",
+    password: "gyd362224667",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big_2x/coc7cr.jpg",
+    createdAt: "2026-08-31T07:00:00.000Z"
   }
 ];
 
