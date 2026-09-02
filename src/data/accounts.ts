@@ -940,6 +940,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big_2x/coc7cr.jpg",
     createdAt: "2026-08-31T07:00:00.000Z"
+  },
+  {
+    id: 92,
+    gameName: "+100 premium games",
+    platform: "Steam",
+    username: "sfsefawd",
+    password: "sef435$%#",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://www.productkeys.ae/wp-content/uploads/2021/01/Premium-random-cd-key-300x400.png",
+    createdAt: "2026-09-03T13:10:00.000Z"
   }
 ];
 
