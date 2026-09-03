@@ -6,7 +6,7 @@ export interface Account {
   password: string;
   supportLink?: string;
   imageUrl: string;
-  createdAt: string;
+  pointsCost?: number; // 0 or omitted = 100% free; > 0 = points required to unlock
 }
 
 export const PLATFORMS = [
@@ -39,7 +39,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "www.skizegames.store",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBvNeGDsjHa2tGEXDIKKCKd7zvbbu-n9kF8JpWWMiJqRA8PGlayj4DgEM&s=10",
-    createdAt: "2024-01-15T10:30:00.000Z",
   },
   {
     id: 2,
@@ -49,7 +48,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "0852594338",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRUu0ztxAojVtvkHDSCPIhmjLzU1RV-Huo_pn_Hoy9yXO158OMAedgXb0G&s=10",
-    createdAt: "2024-01-20T14:15:00.000Z",
   },
   {
     id: 3,
@@ -59,7 +57,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "f-r-e-e-akk-tg:@hyznet",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7_O9ORjSOF8_LuT3VQ4guUQ1QHlQL4NSyl5kFVAnEng&s=10",
-    createdAt: "2024-02-01T09:00:00.000Z",
   },
   {
     id: 4,
@@ -69,7 +66,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "YSDI0C0kgE",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfvDd115AjUhKUkto8ROc0V1ZxMCsQJ0WuOn3uSlDqBg&s",
-    createdAt: "2024-02-10T16:30:00.000Z",
   },
   {
     id: 5,
@@ -79,7 +75,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "bxdms13816",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://image.api.playstation.com/vulcan/ap/rnd/202210/0706/EVWyZD63pahuh95eKloFaJuC.png",
-    createdAt: "2024-02-15T11:00:00.000Z",
   },
   {
     id: 6,
@@ -89,7 +84,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "F552YFK7K5B9",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/en/e/ee/God_of_War_Ragnar%C3%B6k_cover.jpg",
-    createdAt: "2024-03-01T08:45:00.000Z",
   },
   {
     id: 7,
@@ -99,7 +93,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "friend.2417",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/1200x/d2/55/ac/d255ac78bb40edc96076bb4c22a32504.jpg",
-    createdAt: "2024-03-10T13:20:00.000Z",
   },
   {
     id: 8,
@@ -109,7 +102,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "aynhs76029",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM-AFfRxKsrayW3YGKP0cSxDxfjU-7MktXu8WBeyqbMQ089KGJw67ZqdoR&s=10",
-    createdAt: "2024-03-15T15:00:00.000Z",
   },
   {
     id: 9,
@@ -119,7 +111,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "Roundkick991XME342",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/1200x/ba/97/ef/ba97ef693775f9a05b93da76c1ec9f16.jpg",
-    createdAt: "2024-04-01T10:00:00.000Z",
   },
   {
     id: 10,
@@ -129,7 +120,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "VrVIwhgeG",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdnNjd29qaHpqNjdraGd6eThmc2w1djNuMGVwMTB2d3JtZGIxOHc0NyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/n8rTLLINBycMxi73lQ/giphy.gif",
-    createdAt: "2024-04-10T09:30:00.000Z",
   },
   {
     id: 11,
@@ -139,7 +129,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "steamok45785112",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/3c/cb/f4/3ccbf44f2de4bd7d5d6d025567661102.jpg",
-    createdAt: "2024-04-20T14:00:00.000Z",
   },
   {
     id: 12,
@@ -149,7 +138,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "dsajhdsfjks3289325ds@",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/42/e2/b0/42e2b09303502d5ef8454425d73ab98f.jpg",
-    createdAt: "2024-05-01T11:30:00.000Z",
   },
   {
     id: 13,
@@ -159,7 +147,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "sghzg61360",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/a9/5e/09/a95e092e7d561570d10280612fabfe01.jpg",
-    createdAt: "2024-05-01T11:30:00.000Z",
   },
   {
     id: 14,
@@ -169,7 +156,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "marpanov_free19",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/c8/29/b5/c829b51b7bec75abba4bb5f47ad821ee.jpg",
-    createdAt: "2024-05-01T11:30:00.000Z",
   },
   {
     id: 15,
@@ -179,7 +165,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "steamok773366",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/e5/c4/98/e5c4989f7b85913865adc0573018b1a9.jpg",
-    createdAt: "2024-05-01T11:30:00.000Z",
   },
   {
     id: 16,
@@ -189,7 +174,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "wa72ITSA",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/1200x/c5/fb/f2/c5fbf2333e228a1fe4536a577a0fca4c.jpg",
-    createdAt: "2024-05-01T11:30:00.000Z",
   },
   {
     id: 17,
@@ -199,7 +183,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "playerok.com/profile/QAVIX",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://cdn1.epicgames.com/offer/0c40923dd1174a768f732a3b013dcff2/EGS_TheLastofUsPartI_NaughtyDogLLC_S2_1200x1600-41d1b88814bea2ee8cb7986ec24713e0",
-    createdAt: "2024-05-01T11:30:00.000Z",
   },
   {
     id: 18,
@@ -209,7 +192,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "brpnk01133",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/5e/2d/a0/5e2da0c309e30247e50e28830be225c9.jpg",
-    createdAt: "2024-05-01T11:30:00.000Z",
   },
   {
     id: 19,
@@ -219,7 +201,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "qWERTY33!",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/1200x/9f/6c/39/9f6c39993ee700c3bd556ca666509948.jpg",
-    createdAt: "2024-05-01T11:30:00.000Z",
   },
   {
     id: 20,
@@ -229,7 +210,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "Adje2003a.1",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/3e/b6/a4/3eb6a4f5b93754b38ce3c2869778e78e.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z",
   },
   {
     id: 21,
@@ -239,7 +219,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "momdad2001",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/cd/ec/1c/cdec1ce84444c342a211edcba2727097.jpg",
-    createdAt: "2024-05-01T11:30:00.000Z",
   },
   {
     id: 22,
@@ -249,7 +228,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "kk223344kkwdw",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWVjemlocXN3cHYxaWMycjJyNzRncnBtMm5vbDNlaHJtdDV4a2I4ZCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/y7NmHw25VGwA0UuKRn/giphy.gif",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 23,
@@ -259,7 +237,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "CookieStore1122",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/32/71/af/3271af2f5c99601dc1c9189adae48c94.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 24,
@@ -269,7 +246,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "eren1145@#",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://cdn.loaded.com/media/catalog/product/a/o/aot_final_battle.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 25,
@@ -279,7 +255,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "P_Block@0975",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://cdn2.steamgriddb.com/grid/6910c07743a1a1dbd134c8233fb822ea.png",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 26,
@@ -289,7 +264,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "Lq5Ok3My1Wh5",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/c0/fa/52/c0fa52a3f90b6433827c0ca334241c77.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 27,
@@ -299,7 +273,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "siski33BFa9lCBU7O67483",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://media1.tenor.com/m/_D2_OdnlyPsAAAAd/awsan-resident-evil-requiem.gif",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 28,
@@ -309,7 +282,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "lwl67033R",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/4f/29/4d/4f294db80e37fdd0f52b07e7af18ed75.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 29,
@@ -319,7 +291,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "lwl67033R",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/1200x/62/d6/90/62d69084c78ea7789c551e292440bd2b.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 30,
@@ -329,7 +300,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "lwl67033R",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/71/c8/7a/71c87a795350e8eae9c2b3ffa5bb9777.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 31,
@@ -339,7 +309,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "Jelszavacska2315",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/236x/3d/62/34/3d623487277413a3043d54de587a4ecd.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 32,
@@ -349,7 +318,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "059944Aa!",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/d2/a4/5c/d2a45cc2083abc8bf1c21e47e0b29c3a.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 33,
@@ -359,7 +327,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "Thelast2zara55",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/2e/13/75/2e13755a6b3fec2ee9dbcc231a1cf39c.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 34,
@@ -369,7 +336,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "OQRODETHw06",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/73/79/a8/7379a8598e87966329b09ff921b3bf99.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 35,
@@ -379,7 +345,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "marpanov_free18",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/1200x/67/0f/62/670f627b129f3edd05ff194effe8c049.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 36,
@@ -389,7 +354,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "7LENBK@1325",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/236x/8a/d8/e8/8ad8e875a5d321c15e38b24ab29fd31a.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 37,
@@ -399,7 +363,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "zpsue65791",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/control1/736x/ae/9b/3a/ae9b3ad20fc06f1dfd447e658102a71d.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 38,
@@ -409,7 +372,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "HaLLODasIstMeinSteamACC2!!!",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQyHQAzCORTfLU73tGbn7QX7AGTSMtO_haa0xPa-TobCAGOCFWf",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 39,
@@ -419,7 +381,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "steamok36464652",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/2d/db/64/2ddb644d28a8617cbd7833e4b8382869.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 40,
@@ -429,7 +390,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "viniciussilvadelima12072008",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/f2/57/ea/f257eaa23a2068f06994093a134fed7a.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 41,
@@ -439,7 +399,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "viniciussilvadelima12072008",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/8f/05/d2/8f05d2c47cd7f1d09f8e1e72e1ee60e0.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 42,
@@ -449,7 +408,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "viniciussilvadelima12072008",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://img.lootbar.com/file/698493b89748c0a5221cb5c3sMgLLMS603",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 43,
@@ -459,7 +417,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "viniciussilvadelima12072008",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/1200x/a4/ee/05/a4ee05d7a442839d0b91b5b3a80f3834.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 44,
@@ -469,7 +426,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "Vthbksvs",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/control1/736x/14/c8/96/14c896e0730044e222018d65a338eab5.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 45,
@@ -479,7 +435,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "yanzheng1125",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/af/d4/1c/afd41c1dfc437dc1338976ef49c5311b.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 46,
@@ -489,7 +444,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "irxxhonmcc",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/1200x/5e/d3/1f/5ed31f512e3b9fa2ee32e5545e386382.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 47,
@@ -499,7 +453,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "32914703",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/c0/fa/52/c0fa52a3f90b6433827c0ca334241c77.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 48,
@@ -509,7 +462,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "bot222RT",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/control1/736x/f7/8a/60/f78a60fb1da3ed1d47de89b6cd2cda47.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 49,
@@ -519,7 +471,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "deizdiscord09870",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/0d/01/e2/0d01e2b6d4004d1d3fdec7031bc83d09.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 50,
@@ -529,7 +480,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "weszh392562",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/39/c2/da/39c2dad1ac130d2789d4cb6055eb78e8.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 51,
@@ -539,7 +489,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "LoveC2008",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big_2x/coau8c.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 52,
@@ -549,7 +498,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "NCDRxrBoin",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://cdn2.steamgriddb.com/grid/6910c07743a1a1dbd134c8233fb822ea.png",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 53,
@@ -559,7 +507,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "xupangzi1",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/control1/736x/63/af/18/63af18baa147e08f7c2cb78f0ce4176c.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 54,
@@ -569,7 +516,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "9FAXRzBUhB68Qdmd",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://images.g2a.com/360x600/1x1x1/uncharted-legacy-of-thieves-collection-pc-steam-key-global-i10000279761002/c0cdc033dd8e419ca75a902c",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 55,
@@ -579,7 +525,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "Aspire223222.",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrQaFXY5U6RhrYpA_fThSzPUylIES7RfsxcdDzI0iuq6Pf5AD5g7Y7sz0Q5m2H_FGct9hh&s=10",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 56,
@@ -589,7 +534,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "4https://funpay.com/users/3957452/",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKzITcNGuopSq3uNkfcezJJHDDqjsDj7Jvq4L2ipBFttMrah-Ao9FQs4I&s=10",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 57,
@@ -599,7 +543,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "funpay-fr1zzq",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/d/de/Lies_of_p_cover_art.jpg/250px-Lies_of_p_cover_art.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 58,
@@ -609,7 +552,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "funpay-fr1zzq",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/39/c2/da/39c2dad1ac130d2789d4cb6055eb78e8.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 59,
@@ -619,7 +561,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "funpay-fr1zzq",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/1200x/94/0c/bf/940cbfaaba3c4cac45a951a413371627.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 60,
@@ -629,7 +570,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "marpanov_free17",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/0/06/Ark_Survival_Ascended.jpg/250px-Ark_Survival_Ascended.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 61,
@@ -639,7 +579,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "a8ef32a3b76effb41!aZ",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/37/a8/23/37a823eaa1611bf2bb5913647f377617.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 62,
@@ -649,7 +588,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "ffffff22",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://m.media-amazon.com/images/M/MV5BZWY3ZjRiNTctYzU2My00NDIwLWI3NTAtNmUwZDBlZjlhYjI4XkEyXkFqcGc@._V1_.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 63,
@@ -659,7 +597,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "ffffff22",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://cdn2.steamgriddb.com/grid/6910c07743a1a1dbd134c8233fb822ea.png",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 64,
@@ -669,7 +606,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "Muhammadknio12!",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/d/dd/Forza_Horizon_6_key_art.jpeg/250px-Forza_Horizon_6_key_art.jpeg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 65,
@@ -679,7 +615,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "jbcwywavH)Xsud+T",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://store-images.s-microsoft.com/image/apps.32034.13531476541866969.9b83558e-4d72-4ee5-9214-3504337b32f8.172b1ccc-6da2-44b4-828d-7cda66b22f85",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 66,
@@ -689,7 +624,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "Playstarwarsnow",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/en/5/56/Tomb_Raider_-_Underworld.png",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 67,
@@ -699,7 +633,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "khc52329090",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr9wdOSGIJTKFz3SF56Ep3rTR5LtH9ptLP70ZESxWjcKEAGaAe922NKIdI&s=10",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 68,
@@ -709,7 +642,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "nasj1107",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/1/1a/Terraria_Steam_artwork.jpg/250px-Terraria_Steam_artwork.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 69,
@@ -719,7 +651,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "yCad4rlfCfKeLjiQAKDb",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/en/1/1b/Monster_Hunter_World_cover_art.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 70,
@@ -729,7 +660,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "NDM1zoe2QhOw",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://m.media-amazon.com/images/M/MV5BY2NkZTAxNTQtNDg0YS00ZDdhLTk4OTgtZWQyMzJmODJlYmVkXkEyXkFqcGc@._V1_.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 71,
@@ -739,7 +669,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "Ytrnj275",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/fb/Pragmata_cover.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 72,
@@ -749,7 +678,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "nqszzger9229$!1v0",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://cdn1.epicgames.com/spt-assets/a3843e0de6d545b3957ce2173972092c/five-nights-at-freddys-secret-of-the-mimic-gs7np.png",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 73,
@@ -759,7 +687,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "FAR_CRY_NEW_DAWN",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/en/7/77/Sea_of_thieves_cover_art.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 74,
@@ -769,7 +696,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "q4hWsVks",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://store-images.s-microsoft.com/image/apps.57875.14619494188082372.7ffd2f95-cab6-415c-b464-1e434cc8ccfc.c5b53fc1-8ce5-409f-b66c-ff596efc3f47",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 75,
@@ -779,7 +705,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "KyHuBs0jwyrORb",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://static.wikia.nocookie.net/thecrew/images/e/ee/TCMStandardEditionCover.png/revision/latest/scale-to-width/360?cb=20230612200639",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 76,
@@ -789,7 +714,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "ygpPkxwbco",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/en/f/fc/Battlefield_1_cover_art.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 77,
@@ -799,7 +723,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "00#ContaGhost",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://cdn.displate.com/artwork/270x380/2026-06-21/01b9f4bf-354c-4a29-b08b-7eaeb7a694e6.jpg",
-    createdAt: "2024-07-20T18:00:00.000Z"
   },
   {
     id: 78,
@@ -809,7 +732,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "Patryk12345+",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://static.wikia.nocookie.net/dyinglight/images/7/72/Dying_Light_ok%C5%82adka.jpg/revision/latest?cb=20150223131116&path-prefix=pl",
-    createdAt: "2024-08-17T09:40:00.000Z"
   },
   {
     id: 79,
@@ -819,7 +741,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "steamkk.com",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://gfn.ru/media/images/box_art_image-black-myth-wukong-114f950a.original.jpg",
-    createdAt: "2026-08-19T15:30:00.000Z"
   },
   {
     id: 80,
@@ -829,7 +750,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "PzIf3P1GXw2dEJ",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big_2x/coc7cr.jpg",
-    createdAt: "2026-08-21T10:00:00.000Z"
   },
   {
     id: 81,
@@ -839,7 +759,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "Fv6Mv8Py5Ps06t",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://store-images.s-microsoft.com/image/apps.39640.13578379328545234.9a5c7815-319e-44dd-b243-b580c45874f3.35017ade-207d-4d87-811e-3e41624595ad",
-    createdAt: "2026-08-21T15:00:00.000Z"
   },
   {
     id: 82,
@@ -849,7 +768,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "nEtdGnEW4s1982",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://media1.tenor.com/m/_D2_OdnlyPsAAAAd/awsan-resident-evil-requiem.gif",
-    createdAt: "2026-08-22T07:00:00.000Z"
   },
   {
     id: 83,
@@ -859,7 +777,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "YZ2GBDMZ833Z",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUyYXN5bnczN2kyMTNldzhxa2ptd2puYTdhazNjMmxidjBrOWUzN2I5MSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/n8rTLLINBycMxi73lQ/giphy.gif",
-    createdAt: "2026-08-22T07:00:00.000Z"
   },
   {
     id: 84,
@@ -869,7 +786,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "sBpOAB0q83m4dH8",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://media.tenor.com/LteVgDHkOOcAAAAM/acrogue-assassins-creed.gif",
-    createdAt: "2026-08-22T07:00:00.000Z"
   },
   {
     id: 85,
@@ -879,7 +795,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "https://funpay.com/users/5405632/",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://store-images.s-microsoft.com/image/apps.17469.65642028844779555.c518e652-fc85-4d6e-99a2-3e9ae1656a91.6cace333-df13-4178-a46d-5938de4654a2",
-    createdAt: "2026-08-22T07:00:00.000Z"
   },
   {
     id: 86,
@@ -889,7 +804,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "Ytrnj275",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/d/dd/Forza_Horizon_6_key_art.jpeg/250px-Forza_Horizon_6_key_art.jpeg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
-    createdAt: "2026-08-23T15:30:00.000Z"
   },
   {
     id: 87,
@@ -899,7 +813,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "3ZXV418sgvTuWIG",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://ubisoftgearshop.com/cdn/shop/files/Assassin_s_Creed_Black_Flag_Resynced.jpg?v=1776964392&width=533",
-    createdAt: "2026-08-22T07:00:00.000Z"
   },
   {
     id: 88,
@@ -909,7 +822,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "73N6FXT3BNB7",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://cdn1.epicgames.com/offer/4bc43145bb8245a5b5cc9ea262ffbe0e/EGS_MarvelsSpiderManRemastered_InsomniacGamesNixxesSoftware_S2_1200x1600-76424286902489f4d9639ac9b735c2b2",
-    createdAt: "2026-08-23T07:00:00.000Z"
   },
   {
     id: 89,
@@ -919,7 +831,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "khc52329090",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://image.api.playstation.com/vulcan/ap/rnd/202103/1609/5xfXfcSQ71pczvAb6ANmrbxT.png",
-    createdAt: "2026-08-23T07:00:00.000Z"
   },
   {
     id: 90,
@@ -929,7 +840,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "lYipMaspH1ra",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://cdn1.epicgames.com/offer/angelonia/WDA_StorePortrait_1200x1600_1200x1600-75d21fb44d647ad69967ae1bb0ab0cbc",
-    createdAt: "2026-08-30T07:00:00.000Z"
   },
   {
     id: 91,
@@ -939,7 +849,6 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "gyd362224667",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big_2x/coc7cr.jpg",
-    createdAt: "2026-08-31T07:00:00.000Z"
   },
   {
     id: 92,
@@ -949,7 +858,16 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "sef435$%#",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://www.productkeys.ae/wp-content/uploads/2021/01/Premium-random-cd-key-300x400.png",
-    createdAt: "2026-09-03T13:10:00.000Z"
+  },
+  {
+    id: 93,
+    gameName: "Shadow of the Tomb Raider Definitive Edition",
+    platform: "Epic Games",
+    username: "468345280@qq.com",
+    password: "LiGaolei2006",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://static.wikia.nocookie.net/laracroft/images/1/16/Shadow_of_the_Tomb_Raider.jpg/revision/latest?cb=20241130153028",
+    pointsCost: 15,
   }
 ];
 

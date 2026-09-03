@@ -7,6 +7,8 @@ import { DEFAULT_ACCOUNTS } from "@/data/accounts";
 import { SkeletonNav, SkeletonHero, SkeletonFilters, SkeletonGrid } from "./components/Skeleton";
 
 import { getOptimizedImageUrl } from "@/lib/imageOptimizer";
+import { usePoints } from "@/hooks/usePoints";
+import { UnlockModal } from "@/components/UnlockModal";
 
 const Home = lazy(() => import("./pages/Home"));
 const SavedAccounts = lazy(() => import("./pages/SavedAccounts"));
@@ -66,6 +68,11 @@ const BG_IMAGE = "https://i.pinimg.com/1200x/f5/a6/a8/f5a6a839e3a7bc769edd82e903
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
+  const {
+    selectedAccountToUnlock,
+    setSelectedAccountToUnlock,
+    setIsPointsModalOpen,
+  } = usePoints();
 
   useEffect(() => {
     const allUrls = (DEFAULT_ACCOUNTS || [])
@@ -139,6 +146,17 @@ export default function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
+
+        {/* Global Account Unlock Modal */}
+        <UnlockModal
+          account={selectedAccountToUnlock}
+          isOpen={Boolean(selectedAccountToUnlock)}
+          onClose={() => setSelectedAccountToUnlock(null)}
+          onOpenInviteModal={() => {
+            setSelectedAccountToUnlock(null);
+            setIsPointsModalOpen(true);
+          }}
+        />
       </div>
     </ErrorBoundary>
   );

@@ -102,21 +102,16 @@ export default function Home() {
       result = result.filter((a) => a.platform === platform);
     }
 
-    // Sort — use actual createdAt date for newest/oldest
     switch (sortBy) {
       case "oldest":
-        result.sort(
-          (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-        );
+        result.sort((a, b) => a.id - b.id);
         break;
       case "alphabetical":
         result.sort((a, b) => (a.gameName || "").localeCompare(b.gameName || ""));
         break;
       case "newest":
       default:
-        result.sort(
-          (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-        );
+        result.sort((a, b) => b.id - a.id);
         break;
     }
 

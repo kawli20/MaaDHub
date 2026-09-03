@@ -17,6 +17,8 @@ import { useReportedAccounts } from "@/hooks/useReportedAccounts";
 import { reportBrokenAccount } from "@/lib/telegram";
 import { useAuth } from "@/lib/clerk";
 import { getOptimizedImageUrl } from "@/lib/imageOptimizer";
+import { usePoints } from "@/hooks/usePoints";
+import { getSecureCredentials } from "@/lib/secureVault";
 import type { Account } from "@/data/accounts";
 
 interface AccountCardProps {
@@ -81,8 +83,18 @@ export const AccountCard = memo(function AccountCard({
   const { t } = useLanguage();
   const { isSignedIn, openSignIn } = useAuth();
   const { isReported, markReported } = useReportedAccounts();
+  const { isUnlocked, setSelectedAccountToUnlock } = usePoints();
 
   const isEager = index < 8; // Top cards load immediately
+  const pointsCost = account.pointsCost || 0;
+  const isPointGated = pointsCost > 0;
+  const unlocked = isUnlocked(account.id, account.pointsCost);
+
+  // Secure credential resolver: if locked, real credentials are NEVER in the DOM tree
+  const { username: secureUser, password: securePass, isLocked } = getSecureCredentials(
+    account,
+    unlocked
+  );
 
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -137,6 +149,16 @@ export const AccountCard = memo(function AccountCard({
   };
 
   const handleCopy = (text: string, label: string) => {
+    // If account is point-gated and not unlocked, protect credentials and open unlock modal
+    if (isPointGated && !unlocked) {
+      if (!isSignedIn) {
+        openSignIn();
+      } else {
+        setSelectedAccountToUnlock(account);
+      }
+      return;
+    }
+
     requireAuthAction(() => {
       if (!text) return;
       navigator.clipboard?.writeText(text);
@@ -251,7 +273,7 @@ export const AccountCard = memo(function AccountCard({
           {/* Vignette Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-[#030303]/40 to-transparent pointer-events-none" />
 
-          {/* Platform Badge */}
+          {/* Platform Badge & Points Badge */}
           <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
             <span
               className="px-3 py-1 rounded-full text-[11px] font-semibold text-white/95 border border-white/10 shadow-sm"
@@ -261,6 +283,20 @@ export const AccountCard = memo(function AccountCard({
             >
               {account.platform}
             </span>
+
+            {/* Point Gated Badge */}
+            {isPointGated && (
+              <span
+                className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-tight shadow-md ${
+                  unlocked
+                    ? "bg-emerald-500/25 text-emerald-300 border border-emerald-500/35"
+                    : "bg-gradient-to-r from-amber-500/30 to-[#C1272D]/30 text-amber-300 border border-amber-500/40"
+                }`}
+              >
+                <Lock className="w-3 h-3" />
+                {unlocked ? "Unlocked" : `${pointsCost} PTS`}
+              </span>
+            )}
 
             {reported && (
               <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-amber-500/25 text-amber-300 border border-amber-500/30">
@@ -334,71 +370,92 @@ export const AccountCard = memo(function AccountCard({
               {account.gameName}
             </h3>
 
-            <div className="space-y-1.5">
-              {/* Username row */}
-              <div className="flex items-center justify-between gap-2 bg-[#060b13]/85 p-1.5 px-2.5 rounded-lg border border-white/[0.06]">
-                <span className="text-white/40 text-[11px] font-mono uppercase tracking-wider">
-                  {t("card_user")}
-                </span>
-                <div className="flex items-center gap-1.5 min-w-0">
-                  <span className="text-white/90 text-xs font-mono truncate max-w-[130px]">
-                    {account.username}
-                  </span>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleCopy(account.username, t("card_user"));
-                    }}
-                    className={`p-1 rounded-md transition-all ${
-                      !isSignedIn
-                        ? "text-white/40 hover:text-amber-400 hover:bg-amber-500/10"
-                        : "hover:bg-white/10 text-white/50 hover:text-[#C1272D]"
-                    }`}
-                    title={!isSignedIn ? "Sign in to copy username" : "Copy Username"}
-                  >
-                    {copiedField === t("card_user") ? (
-                      <Check className="w-3 h-3 text-emerald-400" />
-                    ) : !isSignedIn ? (
-                      <Lock className="w-3 h-3 text-amber-400/80" />
-                    ) : (
-                      <Copy className="w-3 h-3" />
-                    )}
-                  </button>
-                </div>
+            {isLocked ? (
+              /* Point-Locked Credentials Area — NO real credentials placed into the DOM tree */
+              <div className="space-y-2">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (!isSignedIn) {
+                      openSignIn();
+                    } else {
+                      setSelectedAccountToUnlock(account);
+                    }
+                  }}
+                  className="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500/20 via-[#C1272D]/25 to-amber-500/20 border border-amber-500/40 hover:border-amber-400 text-amber-300 hover:text-white font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-amber-500/20 group/btn"
+                >
+                  <Lock className="w-3.5 h-3.5 text-amber-400 group-hover/btn:scale-110 transition-transform" />
+                  <span>Unlock for {pointsCost} Points</span>
+                </button>
               </div>
+            ) : (
+              /* Unlocked / Free Credentials Area */
+              <div className="space-y-1.5">
+                {/* Username row */}
+                <div className="flex items-center justify-between gap-2 bg-[#060b13]/85 p-1.5 px-2.5 rounded-lg border border-white/[0.06]">
+                  <span className="text-white/40 text-[11px] font-mono uppercase tracking-wider">
+                    {t("card_user")}
+                  </span>
+                  <div className="flex items-center gap-1.5 min-w-0">
+                    <span className="text-white/90 text-xs font-mono truncate max-w-[130px]">
+                      {secureUser}
+                    </span>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleCopy(secureUser, t("card_user"));
+                      }}
+                      className={`p-1 rounded-md transition-all ${
+                        !isSignedIn
+                          ? "text-white/40 hover:text-amber-400 hover:bg-amber-500/10"
+                          : "hover:bg-white/10 text-white/50 hover:text-[#C1272D]"
+                      }`}
+                      title={!isSignedIn ? "Sign in to copy username" : "Copy Username"}
+                    >
+                      {copiedField === t("card_user") ? (
+                        <Check className="w-3 h-3 text-emerald-400" />
+                      ) : !isSignedIn ? (
+                        <Lock className="w-3 h-3 text-amber-400/80" />
+                      ) : (
+                        <Copy className="w-3 h-3" />
+                      )}
+                    </button>
+                  </div>
+                </div>
 
-              {/* Password row */}
-              <div className="flex items-center justify-between gap-2 bg-[#060b13]/85 p-1.5 px-2.5 rounded-lg border border-white/[0.06]">
-                <span className="text-white/40 text-[11px] font-mono uppercase tracking-wider">
-                  {t("card_pass")}
-                </span>
-                <div className="flex items-center gap-1.5 min-w-0">
-                  <span className="text-white/90 text-xs font-mono truncate max-w-[130px]">
-                    {"*".repeat(Math.min((account.password || "").length, 10))}
+                {/* Password row */}
+                <div className="flex items-center justify-between gap-2 bg-[#060b13]/85 p-1.5 px-2.5 rounded-lg border border-white/[0.06]">
+                  <span className="text-white/40 text-[11px] font-mono uppercase tracking-wider">
+                    {t("card_pass")}
                   </span>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleCopy(account.password, t("card_pass"));
-                    }}
-                    className={`p-1 rounded-md transition-all ${
-                      !isSignedIn
-                        ? "text-white/40 hover:text-amber-400 hover:bg-amber-500/10"
-                        : "hover:bg-white/10 text-white/50 hover:text-[#C1272D]"
-                    }`}
-                    title={!isSignedIn ? "Sign in to copy password" : "Copy Password"}
-                  >
-                    {copiedField === t("card_pass") ? (
-                      <Check className="w-3 h-3 text-emerald-400" />
-                    ) : !isSignedIn ? (
-                      <Lock className="w-3 h-3 text-amber-400/80" />
-                    ) : (
-                      <Copy className="w-3 h-3" />
-                    )}
-                  </button>
+                  <div className="flex items-center gap-1.5 min-w-0">
+                    <span className="text-white/90 text-xs font-mono truncate max-w-[130px]">
+                      {"*".repeat(Math.min((securePass || "").length, 10))}
+                    </span>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleCopy(securePass, t("card_pass"));
+                      }}
+                      className={`p-1 rounded-md transition-all ${
+                        !isSignedIn
+                          ? "text-white/40 hover:text-amber-400 hover:bg-amber-500/10"
+                          : "hover:bg-white/10 text-white/50 hover:text-[#C1272D]"
+                      }`}
+                      title={!isSignedIn ? "Sign in to copy password" : "Copy Password"}
+                    >
+                      {copiedField === t("card_pass") ? (
+                        <Check className="w-3 h-3 text-emerald-400" />
+                      ) : !isSignedIn ? (
+                        <Lock className="w-3 h-3 text-amber-400/80" />
+                      ) : (
+                        <Copy className="w-3 h-3" />
+                      )}
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
             {/* Support Link */}
             {account.supportLink && (
