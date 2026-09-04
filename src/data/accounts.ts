@@ -868,6 +868,15 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://static.wikia.nocookie.net/laracroft/images/1/16/Shadow_of_the_Tomb_Raider.jpg/revision/latest?cb=20241130153028",
     pointsCost: 15,
+  },
+  {
+    id: 94,
+    gameName: "Black Myth: Wukong",
+    platform: "Steam",
+    username: "Ah5Vc2Oa4Dh0",
+    password: "Paul100h1996",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://e.snmc.io/lk/g/x/e767173b47e2d0f8c3dda1f01cd06913/11578144",
   }
 ];
 
