@@ -877,7 +877,17 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "Paul100h1996",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://e.snmc.io/lk/g/x/e767173b47e2d0f8c3dda1f01cd06913/11578144",
-  }
+  },
+  {
+    id: 95,
+    gameName: "Bodycam",
+    platform: "Steam",
+    username: "rxiqgb0vep",
+    password: "Enzodu66",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic0.gamerantimages.com%2Fwordpress%2Fwp-content%2Fuploads%2F2025%2F02%2Fmixcollage-13-feb-2025-05-51-am-4114.jpg&f=1&nofb=1&ipt=2086b7ca6a4c5ff086279e5f3c70a4eccdb09eadca0495923a86ff9111d3711c",
+    pointsCost: 20,
+  },
 ];
 
 export interface Advertisement {
