@@ -888,6 +888,15 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic0.gamerantimages.com%2Fwordpress%2Fwp-content%2Fuploads%2F2025%2F02%2Fmixcollage-13-feb-2025-05-51-am-4114.jpg&f=1&nofb=1&ipt=2086b7ca6a4c5ff086279e5f3c70a4eccdb09eadca0495923a86ff9111d3711c",
     pointsCost: 20,
   },
+  {
+    id: 96,
+    gameName: "Grand Theft Auto V",
+    platform: "Steam",
+    username: "Nu0Hz4Qz9Ui0",
+    password: "Gm1Gv6Ic2No6",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F2.bp.blogspot.com%2F-XR0Rh3ZTni0%2FUKnAtCXxArI%2FAAAAAAAAAH8%2F7vafmzl2Iss%2Fs1600%2Fgta5poster.jpg&f=1&nofb=1&ipt=b8e2c4d6ee259b6f43e0c732d14bb8bf3a988ec1183bee26b54466ceb8c19271",
+  }
 ];
 
 export interface Advertisement {
