@@ -899,7 +899,7 @@ export const DEFAULT_ACCOUNTS: Account[] = [
   },
   {
     id: 97,
-    gameName: "assasin creed's account",
+    gameName: "All Assassin's Creed Account",
     platform: "Steam",
     username: "ecsg61998",
     password: "Creed7le@1122@1",
