@@ -896,6 +896,15 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     password: "Gm1Gv6Ic2No6",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F2.bp.blogspot.com%2F-XR0Rh3ZTni0%2FUKnAtCXxArI%2FAAAAAAAAAH8%2F7vafmzl2Iss%2Fs1600%2Fgta5poster.jpg&f=1&nofb=1&ipt=b8e2c4d6ee259b6f43e0c732d14bb8bf3a988ec1183bee26b54466ceb8c19271",
+  },
+  {
+    id: 97,
+    gameName: "assasin creed's account",
+    platform: "Steam",
+    username: "ecsg61998",
+    password: "Creed7le@1122@1",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://i.pinimg.com/736x/b3/9a/a5/b39aa582e585d04cdc80305af3d3381c.jpg",
   }
 ];
 
