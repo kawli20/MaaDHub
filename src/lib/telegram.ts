@@ -1,22 +1,25 @@
-export const TELEGRAM_BOT_TOKEN = "8647581584:AAGvkz7tBGiuX94c-2OR-LZBKepi1equg8U";
-export const TELEGRAM_CHANNEL_ID = "-1004445400084";
+/**
+ * Telegram Notification Service
+ * Secure: Bot tokens and channel credentials are kept strictly server-side
+ * and NEVER exposed to the client-side JavaScript bundle.
+ */
 
 export async function sendToTelegram(text: string): Promise<boolean> {
   try {
-    const response = await fetch(
-      `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({
-          chat_id: TELEGRAM_CHANNEL_ID,
-          text,
-          parse_mode: "HTML",
-        }),
-      }
-    );
-    const data = await response.json();
-    return Boolean(data && data.ok);
+    const apiUrl = import.meta.env.VITE_TELEGRAM_API_URL || "/api/telegram";
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text }),
+    });
+
+    if (!response.ok) {
+      console.warn("Telegram dispatch returned status:", response.status);
+      return false;
+    }
+
+    const data = await response.json().catch(() => null);
+    return Boolean(data && (data.ok || data.success));
   } catch (error) {
     console.error("Telegram send error:", error);
     return false;
@@ -33,7 +36,7 @@ export async function reportBrokenAccount({
   accountId: number;
   gameName: string;
   platform: string;
-  username: string;
+  username?: string;
   reason?: string;
 }): Promise<boolean> {
   const time = new Date().toLocaleString("en-US", {
@@ -47,11 +50,13 @@ export async function reportBrokenAccount({
     ``,
     `🎮 <b>Game:</b> <code>${escapeHtml(gameName)}</code>`,
     `🏷️ <b>Platform:</b> <code>${escapeHtml(platform)}</code>`,
-    `👤 <b>Username:</b> <code>${escapeHtml(username)}</code>`,
+    username && username !== "VIP_LOCKED" ? `👤 <b>Username:</b> <code>${escapeHtml(username)}</code>` : "",
     `🆔 <b>Account ID:</b> <code>#${accountId}</code>`,
     reason ? `📝 <b>Issue / Note:</b> ${escapeHtml(reason)}` : `📝 <b>Issue:</b> Account reported as non-working`,
     `⏰ <b>Time (UTC):</b> <i>${time}</i>`,
-  ].join("\n");
+  ]
+    .filter(Boolean)
+    .join("\n");
 
   return sendToTelegram(message);
 }

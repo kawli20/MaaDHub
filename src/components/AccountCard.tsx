@@ -18,7 +18,7 @@ import { reportBrokenAccount } from "@/lib/telegram";
 import { useAuth } from "@/lib/clerk";
 import { getOptimizedImageUrl } from "@/lib/imageOptimizer";
 import { usePoints } from "@/hooks/usePoints";
-import { getSecureCredentials } from "@/lib/secureVault";
+import { getSecureCredentials, resolveAccountCredentials } from "@/lib/secureVault";
 import type { Account } from "@/data/accounts";
 
 interface AccountCardProps {
@@ -91,10 +91,23 @@ export const AccountCard = memo(function AccountCard({
   const unlocked = isUnlocked(account.id, account.pointsCost);
 
   // Secure credential resolver: if locked, real credentials are NEVER in the DOM tree
-  const { username: secureUser, password: securePass, isLocked } = getSecureCredentials(
-    account,
-    unlocked
+  const [credentials, setCredentials] = useState(() =>
+    getSecureCredentials(account, unlocked)
   );
+
+  useEffect(() => {
+    let isMounted = true;
+    resolveAccountCredentials(account, unlocked).then((res) => {
+      if (isMounted) {
+        setCredentials(res);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, [account.id, unlocked]);
+
+  const { username: secureUser, password: securePass, isLocked } = credentials;
 
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -206,7 +219,7 @@ export const AccountCard = memo(function AccountCard({
       accountId: account.id,
       gameName: account.gameName,
       platform: account.platform,
-      username: account.username,
+      username: secureUser !== "VIP_LOCKED" && secureUser !== "Loading..." ? secureUser : undefined,
       reason: finalReason || "Account reported as broken",
     });
 

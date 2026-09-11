@@ -117,8 +117,7 @@ export default function SavedAccounts() {
       result = result.filter(
         (account) =>
           (account.gameName || "").toLowerCase().includes(s) ||
-          (account.platform || "").toLowerCase().includes(s) ||
-          (account.username || "").toLowerCase().includes(s)
+          (account.platform || "").toLowerCase().includes(s)
       );
     }
 

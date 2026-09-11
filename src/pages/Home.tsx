@@ -93,8 +93,7 @@ export default function Home() {
       result = result.filter(
         (a) =>
           (a.gameName || "").toLowerCase().includes(s) ||
-          (a.platform || "").toLowerCase().includes(s) ||
-          (a.username || "").toLowerCase().includes(s)
+          (a.platform || "").toLowerCase().includes(s)
       );
     }
 
