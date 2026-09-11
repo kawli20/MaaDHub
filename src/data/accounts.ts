@@ -701,7 +701,7 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     gameName: "Grand Theft Auto V",
     platform: "Steam",
     supportLink: "https://maad.qzz.io/",
-    imageUrl: "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F2.bp.blogspot.com%2F-XR0Rh3ZTni0%2FAAAAAAAAAH8%2F7vafmzl2Iss%2Fs1600%2Fgta5poster.jpg&f=1&nofb=1&ipt=b8e2c4d6ee259b6f43e0c732d14bb8bf3a988ec1183bee26b54466ceb8c19271",
+    imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2F736x%2F43%2Fbc%2Fbe%2F43bcbef7c091426d4759e4a04ee9b7f8.jpg&f=1&nofb=1&ipt=e3c6d70256fc235628b4dee760fbf0d75b900d37f36e40a29b8764a63f635350",
   },
   {
     id: 97,
@@ -710,6 +710,14 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://i.pinimg.com/736x/b3/9a/a5/b39aa582e585d04cdc80305af3d3381c.jpg",
   },
+  {
+    id: 98,
+    gameName: "Far Cry 5",
+    platform: "Steam",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic0.gamerantimages.com%2Fwordpress%2Fwp-content%2Fuploads%2F2024%2F12%2Fmixcollage-25-dec-2024-06-53-am-6816.jpg%3Fq%3D49%26fit%3Dcontain%26w%3D480%26dpr%3D2&f=1&nofb=1&ipt=cff41834a2a81e2952d79d444fedf9183a725eeeac2777c7a4c29456c9ef9056",
+  },
+
 ];
 
 export interface Advertisement {
