@@ -724,6 +724,13 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages-wixmp-ed30a86b8c4ca887773594c2.wixmp.com%2Ff%2F21ec8781-b7d2-4f1e-bc0b-a4b0e1b7b84a%2Fdh541kp-6a2225d6-a85d-4c93-abcf-49ab5e51cfbd.png%2Fv1%2Ffill%2Fw_1024%2Ch_1843%2Cq_80%2Cstrp%2Feve___stellar_blade_by_deviantdiffusion_dh541kp-fullview.jpg%3Ftoken%3DeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTg0MyIsInBhdGgiOiJcL2ZcLzIxZWM4NzgxLWI3ZDItNGYxZS1iYzBiLWE0YjBlMWI3Yjg0YVwvZGg1NDFrcC02YTIyMjVkNi1hODVkLTRjOTMtYWJjZi00OWFiNWU1MWNmYmQucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.yddxOQCNQYShL-O1Fq6NrCjzrJOh1kYxsJ8aK9luk7U&f=1&nofb=1&ipt=b52cffc8a7fd5151a8ca7916e4e975e240d150240eb2864e0be5466c1fd90f1c",
   },
+  {
+    id: 100,
+    gameName: "Garry's Mod",
+    platform: "Steam",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic0.gamerantimages.com%2Fwordpress%2Fwp-content%2Fuploads%2F2024%2F12%2Fmixcollage-11-dec-2024-10-20-am-916.jpg&f=1&nofb=1&ipt=44cfa780d3b85a309a78744fb207ab67b765082d466ab1a383b4d4cc998c9306"
+  }
 
 ];
 
