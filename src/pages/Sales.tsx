@@ -1,0 +1,324 @@
+import { useMemo, useState, useRef, useEffect } from "react"
+import { useDebounce } from "@/hooks/useDebounce"
+import { motion } from "framer-motion"
+import { Link } from "react-router"
+import { Tag, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react"
+import { useLanguage } from "@/hooks/useLanguage"
+import { useToast } from "@/hooks/useToast"
+import { ToastContainer } from "@/components/Toast"
+import { Navigation } from "@/components/Navigation"
+import { Footer } from "@/components/Footer"
+import { SearchFilters } from "@/components/SearchFilters"
+import { DEFAULT_SALES } from "@/data/accounts"
+
+const ITEMS_PER_PAGE = 12;
+
+export default function Sales() {
+  const { t } = useLanguage()
+  const { toasts, removeToast } = useToast()
+  const [search, setSearch] = useState("")
+  const debouncedSearch = useDebounce(search, 300)
+  const [platform, setPlatform] = useState("All")
+  const [sortBy, setSortBy] = useState("newest")
+  const [activeTab, setActiveTab] = useState<"all" | "keys" | "accounts" | "subscription" | "serves">("all")
+  const [currentPage, setCurrentPage] = useState(1)
+
+  const tabs: Array<{ key: "all" | "keys" | "accounts" | "subscription" | "serves"; label: string }> = [
+    { key: "all", label: "All" },
+    { key: "keys", label: "Keys" },
+    { key: "accounts", label: "Accounts" },
+    { key: "subscription", label: "Subscription" },
+    { key: "serves", label: "Serves" },
+  ]
+
+  const sales = useMemo(() => {
+    let result = [...DEFAULT_SALES]
+
+    if (debouncedSearch) {
+      const s = debouncedSearch.toLowerCase()
+      result = result.filter((item) =>
+        item.title.toLowerCase().includes(s) ||
+        item.platform.toLowerCase().includes(s) ||
+        item.description.toLowerCase().includes(s)
+      )
+    }
+
+    if (platform && platform !== "All") {
+      result = result.filter((item) => item.platform === platform || item.platform === "All Platforms")
+    }
+
+    if (activeTab !== "all") {
+      result = result.filter((item) => item.category === activeTab)
+    }
+
+    switch (sortBy) {
+      case "oldest":
+        result.sort((a, b) => a.id - b.id)
+        break
+      case "alphabetical":
+        result.sort((a, b) => a.title.localeCompare(b.title))
+        break
+      case "newest":
+      default:
+        result.sort((a, b) => b.id - a.id)
+        break
+    }
+
+    return result
+  }, [debouncedSearch, platform, sortBy, activeTab])
+
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [debouncedSearch, platform, sortBy, activeTab])
+
+  const totalPages = Math.ceil(sales.length / ITEMS_PER_PAGE)
+  const paginatedSales = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE
+    return sales.slice(start, start + ITEMS_PER_PAGE)
+  }, [sales, currentPage])
+
+  const containerRef = useRef<HTMLDivElement | null>(null)
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page)
+    try {
+      containerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  useEffect(() => {
+    // Scroll the sales section to top whenever the active tab changes
+    try {
+      containerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+    } catch (e) {
+      // ignore if running in non-browser env
+    }
+  }, [activeTab])
+
+  return (
+    <div className="min-h-screen">
+      <Navigation />
+      <ToastContainer toasts={toasts} onRemove={removeToast} />
+
+      <main className="pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+        <div ref={containerRef} className="max-w-7xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-10">
+            <div className="flex items-center gap-3 mb-4">
+              <Tag className="w-6 h-6 text-[#C1272D]" />
+              <h1 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+                {t("sales_title_1")} <span className="text-gradient">{t("sales_title_2")}</span>
+              </h1>
+            </div>
+            <p className="text-white/40 text-sm max-w-2xl">
+              {t("sales_desc")}
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="glass-card border border-white/10 bg-white/5 p-6 rounded-3xl mb-10"
+          >
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="text-sm uppercase tracking-[0.3em] text-[#C1272D]/80 mb-2">
+                  {t("sales_note_label")}
+                </p>
+                <h2 className="text-xl font-semibold text-white">
+                  {t("sales_note_title")}
+                </h2>
+              </div>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#C1272D]/10 text-[#C1272D] text-sm font-medium hover:bg-[#C1272D]/20 transition-all"
+              >
+                <ExternalLink className="w-4 h-4" />
+                {t("sales_note_action")}
+              </Link>
+            </div>
+          </motion.div>
+
+          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
+            <h2 className="text-xl font-semibold text-white mb-3">{t("sales_list_title")}</h2>
+            <p className="text-white/40 text-sm max-w-xl">{t("sales_list_desc")}</p>
+          </motion.div>
+
+          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
+            <div className="flex flex-wrap gap-2">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.key}
+                  onClick={() => setActiveTab(tab.key)}
+                  className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
+                    activeTab === tab.key
+                      ? "bg-[#C1272D] text-white"
+                      : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
+            <SearchFilters
+              search={search}
+              onSearchChange={setSearch}
+              platform={platform}
+              onPlatformChange={setPlatform}
+              sortBy={sortBy}
+              onSortChange={setSortBy}
+            />
+          </motion.div>
+
+          <div className="mb-6 text-sm text-white/30">
+            {sales.length} {t("vault_results")}
+          </div>
+
+          {sales.length > 0 ? (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-10 stagger-fade-in">
+                {paginatedSales.map((item, index) => {
+                  const imageUrl = item.imageUrl || "/games/steam.jpg"
+                  return (
+                    <motion.div
+                      key={item.id}
+                      initial={{ opacity: 0, y: 24 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      className="glass-card rounded-3xl border border-white/10 overflow-hidden"
+                    >
+                      <div className="relative overflow-hidden h-52">
+                        <img
+                          src={imageUrl}
+                          alt={item.title}
+                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                          onError={(e) => {
+                            ;(e.target as HTMLImageElement).src = "/games/steam.jpg"
+                          }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#030303]/95 via-[#030303]/50 to-transparent" />
+                        <div className="absolute left-4 bottom-4 right-4">
+                          <div className="flex items-center justify-between gap-3 mb-3">
+                            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-[0.2em] text-white/80 bg-black/30 border border-white/10">
+                              {item.platform}
+                            </span>
+                            <span className="rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] bg-[#C1272D]/20 text-[#C1272D] border border-[#C1272D]/20">
+                              {item.category}
+                            </span>
+                          </div>
+                          <h3 className="text-xl font-bold text-white leading-tight">{item.title}</h3>
+                        </div>
+                      </div>
+
+                      <div className="p-6 space-y-4">
+                        <p className="text-white/60 text-sm leading-relaxed">{item.description}</p>
+
+                        {item.price ? (
+                          <div className="rounded-2xl border border-[#C1272D]/20 bg-[#C1272D]/10 px-4 py-3 text-sm text-[#C1272D] font-semibold">
+                            {item.price}
+                          </div>
+                        ) : null}
+
+                        <div className="space-y-3">
+                          {item.supportLink ? (
+                            <a
+                              href={item.supportLink}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="inline-flex items-center gap-2 rounded-full px-4 py-3 bg-[#C1272D]/10 text-[#C1272D] hover:bg-[#C1272D]/20 hover:text-white transition-all text-sm font-medium"
+                            >
+                              <ExternalLink className="w-4 h-4" />
+                              {t("sales_contact_shop")}
+                            </a>
+                          ) : (
+                            <p className="text-white/80 text-sm break-words">{item.contact}</p>
+                          )}
+                        </div>
+                      </div>
+                    </motion.div>
+                  )
+                })}
+              </div>
+
+              {totalPages > 1 && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="flex items-center justify-center gap-2 mt-8 flex-wrap"
+                >
+                  <button
+                    onClick={() => handlePageChange(1)}
+                    disabled={currentPage === 1}
+                    className="w-10 h-10 flex items-center justify-center rounded-lg text-sm font-medium transition-all disabled:opacity-30 disabled:cursor-not-allowed text-white/60 hover:text-white hover:bg-white/5 border border-white/10"
+                    title="First page"
+                  >
+                    <span className="text-xs font-bold">1</span>
+                  </button>
+
+                  <button
+                    onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
+                    disabled={currentPage === 1}
+                    className="w-10 h-10 flex items-center justify-center rounded-lg text-sm font-medium transition-all disabled:opacity-30 disabled:cursor-not-allowed text-white/60 hover:text-white hover:bg-white/5 border border-white/10"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+
+                  <div className="flex items-center gap-1">
+                    {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                      let pageNum: number;
+                      if (totalPages <= 5) {
+                        pageNum = i + 1;
+                      } else if (currentPage <= 3) {
+                        pageNum = i + 1;
+                      } else if (currentPage >= totalPages - 2) {
+                        pageNum = totalPages - 4 + i;
+                      } else {
+                        pageNum = currentPage - 2 + i;
+                      }
+                      return (
+                        <button
+                          key={pageNum}
+                          onClick={() => handlePageChange(pageNum)}
+                          className={`w-10 h-10 rounded-lg text-sm font-medium transition-all ${
+                            currentPage === pageNum
+                              ? "bg-[#C1272D] text-white"
+                              : "text-white/60 hover:text-white hover:bg-white/5 border border-white/10"
+                          }`}
+                        >
+                          {pageNum}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  <button
+                    onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
+                    disabled={currentPage === totalPages}
+                    className="w-10 h-10 flex items-center justify-center rounded-lg text-sm font-medium transition-all disabled:opacity-30 disabled:cursor-not-allowed text-white/60 hover:text-white hover:bg-white/5 border border-white/10"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </motion.div>
+              )}
+            </>
+          ) : (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-20">
+              <Tag className="w-16 h-16 text-white/10 mx-auto mb-4" />
+              <h2 className="text-xl font-semibold text-white/40 mb-2">{t("sales_empty_title")}</h2>
+              <p className="text-white/25 text-sm max-w-md mx-auto">{t("sales_empty_desc")}</p>
+              <Link to="/contact" className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass border border-[#C1272D]/20 text-[#C1272D] text-sm font-medium hover:bg-[#C1272D]/10 transition-all">
+                {t("sales_note_action")}
+              </Link>
+            </motion.div>
+          )}
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  )
+}
