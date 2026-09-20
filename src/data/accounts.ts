@@ -745,6 +745,13 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic0.gamerantimages.com%2Fwordpress%2Fwp-content%2Fuploads%2F2024%2F08%2Fblack-myth-wukong-tag-page-cover-art.jpg%3Fq%3D49%26fit%3Dcontain%26w%3D480%26dpr%3D2&f=1&nofb=1&ipt=3e64f621a2435632ac75856f965afa0be406fb5e2e107acf08a1e708120de5e7"
   },
+  {
+    id: 103,
+    gameName: "Shift At Midnight",
+    platform: "Steam",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_cF5DsL0p-HENMU-GFN6T-QLgoG-QgCSm2e03d-JRl3NVAzt--Yz7qgg&s=10"
+  },
 
 ];
 

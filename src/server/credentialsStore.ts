@@ -112,4 +112,5 @@ export const CREDENTIALS_STORE: Record<number, CredentialEntry> = {
   100: { username: "driptohard132", password: "Adonis0126!" },
   101: { username: "ycdypkpx21534", password: "zAnJm0Q7N7eYRakAWHu" },
   102: { username: "ejxj3654", password: "Justi2844&_" },
+  103: { username: "vasmurenne1978", password: "M30DmiQuOX2001"},
 };
