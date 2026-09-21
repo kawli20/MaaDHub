@@ -752,7 +752,13 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_cF5DsL0p-HENMU-GFN6T-QLgoG-QgCSm2e03d-JRl3NVAzt--Yz7qgg&s=10"
   },
-
+  {
+    id: 104,
+    gameName: "FC 26",
+    platform: "Steam",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://m.media-amazon.com/images/M/MV5BMDZmMmQ1ODYtMDU3NS00MTBlLWIyZTctOWFiZjIwMmI1OTcyXkEyXkFqcGc@._V1_.jpg"
+  }
 ];
 
 export interface Advertisement {
