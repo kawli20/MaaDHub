@@ -64,8 +64,6 @@ const preloadImages = (urls: string[]) => {
   return Promise.all(uniqueUrls.map(preloadImage));
 };
 
-const BG_IMAGE = "https://i.pinimg.com/1200x/f5/a6/a8/f5a6a839e3a7bc769edd82e903240134.jpg";
-
 export default function App() {
   const [isReady, setIsReady] = useState(false);
   const {
