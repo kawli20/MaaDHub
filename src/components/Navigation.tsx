@@ -33,7 +33,8 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
-  const [musicEnabled, setMusicEnabled] = useState(true);
+  const [musicEnabled, setMusicEnabled] = useState(false);
+  const [isSiteUnlocked, setIsSiteUnlocked] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const tabsScrollRef = useRef<HTMLDivElement | null>(null);
   const location = useLocation();
@@ -50,29 +51,27 @@ export function Navigation() {
     audio.muted = false;
     audioRef.current = audio;
 
-    const tryAutoplay = () => {
-      audio
-        .play()
-        .then(() => setMusicEnabled(true))
-        .catch(() => setMusicEnabled(false));
-    };
-
-    tryAutoplay();
-
-    const onUserGesture = () => {
-      if (audio.paused) {
-        tryAutoplay();
-      }
-    };
-
-    window.addEventListener("pointerdown", onUserGesture, { once: true });
-
     return () => {
-      window.removeEventListener("pointerdown", onUserGesture);
       audio.pause();
       audio.src = "";
     };
   }, []);
+
+  const unlockSiteAudio = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    audio
+      .play()
+      .then(() => {
+        setMusicEnabled(true);
+        setIsSiteUnlocked(true);
+      })
+      .catch(() => {
+        setMusicEnabled(false);
+        setIsSiteUnlocked(true);
+      });
+  };
 
   const toggleMusic = () => {
     const audio = audioRef.current;
@@ -131,6 +130,20 @@ export function Navigation() {
 
   return (
     <>
+      {!isSiteUnlocked && (
+        <button
+          type="button"
+          onClick={unlockSiteAudio}
+          className="fixed inset-0 z-[80] flex items-center justify-center bg-[#030303]/90 backdrop-blur-md"
+        >
+          <div className="rounded-2xl border border-[#C1272D]/40 bg-[#0c0c0c]/80 px-8 py-6 text-center shadow-2xl shadow-[#C1272D]/20">
+            <div className="mb-3 text-3xl">▶</div>
+            <div className="text-xl font-bold text-white">Enter MaaDHub</div>
+            <div className="mt-2 text-sm text-white/60">Click once to enter the world of MaaDHub</div>
+          </div>
+        </button>
+      )}
+
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
