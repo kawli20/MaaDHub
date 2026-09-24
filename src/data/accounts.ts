@@ -765,6 +765,13 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     platform: "Steam",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic0.gamerantimages.com%2Fwordpress%2Fwp-content%2Fuploads%2F2024%2F11%2Fmixcollage-28-nov-2024-09-21-am-9647.jpg&f=1&nofb=1&ipt=04c414c49e514f64753c42742068d36c7d0688999b826962fb1ade3670ad0e0e"
+  },
+  {
+    id: 106,
+    gameName: "Dead by Daylight",
+    platform: "Epic Games",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://thumb.wikimedia.org/wikipedia/en/thumb/b/b7/Dead_by_Daylight_Steam_header.jpg/250px-Dead_by_Daylight_Steam_header.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail"
   }
 ];
 
