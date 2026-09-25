@@ -772,6 +772,20 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     platform: "Epic Games",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://thumb.wikimedia.org/wikipedia/en/thumb/b/b7/Dead_by_Daylight_Steam_header.jpg/250px-Dead_by_Daylight_Steam_header.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail"
+  },
+  {
+    id: 107,
+    gameName: "Ride 5",
+    platform: "Steam",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%2Fid%2FOIP.7p_NTwdhzcAyj0DR-LdJfAHaLH%3Fr%3D0%26pid%3DApi&f=1&ipt=aad50c70f9b24333bf6d2179faa8113292b3aeb6ebe5eb909f624146bdb44603"
+  },
+  {
+    id: 108,
+    gameName: "Black Myth: Wukong",
+    platform: "Steam",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpics.filmaffinity.com%2Fblack_myth_wukong-856105810-large.jpg&f=1&nofb=1&ipt=aa366c8619bce1723087810719f8bb2e816822c5b70272657ceb705063ae462d"
   }
 ];
 
