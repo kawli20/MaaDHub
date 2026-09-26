@@ -786,6 +786,13 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     platform: "Steam",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpics.filmaffinity.com%2Fblack_myth_wukong-856105810-large.jpg&f=1&nofb=1&ipt=aa366c8619bce1723087810719f8bb2e816822c5b70272657ceb705063ae462d"
+  },
+  {
+    id: 109,
+    gameName: "Batman™: Arkham Knight",
+    platform: "Steam",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic0.gamerantimages.com%2Fwordpress%2Fwp-content%2Fuploads%2F2024%2F12%2Fmixcollage-07-dec-2024-07-51-am-4123.jpg&f=1&nofb=1&ipt=2707bc19d3a6f8c5f9c33abe21fab0100f79b47cbdc0543fd1493e7381eafb10"
   }
 ];
 

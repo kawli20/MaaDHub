@@ -15,6 +15,8 @@ import {
   Coins,
   Gift,
   Sparkles,
+  ChevronLeft,
+  ChevronRight,
   Volume2,
   VolumeX,
 } from "lucide-react";
@@ -35,6 +37,7 @@ export function Navigation() {
   const [langOpen, setLangOpen] = useState(false);
   const [musicEnabled, setMusicEnabled] = useState(false);
   const [isSiteUnlocked, setIsSiteUnlocked] = useState(false);
+  const [isEntering, setIsEntering] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const tabsScrollRef = useRef<HTMLDivElement | null>(null);
   const location = useLocation();
@@ -61,16 +64,13 @@ export function Navigation() {
     const audio = audioRef.current;
     if (!audio) return;
 
+    setIsEntering(true);
     audio
       .play()
-      .then(() => {
-        setMusicEnabled(true);
-        setIsSiteUnlocked(true);
-      })
-      .catch(() => {
-        setMusicEnabled(false);
-        setIsSiteUnlocked(true);
-      });
+      .then(() => setMusicEnabled(true))
+      .catch(() => setMusicEnabled(false));
+
+    window.setTimeout(() => setIsSiteUnlocked(true), 1400);
   };
 
   const toggleMusic = () => {
@@ -130,19 +130,72 @@ export function Navigation() {
 
   return (
     <>
-      {!isSiteUnlocked && (
-        <button
-          type="button"
-          onClick={unlockSiteAudio}
-          className="fixed inset-0 z-[80] flex items-center justify-center bg-[#030303]/90 backdrop-blur-md"
-        >
-          <div className="rounded-2xl border border-[#C1272D]/40 bg-[#0c0c0c]/80 px-8 py-6 text-center shadow-2xl shadow-[#C1272D]/20">
-            <div className="mb-3 text-3xl">▶</div>
-            <div className="text-xl font-bold text-white">Enter MaaDHub</div>
-            <div className="mt-2 text-sm text-white/60">Click once to enter the world of MaaDHub</div>
-          </div>
-        </button>
-      )}
+      <AnimatePresence>
+        {!isSiteUnlocked && (
+          <motion.button
+            type="button"
+            onClick={unlockSiteAudio}
+            disabled={isEntering}
+            aria-label="Enter MaaDHub and start background music"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, scale: 1.04, filter: "blur(10px)" }}
+            transition={{ duration: 0.7, ease: "easeInOut" }}
+            className="fixed inset-0 z-[80] isolate flex cursor-pointer items-center justify-center overflow-hidden bg-[#030303] text-center"
+          >
+            <span
+              className="absolute inset-0 -z-10 scale-105 bg-cover bg-center opacity-20 blur-sm"
+              style={{ backgroundImage: "url('/banner/maadbanner.gif')" }}
+              aria-hidden="true"
+            />
+            <span className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(193,39,45,0.2),rgba(3,3,3,0.94)_58%)]" />
+
+            <span className="absolute left-1/2 top-1/2 -z-0 aspect-square w-[min(78vw,78vh,620px)] -translate-x-1/2 -translate-y-1/2">
+              <motion.span
+                animate={{ rotate: isEntering ? 300 : 0, scale: isEntering ? 4 : [0.92, 1.04, 0.92], opacity: isEntering ? 0 : [0.45, 0.85, 0.45] }}
+                transition={isEntering ? { duration: 1.25, ease: "easeIn" } : { duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-0 rounded-full border border-[#e33b45]/70 shadow-[0_0_35px_rgba(193,39,45,0.35),inset_0_0_35px_rgba(193,39,45,0.16)]"
+              />
+              <motion.span
+                animate={{ rotate: isEntering ? -240 : 360, scale: isEntering ? 3.3 : [0.78, 0.88, 0.78], opacity: isEntering ? 0 : [0.25, 0.6, 0.25] }}
+                transition={isEntering ? { duration: 1.1, ease: "easeIn" } : { duration: 18, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-[9%] rounded-full border border-dashed border-white/40"
+              />
+              <motion.span
+                animate={{ scale: isEntering ? 2.8 : [0.68, 0.78, 0.68], opacity: isEntering ? 0 : [0.35, 0.7, 0.35] }}
+                transition={isEntering ? { duration: 1, ease: "easeIn" } : { duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-[19%] rounded-full border border-[#f15b60]/60 bg-[#9c1d26]/10 shadow-[0_0_70px_rgba(193,39,45,0.25)]"
+              />
+              <span className="absolute inset-[29%] rounded-full bg-[radial-gradient(circle,rgba(230,55,65,0.28),rgba(12,8,12,0.85)_65%,transparent_72%)]" />
+              <motion.span
+                animate={{ rotate: isEntering ? 360 : 0, opacity: isEntering ? 0 : [0.25, 0.6, 0.25] }}
+                transition={isEntering ? { duration: 0.8, ease: "easeIn" } : { duration: 12, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-[4%] rounded-full border-t-2 border-r border-[#ff6970]/80"
+              />
+            </span>
+
+            <motion.span
+              animate={isEntering ? { scale: 0.75, opacity: 0, y: 12 } : { scale: 1, opacity: 1, y: 0 }}
+              transition={{ duration: 0.55 }}
+              className="relative z-10 mx-5 flex max-w-md flex-col items-center px-6"
+            >
+              <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-[#e33b45]/50 bg-black/40 text-[#ff6b70] shadow-[0_0_30px_rgba(193,39,45,0.28)]">
+                <Sparkles className="h-5 w-5" />
+              </span>
+              <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#ff777d]">
+                MaaDHub // Access Portal
+              </span>
+              <span className="mt-3 text-4xl font-black text-white sm:text-5xl">Step into the vault</span>
+              <span className="mt-3 max-w-sm text-sm leading-relaxed text-white/60">
+                Cross the threshold. Your soundtrack starts as the portal opens.
+              </span>
+              <span className="mt-8 inline-flex items-center gap-2 rounded-full border border-[#ef535b]/60 bg-[#b91f2b]/20 px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] text-white shadow-[0_0_28px_rgba(193,39,45,0.28)] transition duration-300 hover:bg-[#c1272d]/40">
+                {isEntering ? "Entering..." : "Click to enter"}
+              </span>
+            </motion.span>
+          </motion.button>
+        )}
+      </AnimatePresence>
 
       <motion.nav
         initial={{ y: -100 }}
@@ -174,9 +227,10 @@ export function Navigation() {
                 type="button"
                 aria-label="Scroll tabs left"
                 onClick={() => scrollTabs("left")}
-                className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition hover:border-[#C1272D]/40 hover:text-white"
+                title="Scroll tabs left"
+                className="group flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-gradient-to-br from-white/[0.09] to-white/[0.02] text-white/65 shadow-sm transition duration-200 hover:-translate-x-0.5 hover:border-[#C1272D]/50 hover:bg-[#C1272D]/15 hover:text-white hover:shadow-[0_0_16px_rgba(193,39,45,0.25)]"
               >
-                <span className="text-base">←</span>
+                <ChevronLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
               </button>
 
               <div
@@ -217,9 +271,10 @@ export function Navigation() {
                 type="button"
                 aria-label="Scroll tabs right"
                 onClick={() => scrollTabs("right")}
-                className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition hover:border-[#C1272D]/40 hover:text-white"
+                title="Scroll tabs right"
+                className="group flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-gradient-to-br from-white/[0.09] to-white/[0.02] text-white/65 shadow-sm transition duration-200 hover:translate-x-0.5 hover:border-[#C1272D]/50 hover:bg-[#C1272D]/15 hover:text-white hover:shadow-[0_0_16px_rgba(193,39,45,0.25)]"
               >
-                <span className="text-base">→</span>
+                <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </button>
 
               <div className="flex shrink-0 items-center gap-2">
