@@ -2,7 +2,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router";
 import { useLanguage } from "@/hooks/useLanguage";
-import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { ArrowLeft, Copy, ExternalLink, HandCoins } from "lucide-react";
 
@@ -53,8 +52,6 @@ export default function Tips() {
 
   return (
     <div className="min-h-screen">
-      <Navigation />
-
       <main className="pt-24 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>

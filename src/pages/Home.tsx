@@ -8,7 +8,6 @@ import { HeroSection } from "@/components/HeroSection";
 import { AccountCard } from "@/components/AccountCard";
 import { SearchFilters } from "@/components/SearchFilters";
 import { ToastContainer } from "@/components/Toast";
-import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { BackToTop } from "@/components/BackToTop";
 import { AdBanner } from "@/components/AdBanner";
@@ -144,7 +143,6 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <BackToTop />
-      <Navigation />
       <ToastContainer toasts={toasts} onRemove={removeToast} />
 
       <HeroSection />

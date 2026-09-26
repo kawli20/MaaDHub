@@ -67,8 +67,12 @@ export function Navigation() {
     setIsEntering(true);
     audio
       .play()
-      .then(() => setMusicEnabled(true))
-      .catch(() => setMusicEnabled(false));
+      .then(() => {
+        setMusicEnabled(true);
+      })
+      .catch(() => {
+        setMusicEnabled(false);
+      });
 
     window.setTimeout(() => setIsSiteUnlocked(true), 1400);
   };

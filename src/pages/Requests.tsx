@@ -2,7 +2,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router";
 import { ArrowLeft, Gamepad2, Send, Sparkles } from "lucide-react";
-import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useToast } from "@/hooks/useToast";
@@ -58,7 +57,6 @@ export default function Requests() {
 
   return (
     <div className="min-h-screen">
-      <Navigation />
       <ToastContainer toasts={toasts} onRemove={removeToast} />
 
       <main className="pt-28 pb-20 px-4 sm:px-6 lg:px-8">

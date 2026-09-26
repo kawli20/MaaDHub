@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router";
 import ScrollToTop from "./components/ScrollToTop";
 import ScrollingBackground from "./components/ScrollingBackground";
 import { ErrorBoundary } from "./components/ErrorBoundary";
+import { Navigation } from "./components/Navigation";
 import { DEFAULT_ACCOUNTS } from "@/data/accounts";
 import { SkeletonNav, SkeletonHero, SkeletonFilters, SkeletonGrid } from "./components/Skeleton";
 
@@ -131,6 +132,7 @@ export default function App() {
     <ErrorBoundary>
       <ScrollToTop />
       <ScrollingBackground />
+      <Navigation />
       <div className="relative z-10">
         <Suspense fallback={<PageLoader />}>
           <Routes>

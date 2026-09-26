@@ -7,7 +7,6 @@ import { useSavedAccounts } from "@/hooks/useSavedAccounts";
 import { useToast } from "@/hooks/useToast";
 import { useCollections } from "@/hooks/useCollections";
 import { ToastContainer } from "@/components/Toast";
-import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { SearchFilters } from "@/components/SearchFilters";
 import { AccountCard } from "@/components/AccountCard";
@@ -159,7 +158,6 @@ export default function SavedAccounts() {
 
   return (
     <div className="min-h-screen">
-      <Navigation />
       <ToastContainer toasts={toasts} onRemove={removeToast} />
 
       <main className="pt-28 pb-20 px-4 sm:px-6 lg:px-8">

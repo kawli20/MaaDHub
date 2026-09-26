@@ -6,7 +6,6 @@ import { Tag, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react"
 import { useLanguage } from "@/hooks/useLanguage"
 import { useToast } from "@/hooks/useToast"
 import { ToastContainer } from "@/components/Toast"
-import { Navigation } from "@/components/Navigation"
 import { Footer } from "@/components/Footer"
 import { SearchFilters } from "@/components/SearchFilters"
 import { DEFAULT_SALES } from "@/data/accounts"
@@ -99,7 +98,6 @@ export default function Sales() {
 
   return (
     <div className="min-h-screen">
-      <Navigation />
       <ToastContainer toasts={toasts} onRemove={removeToast} />
 
       <main className="pt-24 pb-20 px-4 sm:px-6 lg:px-8">
