@@ -38,6 +38,9 @@ export function Navigation() {
   const [musicEnabled, setMusicEnabled] = useState(false);
   const [isSiteUnlocked, setIsSiteUnlocked] = useState(false);
   const [isEntering, setIsEntering] = useState(false);
+  const [isNarrowScreen, setIsNarrowScreen] = useState(() =>
+    typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches
+  );
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const tabsScrollRef = useRef<HTMLDivElement | null>(null);
   const location = useLocation();
@@ -45,6 +48,13 @@ export function Navigation() {
   const { points, isPointsModalOpen, setIsPointsModalOpen } = usePoints();
 
   const currentLang = LANGUAGES.find((l) => l.code === lang);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const updateScreenSize = () => setIsNarrowScreen(mediaQuery.matches);
+    mediaQuery.addEventListener("change", updateScreenSize);
+    return () => mediaQuery.removeEventListener("change", updateScreenSize);
+  }, []);
 
   useEffect(() => {
     const audio = new Audio(BACKGROUND_MUSIC_URL);
@@ -143,37 +153,32 @@ export function Navigation() {
             aria-label="Enter MaaDHub and start background music"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0, scale: 1.04, filter: "blur(10px)" }}
+            exit={{ opacity: 0, scale: 1.02 }}
             transition={{ duration: 0.7, ease: "easeInOut" }}
             className="fixed inset-0 z-[80] isolate flex cursor-pointer items-center justify-center overflow-hidden bg-[#030303] text-center"
           >
-            <span
-              className="absolute inset-0 -z-10 scale-105 bg-cover bg-center opacity-20 blur-sm"
-              style={{ backgroundImage: "url('/banner/maadbanner.gif')" }}
-              aria-hidden="true"
-            />
             <span className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(193,39,45,0.2),rgba(3,3,3,0.94)_58%)]" />
 
             <span className="absolute left-1/2 top-1/2 -z-0 aspect-square w-[min(78vw,78vh,620px)] -translate-x-1/2 -translate-y-1/2">
               <motion.span
-                animate={{ rotate: isEntering ? 300 : 0, scale: isEntering ? 4 : [0.92, 1.04, 0.92], opacity: isEntering ? 0 : [0.45, 0.85, 0.45] }}
-                transition={isEntering ? { duration: 1.25, ease: "easeIn" } : { duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                animate={isEntering ? { rotate: 300, scale: 2, opacity: 0 } : isNarrowScreen ? { rotate: 0, scale: 1, opacity: 0.55 } : { rotate: 0, scale: [0.92, 1.04, 0.92], opacity: [0.45, 0.85, 0.45] }}
+                transition={isEntering ? { duration: 0.7, ease: "easeIn" } : isNarrowScreen ? { duration: 0 } : { duration: 7, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute inset-0 rounded-full border border-[#e33b45]/70 shadow-[0_0_35px_rgba(193,39,45,0.35),inset_0_0_35px_rgba(193,39,45,0.16)]"
               />
               <motion.span
-                animate={{ rotate: isEntering ? -240 : 360, scale: isEntering ? 3.3 : [0.78, 0.88, 0.78], opacity: isEntering ? 0 : [0.25, 0.6, 0.25] }}
-                transition={isEntering ? { duration: 1.1, ease: "easeIn" } : { duration: 18, repeat: Infinity, ease: "linear" }}
+                animate={isEntering ? { rotate: -240, scale: 1.8, opacity: 0 } : isNarrowScreen ? { rotate: 0, scale: 0.84, opacity: 0.35 } : { rotate: 360, scale: [0.78, 0.88, 0.78], opacity: [0.25, 0.6, 0.25] }}
+                transition={isEntering ? { duration: 0.65, ease: "easeIn" } : isNarrowScreen ? { duration: 0 } : { duration: 18, repeat: Infinity, ease: "linear" }}
                 className="absolute inset-[9%] rounded-full border border-dashed border-white/40"
               />
               <motion.span
-                animate={{ scale: isEntering ? 2.8 : [0.68, 0.78, 0.68], opacity: isEntering ? 0 : [0.35, 0.7, 0.35] }}
-                transition={isEntering ? { duration: 1, ease: "easeIn" } : { duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                animate={isEntering ? { scale: 1.6, opacity: 0 } : isNarrowScreen ? { scale: 0.73, opacity: 0.45 } : { scale: [0.68, 0.78, 0.68], opacity: [0.35, 0.7, 0.35] }}
+                transition={isEntering ? { duration: 0.6, ease: "easeIn" } : isNarrowScreen ? { duration: 0 } : { duration: 5, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute inset-[19%] rounded-full border border-[#f15b60]/60 bg-[#9c1d26]/10 shadow-[0_0_70px_rgba(193,39,45,0.25)]"
               />
               <span className="absolute inset-[29%] rounded-full bg-[radial-gradient(circle,rgba(230,55,65,0.28),rgba(12,8,12,0.85)_65%,transparent_72%)]" />
               <motion.span
-                animate={{ rotate: isEntering ? 360 : 0, opacity: isEntering ? 0 : [0.25, 0.6, 0.25] }}
-                transition={isEntering ? { duration: 0.8, ease: "easeIn" } : { duration: 12, repeat: Infinity, ease: "linear" }}
+                animate={isEntering ? { rotate: 360, opacity: 0 } : isNarrowScreen ? { rotate: 0, opacity: 0.4 } : { rotate: 0, opacity: [0.25, 0.6, 0.25] }}
+                transition={isEntering ? { duration: 0.55, ease: "easeIn" } : isNarrowScreen ? { duration: 0 } : { duration: 12, repeat: Infinity, ease: "linear" }}
                 className="absolute inset-[4%] rounded-full border-t-2 border-r border-[#ff6970]/80"
               />
             </span>
