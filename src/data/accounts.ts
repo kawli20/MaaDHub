@@ -799,14 +799,14 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     gameName: "Doom Eternal ",
     platform: "Steam",
     supportLink: "https://maad.qzz.io/",
-    imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapers.com%2Fimages%2Fhd%2Fdoom-eternal-iphone-cqzss07nsftgfan8.jpg&f=1&nofb=1&ipt=95f4487af577c4a8fa5aaf32ee0a327cd7e98dca63bca46c51caaf9be9ab82b3&ipo=images"
+    imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fsavegamevault.com%2Fwp-content%2Fuploads%2F2026%2F04%2FDoom-Eternal.webp&f=1&nofb=1&ipt=1470bbf60ece06ec43de02bee4fa7ca960cf8983d7a269d5f41c9c5c6df17873&ipo=images"
   },
   {
     id: 111,
     gameName: "Phasmophobia",
     platform: "Steam",
     supportLink: "https://maad.qzz.io/",
-    imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic0.gamerantimages.com%2Fwordpress%2Fwp-content%2Fuploads%2F2024%2F12%2Fmixcollage-05-dec-2024-05-33-am-9262.jpg%3Fq%3D49%26fit%3Dcontain%26w%3D480%26dpr%3D2&f=1&nofb=1&ipt=b44580139b4dc2605938ffda64b39ef0e4582cdd20a6f319f06233f2e8436481&ipo=images"
+    imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fanewgameplus.com%2Fwp-content%2Fuploads%2F2020%2F10%2Fphasmophobia-cover.jpg&f=1&nofb=1&ipt=e80647e4bd13e52695fe9d97570796b49d3e77bf5c523f898d2a2bfbaf2a69d2&ipo=images"
   }
 ];
 
