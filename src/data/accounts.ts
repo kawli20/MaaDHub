@@ -793,6 +793,20 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     platform: "Steam",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic0.gamerantimages.com%2Fwordpress%2Fwp-content%2Fuploads%2F2024%2F12%2Fmixcollage-07-dec-2024-07-51-am-4123.jpg&f=1&nofb=1&ipt=2707bc19d3a6f8c5f9c33abe21fab0100f79b47cbdc0543fd1493e7381eafb10"
+  },
+  {
+    id: 110,
+    gameName: "Doom Eternal ",
+    platform: "Steam",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapers.com%2Fimages%2Fhd%2Fdoom-eternal-iphone-cqzss07nsftgfan8.jpg&f=1&nofb=1&ipt=95f4487af577c4a8fa5aaf32ee0a327cd7e98dca63bca46c51caaf9be9ab82b3&ipo=images"
+  },
+  {
+    id: 111,
+    gameName: "Phasmophobia",
+    platform: "Steam",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic0.gamerantimages.com%2Fwordpress%2Fwp-content%2Fuploads%2F2024%2F12%2Fmixcollage-05-dec-2024-05-33-am-9262.jpg%3Fq%3D49%26fit%3Dcontain%26w%3D480%26dpr%3D2&f=1&nofb=1&ipt=b44580139b4dc2605938ffda64b39ef0e4582cdd20a6f319f06233f2e8436481&ipo=images"
   }
 ];
 
