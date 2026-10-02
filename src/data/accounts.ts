@@ -807,6 +807,13 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     platform: "Steam",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fanewgameplus.com%2Fwp-content%2Fuploads%2F2020%2F10%2Fphasmophobia-cover.jpg&f=1&nofb=1&ipt=e80647e4bd13e52695fe9d97570796b49d3e77bf5c523f898d2a2bfbaf2a69d2&ipo=images"
+  },
+  {
+    id: 112,
+    gameName: "Devil May Cry 5",
+    platform: "Steam",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/en/c/cb/Devil_May_Cry_5.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original"
   }
 ];
 
