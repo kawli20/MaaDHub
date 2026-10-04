@@ -7,5 +7,13 @@
     "directory": "./dist",
     "binding": "ASSETS",
     "not_found_handling": "single-page-application"
-  }
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "referral-db",
+      "database_id": "724b190e-6bde-423c-923c-5f8dc84e23c8",
+      "migrations_dir": "migrations"
+    }
+  ]
 }

@@ -12,7 +12,8 @@ import { Footer } from "@/components/Footer";
 import { BackToTop } from "@/components/BackToTop";
 import { AdBanner } from "@/components/AdBanner";
 import { DEFAULT_ACCOUNTS, DEFAULT_ADVERTISEMENTS } from "@/data/accounts";
-import { Gamepad2, ChevronLeft, ChevronRight } from "lucide-react";
+import { SignUpButton } from "@/lib/clerk";
+import { Gamepad2, ChevronLeft, ChevronRight, ChevronDown, UserRoundPlus, LogIn, Library } from "lucide-react";
 import { useLocation } from "react-router";
 
 const ITEMS_PER_PAGE = 12;
@@ -197,6 +198,50 @@ export default function Home() {
               {t("vault_results")}
             </div>
           </div>
+
+          <section className="mb-6" aria-label="Getting started">
+            <details className="group getting-started-guide w-full rounded-2xl border border-white/10 bg-[#080d16]/85">
+              <summary className="flex cursor-pointer list-none items-center gap-3 px-3 py-3 marker:hidden sm:px-5">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[#C1272D]/25 bg-[#C1272D]/10 text-[#e25158]">
+                  <UserRoundPlus className="h-4 w-4" />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block text-sm font-semibold leading-snug text-white">New here? Start in three steps</span>
+                  <span className="block text-xs leading-snug text-white/45">Create a profile, sign in, then explore the catalog.</span>
+                </span>
+                <ChevronDown className="h-4 w-4 shrink-0 text-white/50 transition-transform group-open:rotate-180" />
+              </summary>
+
+              <div className="border-t border-white/[0.08] px-3 py-4 sm:px-5">
+                <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  <li className="flex items-start gap-3">
+                    <UserRoundPlus className="mt-0.5 h-4 w-4 shrink-0 text-[#e25158]" />
+                    <div className="min-w-0">
+                      <h3 className="text-xs font-semibold text-white">1. Create your MaaDHub profile</h3>
+                      <p className="mt-1 text-xs leading-relaxed text-white/50">Use the sign-up window to create your site account.</p>
+                      <SignUpButton className="mt-2 rounded-full bg-[#C1272D] px-3 py-1.5 text-xs font-semibold text-white hover:bg-[#d5363d]">
+                        Create account
+                      </SignUpButton>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <LogIn className="mt-0.5 h-4 w-4 shrink-0 text-[#e25158]" />
+                    <div className="min-w-0">
+                      <h3 className="text-xs font-semibold text-white">2. Sign in to MaaDHub</h3>
+                      <p className="mt-1 text-xs leading-relaxed text-white/50">Your profile enables account-card actions and saved items across the catalog.</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3 sm:col-span-2 lg:col-span-1">
+                    <Library className="mt-0.5 h-4 w-4 shrink-0 text-[#e25158]" />
+                    <div className="min-w-0">
+                      <h3 className="text-xs font-semibold text-white">3. Explore the catalog</h3>
+                      <p className="mt-1 text-xs leading-relaxed text-white/50">Some listings require points to unlock. Steam is separate: use your own Steam account and authorized products.</p>
+                    </div>
+                  </li>
+                </ol>
+              </div>
+            </details>
+          </section>
 
           {filteredAccounts.length > 0 ? (
             <>

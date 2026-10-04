@@ -91,7 +91,7 @@ export function PointsModal({ isOpen, onClose, onBrowseVault }: PointsModalProps
           initial={{ opacity: 0, scale: 0.95, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 15 }}
-          className="relative w-full max-w-lg rounded-3xl border border-white/10 bg-[#080d16]/98 p-6 sm:p-8 text-white shadow-2xl overflow-hidden"
+          className="relative max-h-[calc(100dvh-2rem)] w-full max-w-lg overscroll-contain overflow-y-auto rounded-3xl border border-white/10 bg-[#080d16]/98 p-5 text-white shadow-2xl sm:max-h-[calc(100dvh-3rem)] sm:p-8"
         >
           {/* Subtle Ambient Red Glow */}
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#C1272D]/20 rounded-full blur-3xl pointer-events-none" />
