@@ -26,7 +26,7 @@ export default function About() {
               {t("saved_back")}
             </Link>
             <div className="flex items-center justify-center gap-4 mb-6">
-              <img src="/logo.png" alt="MaaDHub" className="w-16 h-16 object-contain" />
+              <img src="/vought-mark.png" alt="VOUGHT" className="w-16 h-16 object-contain" />
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight mb-4">
               {t("about_title_1")} <span className="text-gradient">{t("about_title_2")}</span>

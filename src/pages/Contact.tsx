@@ -24,7 +24,7 @@ export default function Contact() {
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
             <a
-              href="https://maad.qzz.io"
+              href="https://vought.online"
               target="_blank"
               rel="noopener noreferrer"
               className="glass-card p-6 rounded-xl flex items-center gap-5 group hover-glow transition-all"
@@ -34,7 +34,7 @@ export default function Contact() {
               </div>
               <div className="flex-1">
                 <h3 className="text-white font-semibold mb-1 group-hover:text-[#C1272D] transition-colors">{t("contact_website")}</h3>
-                <p className="text-white/40 text-sm">maad.qzz.io</p>
+                <p className="text-white/40 text-sm">vought.online</p>
               </div>
               <ExternalLink className="w-5 h-5 text-white/20 group-hover:text-[#C1272D] transition-colors" />
             </a>
@@ -49,7 +49,7 @@ export default function Contact() {
             <h2 className="text-xl font-bold text-white mb-2">{t("contact_ad_title")}</h2>
             <p className="text-white/40 text-sm mb-6">{t("contact_ad_desc")}</p>
             <a
-              href="https://maad.qzz.io"
+              href="https://vought.online"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#C1272D] text-[#030303] font-semibold text-sm hover:bg-[#C1272D]/90 transition-all"

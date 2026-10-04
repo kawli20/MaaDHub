@@ -150,7 +150,7 @@ export function Navigation() {
             type="button"
             onClick={unlockSiteAudio}
             disabled={isEntering}
-            aria-label="Enter MaaDHub and start background music"
+            aria-label="Enter VOUGHT and start background music"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, scale: 1.02 }}
@@ -192,7 +192,7 @@ export function Navigation() {
                 <Sparkles className="h-5 w-5" />
               </span>
               <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#ff777d]">
-                MaaDHub // Access Portal
+                VOUGHT // Access Portal
               </span>
               <span className="mt-3 text-4xl font-black text-white sm:text-5xl">Step into the vault</span>
               <span className="mt-3 max-w-sm text-sm leading-relaxed text-white/60">
@@ -221,12 +221,12 @@ export function Navigation() {
             {/* Logo */}
             <Link to="/" className="flex shrink-0 items-center gap-3 group">
               <img
-                src="/logo.png"
-                alt="MaaDHub"
+                src="/vought-mark.png"
+                alt="VOUGHT"
                 className="w-9 h-9 object-contain transition-transform duration-300 group-hover:scale-110"
               />
               <span className="text-xl font-bold tracking-tight text-white">
-                MaaD<span className="text-[#C1272D]">Hub</span>
+                VOUGHT
               </span>
             </Link>
 

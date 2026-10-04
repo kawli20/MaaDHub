@@ -20,9 +20,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
             <Link to="/" className="flex items-center gap-3 mb-4">
-              <img src="/logo.png" alt="MaaDHub" className="w-8 h-8 object-contain" />
+              <img src="/vought-mark.png" alt="VOUGHT" className="w-8 h-8 object-contain" />
               <span className="text-lg font-bold text-white">
-                MaaD<span className="text-[#C1272D]">Hub</span>
+                VOUGHT
               </span>
             </Link>
             <p className="text-white/40 text-sm max-w-sm leading-relaxed">{t("footer_desc")}</p>
@@ -64,12 +64,12 @@ export function Footer() {
             {t("footer_credits")} <Heart className="w-3 h-3 text-[#C1272D]" /> {t("footer_by")}
           </p>
           <a
-            href="https://maad.qzz.io"
+            href="https://vought.online"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white/30 hover:text-[#C1272D] text-xs flex items-center gap-1 transition-colors"
           >
-            maad.qzz.io <ExternalLink className="w-3 h-3" />
+            vought.online <ExternalLink className="w-3 h-3" />
           </a>
         </motion.div>
       </div>

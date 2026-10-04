@@ -1,6 +1,6 @@
 {
   "$schema": "https://www.unpkg.com/wrangler@latest/config-schema.json",
-  "name": "maadhub",
+  "name": "vought",
   "main": "./src/worker.ts",
   "compatibility_date": "2026-07-20",
   "assets": {

@@ -193,7 +193,7 @@ export const AccountCard = memo(function AccountCard({
     const shareUrl = `${window.location.origin}/?account=${account.id}`;
     const shareData = {
       title: `${account.gameName} - Free ${account.platform} Account`,
-      text: `Get free access to ${account.gameName} on MaaDHub!`,
+      text: `Get free access to ${account.gameName} on VOUGHT!`,
       url: shareUrl,
     };
 

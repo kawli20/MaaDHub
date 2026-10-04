@@ -1,8 +1,8 @@
-const CACHE_NAME = "maadhub-pwa-v3";
+const CACHE_NAME = "vought-pwa-v4";
 const STATIC_ASSETS = [
   "/",
   "/index.html",
-  "/logo.png",
+  "/vought-mark.png",
   "/manifest.json",
   "/games/steam.jpg",
   "/games/epic.jpg",

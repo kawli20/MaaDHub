@@ -1,6 +1,6 @@
 {
-  "name": "MaaDHub - Free Premium Gaming Accounts",
-  "short_name": "MaaDHub",
+  "name": "VOUGHT - Free Premium Gaming Accounts",
+  "short_name": "VOUGHT",
   "description": "Premium gaming and streaming accounts for free",
   "start_url": "/",
   "display": "standalone",
@@ -9,13 +9,13 @@
   "orientation": "any",
   "icons": [
     {
-      "src": "/logo.png",
+      "src": "/vought-mark.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/logo.png",
+      "src": "/vought-mark.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
@@ -28,14 +28,14 @@
       "short_name": "Vault",
       "description": "Browse free gaming accounts",
       "url": "/#vault",
-      "icons": [{ "src": "/logo.png", "sizes": "96x96" }]
+      "icons": [{ "src": "/vought-mark.png", "sizes": "96x96" }]
     },
     {
       "name": "Saved Accounts",
       "short_name": "Saved",
       "description": "View your saved accounts",
       "url": "/saved",
-      "icons": [{ "src": "/logo.png", "sizes": "96x96" }]
+      "icons": [{ "src": "/vought-mark.png", "sizes": "96x96" }]
     }
   ]
 }

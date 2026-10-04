@@ -110,7 +110,7 @@ export default function App() {
                 <span className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-transparent border-t-[#C1272D]" />
               </div>
             </div>
-            <h2 className="text-xl font-bold text-white mb-2">Preparing MaaDHub Vault</h2>
+            <h2 className="text-xl font-bold text-white mb-2">Preparing VOUGHT Vault</h2>
             <p className="text-xs text-white/50 mb-6 leading-relaxed">
               Optimizing accounts and performance for smooth browsing.
             </p>

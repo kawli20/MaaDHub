@@ -93,7 +93,7 @@ const DEFAULT_POINTS_CTX: PointsContextType = {
   isUnlocked: (_id, cost) => !cost || cost <= 0,
   unlockAccount: () => ({ success: true }),
   addPoints: () => {},
-  getInviteLink: () => (typeof window !== "undefined" ? window.location.origin : "https://maadhub.com"),
+  getInviteLink: () => (typeof window !== "undefined" ? window.location.origin : "https://vought.online"),
 };
 
 const PointsContext = createContext<PointsContextType>(DEFAULT_POINTS_CTX);
@@ -312,7 +312,7 @@ export function PointsProvider({ children }: { children: ReactNode }) {
   );
 
   const getInviteLink = useCallback(() => {
-    if (typeof window === "undefined") return `https://maadhub.com/?ref=${state.referralCode}`;
+    if (typeof window === "undefined") return `https://vought.online/?ref=${state.referralCode}`;
     return `${window.location.origin}/?ref=${state.referralCode}`;
   }, [state.referralCode]);
 

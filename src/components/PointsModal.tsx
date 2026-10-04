@@ -47,21 +47,21 @@ export function PointsModal({ isOpen, onClose, onBrowseVault }: PointsModalProps
 
   const handleShareWhatsApp = () => {
     const text = encodeURIComponent(
-      `🔥 Get free premium gaming accounts on MaaDHub! Use my invite link to get +10 bonus points: ${inviteUrl}`
+      `🔥 Get free premium gaming accounts on VOUGHT! Use my invite link to get +10 bonus points: ${inviteUrl}`
     );
     window.open(`https://api.whatsapp.com/send?text=${text}`, "_blank");
   };
 
   const handleShareTelegram = () => {
     const text = encodeURIComponent(
-      `🎮 Join MaaDHub and claim free premium gaming accounts! Use my invite link for +10 bonus points:`
+      `🎮 Join VOUGHT and claim free premium gaming accounts! Use my invite link for +10 bonus points:`
     );
     window.open(`https://t.me/share/url?url=${encodeURIComponent(inviteUrl)}&text=${text}`, "_blank");
   };
 
   const handleShareTwitter = () => {
     const text = encodeURIComponent(
-      `Get free access to premium gaming accounts on MaaDHub! Join with my invite link to get 10 free bonus points: ${inviteUrl}`
+      `Get free access to premium gaming accounts on VOUGHT! Join with my invite link to get 10 free bonus points: ${inviteUrl}`
     );
     window.open(`https://twitter.com/intent/tweet?text=${text}`, "_blank");
   };
@@ -70,8 +70,8 @@ export function PointsModal({ isOpen, onClose, onBrowseVault }: PointsModalProps
     if (navigator.share) {
       try {
         await navigator.share({
-          title: "MaaDHub Free Gaming Accounts",
-          text: "Join MaaDHub to get free premium gaming accounts! Get +10 bonus points with my invite link:",
+          title: "VOUGHT Free Gaming Accounts",
+          text: "Join VOUGHT to get free premium gaming accounts! Get +10 bonus points with my invite link:",
           url: inviteUrl,
         });
       } catch {

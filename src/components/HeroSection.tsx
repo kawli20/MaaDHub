@@ -9,7 +9,7 @@ export function HeroSection() {
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: "url('/banner/maadbanner.gif')",
+          backgroundImage: "url('/banner/banner.gif')",
           backgroundSize: "cover",
           backgroundPosition: "top center",
           backgroundRepeat: "no-repeat",

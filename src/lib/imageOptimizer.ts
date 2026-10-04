@@ -23,7 +23,7 @@ export function getOptimizedImageUrl(
   // Only optimize remote HTTP/HTTPS URLs
   if (url.startsWith("http://") || url.startsWith("https://")) {
     // encode URL for wsrv.nl proxy
-    return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${width}&q=${quality}&output=webp&default=https%3A%2F%2Fmaadhub.vercel.app%2Fgames%2Fsteam.jpg`;
+    return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${width}&q=${quality}&output=webp&default=https%3A%2F%2Fvought.online%2Fgames%2Fsteam.jpg`;
   }
 
   return url;

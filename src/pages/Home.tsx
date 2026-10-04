@@ -49,8 +49,8 @@ export default function Home() {
 
           // Dynamic OG meta + page title update for sharing
           if (targetAccount) {
-            const title = `${targetAccount.gameName} — Free ${targetAccount.platform} Account | MaaDHub`;
-            const desc = `Get free access to ${targetAccount.gameName} on ${targetAccount.platform} via MaaDHub!`;
+            const title = `${targetAccount.gameName} — Free ${targetAccount.platform} Account | VOUGHT`;
+            const desc = `Get free access to ${targetAccount.gameName} on ${targetAccount.platform} via VOUGHT!`;
             document.title = title;
             document.querySelector('meta[property="og:title"]')?.setAttribute("content", title);
             document.querySelector('meta[property="og:description"]')?.setAttribute("content", desc);
@@ -77,7 +77,7 @@ export default function Home() {
         }
       } else {
         // Reset title when on plain home
-        document.title = "MaaDHub - Free Premium Gaming & Streaming Accounts";
+        document.title = "VOUGHT - Free Premium Gaming & Streaming Accounts";
       }
     } catch {
       // ignore
@@ -217,7 +217,7 @@ export default function Home() {
                   <li className="flex items-start gap-3">
                     <UserRoundPlus className="mt-0.5 h-4 w-4 shrink-0 text-[#e25158]" />
                     <div className="min-w-0">
-                      <h3 className="text-xs font-semibold text-white">1. Create your MaaDHub profile</h3>
+                      <h3 className="text-xs font-semibold text-white">1. Create your VOUGHT profile</h3>
                       <p className="mt-1 text-xs leading-relaxed text-white/50">Use the sign-up window to create your site account.</p>
                       <SignUpButton className="mt-2 rounded-full bg-[#C1272D] px-3 py-1.5 text-xs font-semibold text-white hover:bg-[#d5363d]">
                         Create account
@@ -227,7 +227,7 @@ export default function Home() {
                   <li className="flex items-start gap-3">
                     <LogIn className="mt-0.5 h-4 w-4 shrink-0 text-[#e25158]" />
                     <div className="min-w-0">
-                      <h3 className="text-xs font-semibold text-white">2. Sign in to MaaDHub</h3>
+                      <h3 className="text-xs font-semibold text-white">2. Sign in to VOUGHT</h3>
                       <p className="mt-1 text-xs leading-relaxed text-white/50">Your profile enables account-card actions and saved items across the catalog.</p>
                     </div>
                   </li>
