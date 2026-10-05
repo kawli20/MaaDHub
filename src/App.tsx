@@ -1,5 +1,5 @@
 import { useEffect, useState, Suspense, lazy } from "react";
-import { Routes, Route } from "react-router";
+import { Routes, Route, useLocation } from "react-router";
 import ScrollToTop from "./components/ScrollToTop";
 import ScrollingBackground from "./components/ScrollingBackground";
 import { ErrorBoundary } from "./components/ErrorBoundary";
@@ -10,6 +10,12 @@ import { SkeletonNav, SkeletonHero, SkeletonFilters, SkeletonGrid } from "./comp
 import { getOptimizedImageUrl } from "@/lib/imageOptimizer";
 import { usePoints } from "@/hooks/usePoints";
 import { UnlockModal } from "@/components/UnlockModal";
+
+declare global {
+  interface Window {
+    fbq?: (action: string, event: string) => void;
+  }
+}
 
 const Home = lazy(() => import("./pages/Home"));
 const SavedAccounts = lazy(() => import("./pages/SavedAccounts"));
@@ -67,11 +73,16 @@ const preloadImages = (urls: string[]) => {
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
+  const location = useLocation();
   const {
     selectedAccountToUnlock,
     setSelectedAccountToUnlock,
     setIsPointsModalOpen,
   } = usePoints();
+
+  useEffect(() => {
+    window.fbq?.("track", "PageView");
+  }, [location.pathname, location.search, location.hash]);
 
   useEffect(() => {
     const allUrls = (DEFAULT_ACCOUNTS || [])
