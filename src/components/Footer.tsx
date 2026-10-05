@@ -64,12 +64,12 @@ export function Footer() {
             {t("footer_credits")} <Heart className="w-3 h-3 text-[#C1272D]" /> {t("footer_by")}
           </p>
           <a
-            href="https://vought.online"
+            href="https://maad.qzz.io"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white/30 hover:text-[#C1272D] text-xs flex items-center gap-1 transition-colors"
           >
-            vought.online <ExternalLink className="w-3 h-3" />
+            maad.qzz.io <ExternalLink className="w-3 h-3" />
           </a>
         </motion.div>
       </div>
