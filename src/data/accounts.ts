@@ -821,6 +821,13 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     platform: "Steam",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU6yLeVYSccFn2DRR4FNttgcwwpSm8yq2MTejJ9Buu6GX2f0rDmtQjjIm4&s=10"
+  },
+  {
+    id: 114,
+    gameName: "Resident Evil 2",
+    platform: "Steam",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/en/f/fd/Resident_Evil_2_Remake.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original"
   }
 ];
 
