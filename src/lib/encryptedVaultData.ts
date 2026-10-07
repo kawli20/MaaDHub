@@ -458,5 +458,9 @@ export const ENCRYPTED_VAULT: Record<number, { u: string; p: string }> = {
   "114": {
     "u": "JSEXMSE8c2w=",
     "p": "KAgiCj8jGRM="
+  },
+  "115": {
+    "u": "ICciMDIqNTwxMTAkOGR8FDg7UzZeHlFZMg==",
+    "p": "JyspMCUsICE9N207dGJ+Zm5kAG8CBg=="
   }
 };

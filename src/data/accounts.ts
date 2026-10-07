@@ -828,6 +828,13 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     platform: "Steam",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/en/f/fd/Resident_Evil_2_Remake.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original"
+  },
+  {
+    id: 115,
+    gameName: "Tomb Raider Trilogy",
+    platform: "Epic Games",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://cdn.loaded.com/500x706/media/catalog/product/t/o/tombraiderdefinitivesurvivortrilogy-steam_1.jpg"
   }
 ];
 
