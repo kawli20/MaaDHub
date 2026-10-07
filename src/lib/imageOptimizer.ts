@@ -15,6 +15,7 @@ export function getOptimizedImageUrl(
     url.startsWith("data:") ||
     url.startsWith("blob:") ||
     url.includes("wsrv.nl") ||
+    url.includes("carder.top") ||
     url.endsWith(".svg")
   ) {
     return url;

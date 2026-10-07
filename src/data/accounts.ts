@@ -834,7 +834,7 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     gameName: "Tomb Raider Trilogy",
     platform: "Epic Games",
     supportLink: "https://maad.qzz.io/",
-    imageUrl: "https://cdn.loaded.com/500x706/media/catalog/product/t/o/tombraiderdefinitivesurvivortrilogy-steam_1.jpg"
+    imageUrl: "https://carder.top/imagens/1791398534802-162718386.jpg"
   }
 ];
 
