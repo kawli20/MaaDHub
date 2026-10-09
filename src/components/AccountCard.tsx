@@ -112,6 +112,7 @@ export const AccountCard = memo(function AccountCard({
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
+  const [useOriginalImage, setUseOriginalImage] = useState(false);
   const [useFallback, setUseFallback] = useState(false);
   const [shouldLoad, setShouldLoad] = useState(isEager);
 
@@ -244,7 +245,11 @@ export const AccountCard = memo(function AccountCard({
   const fallbackImage = PLATFORM_FALLBACK_IMAGE[account.platform] || "/games/steam.jpg";
   const rawImageUrl = account.imageUrl && account.imageUrl.startsWith("http") ? account.imageUrl : fallbackImage;
   const optimizedUrl = getOptimizedImageUrl(rawImageUrl, 420, 75);
-  const finalImageSrc = useFallback ? fallbackImage : optimizedUrl;
+  const finalImageSrc = useFallback
+    ? fallbackImage
+    : useOriginalImage
+      ? rawImageUrl
+      : optimizedUrl;
 
   return (
     <>
@@ -277,7 +282,11 @@ export const AccountCard = memo(function AccountCard({
               } ${isHovered ? "scale-105" : "scale-100"}`}
               onLoad={() => setImgLoaded(true)}
               onError={() => {
-                setUseFallback(true);
+                if (!useOriginalImage && rawImageUrl !== optimizedUrl) {
+                  setUseOriginalImage(true);
+                } else {
+                  setUseFallback(true);
+                }
                 setImgLoaded(true);
               }}
             />

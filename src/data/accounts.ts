@@ -835,7 +835,21 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     platform: "Epic Games",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://carder.top/imagens/1791398534802-162718386.jpg"
-  }
+  },
+  {
+    id: 116,
+    gameName: "Crimson Desert",
+    platform: "Steam",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://cdn.loaded.com/500x706/media/catalog/product/c/r/crimson_d_enhanced.png"
+  },
+  {
+    id: 117,
+    gameName: "Red Dead Redemption 2",
+    platform: "Steam",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://cdng.europosters.eu/pod_public/750/181747.jpg"
+  },
 ];
 
 export interface Advertisement {
