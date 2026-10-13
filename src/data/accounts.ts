@@ -850,6 +850,13 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://cdng.europosters.eu/pod_public/750/181747.jpg"
   },
+  {
+    id: 118,
+    gameName: "The Last of Us™ Part II Remastered",
+    platform: "Steam",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRzZa8f_0Y2VAbDsiy-jPnB2inkfI8eWNyLNmTSYYVcQ&s=10"
+  }
 ];
 
 export interface Advertisement {
