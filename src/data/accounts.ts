@@ -856,6 +856,13 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     platform: "Steam",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRzZa8f_0Y2VAbDsiy-jPnB2inkfI8eWNyLNmTSYYVcQ&s=10"
+  },
+  {
+    id: 119,
+    gameName: "Call of Duty: Modern Warfare III",
+    platform: "Steam",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/en/f/f6/MWIII_Cover_Art.png?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original"
   }
 ];
 
