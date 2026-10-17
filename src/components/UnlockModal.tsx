@@ -35,6 +35,7 @@ export function UnlockModal({
 
   const [loading, setLoading] = useState(false);
   const [unlockedSuccess, setUnlockedSuccess] = useState(false);
+  const [unlockError, setUnlockError] = useState<string | null>(null);
 
   if (!isOpen || !account) return null;
 
@@ -55,19 +56,27 @@ export function UnlockModal({
     }
 
     setLoading(true);
+    setUnlockError(null);
     // Smooth unlock feel
     await new Promise((res) => setTimeout(res, 600));
-    const result = unlockAccount(account);
+    const result = await unlockAccount(account);
     setLoading(false);
 
-    if (result.success) {
-      setUnlockedSuccess(true);
-      onSuccess?.(account);
-      setTimeout(() => {
-        setUnlockedSuccess(false);
-        onClose();
-      }, 1500);
+    if (!result.success) {
+      setUnlockError(
+        result.reason === "insufficient_points"
+          ? "Your points balance changed. Refresh the points panel and try again."
+          : "Could not unlock this account. Check your connection and try again."
+      );
+      return;
     }
+
+    setUnlockedSuccess(true);
+    onSuccess?.(account);
+    setTimeout(() => {
+      setUnlockedSuccess(false);
+      onClose();
+    }, 1500);
   };
 
   return (
@@ -176,6 +185,11 @@ export function UnlockModal({
 
               {/* Actions */}
               <div className="space-y-2">
+                {unlockError && (
+                  <p role="alert" className="rounded-xl border border-red-500/25 bg-red-500/10 px-3 py-2 text-xs text-red-200">
+                    {unlockError}
+                  </p>
+                )}
                 {hasEnoughPoints ? (
                   <button
                     onClick={handleConfirmUnlock}

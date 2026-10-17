@@ -20,6 +20,7 @@ interface ClerkContextType {
   isLoaded: boolean;
   isSignedIn: boolean;
   user: ClerkUser | null;
+  getToken: () => Promise<string | null>;
   openSignIn: () => void;
   openSignUp: () => void;
   openUserProfile: () => void;
@@ -30,6 +31,7 @@ const ClerkContext = createContext<ClerkContextType>({
   isLoaded: false,
   isSignedIn: false,
   user: null,
+  getToken: async () => null,
   openSignIn: () => {},
   openSignUp: () => {},
   openUserProfile: () => {},
@@ -434,6 +436,12 @@ export function ClerkProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
+  const getToken = useCallback(async () => {
+    const session = window.Clerk?.session;
+    if (!session || typeof session.getToken !== "function") return null;
+    return await session.getToken();
+  }, []);
+
   const signOut = useCallback(async () => {
     if (window.Clerk) {
       await window.Clerk.signOut();
@@ -448,6 +456,7 @@ export function ClerkProvider({ children }: { children: React.ReactNode }) {
         isLoaded,
         isSignedIn,
         user,
+        getToken,
         openSignIn,
         openSignUp,
         openUserProfile,
@@ -469,8 +478,8 @@ export function useUser() {
 }
 
 export function useAuth() {
-  const { isLoaded, isSignedIn, signOut, openSignIn, openSignUp } = useContext(ClerkContext);
-  return { isLoaded, isSignedIn, signOut, openSignIn, openSignUp };
+  const { isLoaded, isSignedIn, user, getToken, signOut, openSignIn, openSignUp } = useContext(ClerkContext);
+  return { isLoaded, isSignedIn, user, getToken, signOut, openSignIn, openSignUp };
 }
 
 export function SignedIn({ children }: { children: React.ReactNode }) {
