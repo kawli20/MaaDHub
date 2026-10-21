@@ -863,6 +863,13 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     platform: "Steam",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/en/f/f6/MWIII_Cover_Art.png?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original"
+  },
+  {
+    id: 120,
+    gameName: "Call of Duty®: Modern Warfare® 4",
+    platform: "Steam",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://www.callofduty.com/content/dam/atvi/callofduty/cod-touchui/mw4/play-now/MW4LP_BuyNow_MW4VE.webp"
   }
 ];
 
