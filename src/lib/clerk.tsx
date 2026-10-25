@@ -4,7 +4,8 @@ import { User, LogIn, LogOut, Sparkles } from "lucide-react";
 export const CLERK_PUBLISHABLE_KEY =
   import.meta.env.VITE_CLERK_PUBLISHABLE_KEY ||
   import.meta.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
-  "pk_test_cG9zc2libGUtdHVuYS0yMzY2LmNsZXJrLmFjY291bnRzLmRldiQ";
+  "pk_live_Y2xlcmsudm91Z2h0Lm9ubGluZSQ";
+const CLERK_FRONTEND_API = "clerk.vought.online";
 
 export interface ClerkUser {
   id: string;
@@ -353,8 +354,7 @@ export function ClerkProvider({ children }: { children: React.ReactNode }) {
           return;
         }
 
-        const frontendApi = "possible-tuna-2366.clerk.accounts.dev";
-        const scriptSrc = `https://${frontendApi}/npm/@clerk/clerk-js@5/dist/clerk.browser.js`;
+        const scriptSrc = `https://${CLERK_FRONTEND_API}/npm/@clerk/clerk-js@5/dist/clerk.browser.js`;
 
         if (!document.querySelector(`script[src="${scriptSrc}"]`)) {
           script = document.createElement("script");
@@ -418,7 +418,7 @@ export function ClerkProvider({ children }: { children: React.ReactNode }) {
     if (window.Clerk) {
       window.Clerk.openSignIn({});
     } else {
-      window.location.href = `https://possible-tuna-2366.clerk.accounts.dev/sign-in`;
+      window.location.href = `https://${CLERK_FRONTEND_API}/sign-in`;
     }
   }, []);
 
@@ -426,7 +426,7 @@ export function ClerkProvider({ children }: { children: React.ReactNode }) {
     if (window.Clerk) {
       window.Clerk.openSignUp({});
     } else {
-      window.location.href = `https://possible-tuna-2366.clerk.accounts.dev/sign-up`;
+      window.location.href = `https://${CLERK_FRONTEND_API}/sign-up`;
     }
   }, []);
 

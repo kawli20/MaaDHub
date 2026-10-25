@@ -16,7 +16,6 @@ import { useLanguage } from "@/hooks/useLanguage";
 import { useReportedAccounts } from "@/hooks/useReportedAccounts";
 import { reportBrokenAccount } from "@/lib/telegram";
 import { useAuth } from "@/lib/clerk";
-import { getOptimizedImageUrl } from "@/lib/imageOptimizer";
 import { usePoints } from "@/hooks/usePoints";
 import { getSecureCredentials, resolveAccountCredentials } from "@/lib/secureVault";
 import type { Account } from "@/data/accounts";
@@ -112,7 +111,6 @@ export const AccountCard = memo(function AccountCard({
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
-  const [useOriginalImage, setUseOriginalImage] = useState(false);
   const [useFallback, setUseFallback] = useState(false);
   const [shouldLoad, setShouldLoad] = useState(isEager);
 
@@ -244,12 +242,7 @@ export const AccountCard = memo(function AccountCard({
 
   const fallbackImage = PLATFORM_FALLBACK_IMAGE[account.platform] || "/games/steam.jpg";
   const rawImageUrl = account.imageUrl && account.imageUrl.startsWith("http") ? account.imageUrl : fallbackImage;
-  const optimizedUrl = getOptimizedImageUrl(rawImageUrl, 420, 75);
-  const finalImageSrc = useFallback
-    ? fallbackImage
-    : useOriginalImage
-      ? rawImageUrl
-      : optimizedUrl;
+  const finalImageSrc = useFallback ? fallbackImage : rawImageUrl;
 
   return (
     <>
@@ -282,11 +275,7 @@ export const AccountCard = memo(function AccountCard({
               } ${isHovered ? "scale-105" : "scale-100"}`}
               onLoad={() => setImgLoaded(true)}
               onError={() => {
-                if (!useOriginalImage && rawImageUrl !== optimizedUrl) {
-                  setUseOriginalImage(true);
-                } else {
-                  setUseFallback(true);
-                }
+                setUseFallback(true);
                 setImgLoaded(true);
               }}
             />

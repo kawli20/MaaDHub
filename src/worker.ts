@@ -25,7 +25,7 @@ interface Env {
 }
 
 const FALLBACK_TELEGRAM_CHANNEL = "-1004445400084";
-const CLERK_ISSUER = "https://possible-tuna-2366.clerk.accounts.dev";
+const CLERK_ISSUER = "https://clerk.vought.online";
 const CLERK_JWKS = createRemoteJWKSet(
   new URL(`${CLERK_ISSUER}/.well-known/jwks.json`)
 );
