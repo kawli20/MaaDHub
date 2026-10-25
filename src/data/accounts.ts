@@ -870,6 +870,13 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     platform: "Steam",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://www.callofduty.com/content/dam/atvi/callofduty/cod-touchui/mw4/play-now/MW4LP_BuyNow_MW4VE.webp"
+  },
+  {
+    id: 121,
+    gameName: "Horizon Zero Dawn Complete Edition",
+    platform: "Steam",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://myhotposters.com/cdn/shop/products/mL4596_1024x1024.jpg?v=1748533411"
   }
 ];
 
