@@ -877,7 +877,35 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     platform: "Steam",
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://myhotposters.com/cdn/shop/products/mL4596_1024x1024.jpg?v=1748533411"
-  }
+  },
+  {
+    id: 122,
+    gameName: "F1 25",
+    platform: "Steam",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6ChKQevCl-jVuGepFepEHaGewFRETo4wkrpVVNB6-bh3nx7iedCgaoLjL&s=10"
+  },
+  {
+    id: 123,
+    gameName: "Elden Ring",
+    platform: "Steam",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://m.media-amazon.com/images/M/MV5BZGQxMjYyOTUtNjYyMC00NzdmLWI4YmYtMDhiODU3Njc5ZDJkXkEyXkFqcGc@._V1_QL75_UX190_CR0,2,190,281_.jpg"
+  },
+  {
+    id: 124,
+    gameName: "Resident Evil Collection",
+    platform: "Steam",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://media.themoviedb.org/t/p/w500/bJXqRRb87ObiJZh8dKLFz6DO9TZ.jpg"
+  },
+  {
+    id: 125,
+    gameName: "Black Myth: Wukong",
+    platform: "Steam",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://cdn1.epicgames.com/spt-assets/ca9ef1bcf2f54043baac351366aec677/black-myth-wukong-jjjfw.png"
+  },
 ];
 
 export interface Advertisement {
