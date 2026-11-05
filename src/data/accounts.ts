@@ -906,6 +906,20 @@ export const DEFAULT_ACCOUNTS: Account[] = [
     supportLink: "https://maad.qzz.io/",
     imageUrl: "https://cdn1.epicgames.com/spt-assets/ca9ef1bcf2f54043baac351366aec677/black-myth-wukong-jjjfw.png"
   },
+  {
+    id: 126,
+    gameName: "No, I'm not a Human",
+    platform: "Steam",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3Ld3BjLkTERhEinpjzwPlnZs6MKX8y9moTcsz1qPkGrFs6ibfFyXwtkU&s=10"
+  },
+  {
+    id: 127,
+    gameName: "Bodycam",
+    platform: "Steam",
+    supportLink: "https://maad.qzz.io/",
+    imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKe1KYZ3Q6pKL9J9G_84gnIV2qq1Eba5yciHYn4G78CuR-j80j5WH_lIA&s=10"
+  }
 ];
 
 export interface Advertisement {
